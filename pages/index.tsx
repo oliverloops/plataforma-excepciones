@@ -1,9 +1,15 @@
 import { GetStaticProps } from "next";
+import Image from "next/image";
+//UI components
+import SearchBar from "../components/SearchBar";
 
 const Home = ({ props }) => {
   return (
     <>
-      <h1>Plataforma Excepciones!</h1>
+      <div className="flex justify-center pt-8 pb-4">
+        <Image src={"/kila_logo.png"} width={180} height={75} alt="Kila Logo" />
+      </div>
+      <SearchBar />
     </>
   );
 };
