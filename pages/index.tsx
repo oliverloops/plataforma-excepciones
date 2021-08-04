@@ -1,5 +1,7 @@
 import { GetStaticProps } from "next";
 import Image from "next/image";
+//UI Layout
+import Footer from "../layout/Footer";
 //UI components
 import SearchBar from "../components/SearchBar";
 import ProjectCard from "../components/ProjectCard";
@@ -11,9 +13,18 @@ const Home = ({ props }) => {
         <Image src={"/kila_logo.png"} width={150} height={60} alt="Kila Logo" />
       </div>
       <SearchBar />
-      <div className="p-4 md:p-12">
+      <div className="grid grid-cols-3 grid-rows-auto gap-y-8 justify-items-center p-4 md:p-12">
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
         <ProjectCard />
       </div>
+      <Footer />
     </>
   );
 };
