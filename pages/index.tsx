@@ -2,6 +2,7 @@ import { GetStaticProps } from "next";
 import Image from "next/image";
 //UI components
 import SearchBar from "../components/SearchBar";
+import ProjectCard from "../components/ProjectCard";
 
 const Home = ({ props }) => {
   return (
@@ -10,6 +11,9 @@ const Home = ({ props }) => {
         <Image src={"/kila_logo.png"} width={150} height={60} alt="Kila Logo" />
       </div>
       <SearchBar />
+      <div className="p-4 md:p-12">
+        <ProjectCard />
+      </div>
     </>
   );
 };
