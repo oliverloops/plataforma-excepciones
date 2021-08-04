@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="flex flex-col justify-center w-full">
+    <footer className="flex flex-col justify-center w-full pt-8">
       <small className="text-center">
         <span role="img" aria-label="tree">
           🌳

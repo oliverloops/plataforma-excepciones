@@ -13,7 +13,7 @@ const Home = ({ props }) => {
         <Image src={"/kila_logo.png"} width={150} height={60} alt="Kila Logo" />
       </div>
       <SearchBar />
-      <div className="grid grid-cols-3 grid-rows-auto gap-y-8 justify-items-center p-4 md:p-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-auto gap-y-8 justify-items-center p-4 md:p-12">
         <ProjectCard />
         <ProjectCard />
         <ProjectCard />
