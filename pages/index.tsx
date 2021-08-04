@@ -7,7 +7,7 @@ const Home = ({ props }) => {
   return (
     <>
       <div className="flex justify-center pt-8 pb-4">
-        <Image src={"/kila_logo.png"} width={180} height={75} alt="Kila Logo" />
+        <Image src={"/kila_logo.png"} width={150} height={60} alt="Kila Logo" />
       </div>
       <SearchBar />
     </>
