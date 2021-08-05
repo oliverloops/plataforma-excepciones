@@ -31,13 +31,13 @@ export default function ProjectCard() {
         <label className="text-sm py-1">Usuario</label>
         <input
           type="text"
-          className="border-2 border-gray-300 rounded-md text-sm px-1 py-0.5"
+          className="border-2 border-gray-300 rounded-md md:w-3/4 text-sm px-1 py-0.5"
           placeholder="Ingresa tu nombre de usuario"
         />
         <label className="text-sm py-1">Contraseña</label>
         <input
           type="password"
-          className="border-2 border-gray-300 rounded-md text-sm px-1 py-0.5"
+          className="border-2 border-gray-300 rounded-md md:w-3/4 text-sm px-1 py-0.5"
           placeholder="Ingresa tu contraseña"
         />
       </form>
@@ -61,19 +61,53 @@ export default function ProjectCard() {
 function ExtendedForm({ openForm }) {
   return (
     <>
-      <form className="grid grid-cols-2 grid-rows-auto gap-2 px-4 py-2 pb-4">
+      <form className="grid grid-cols-auto grid-rows-auto gap-2 px-4 py-2 pb-4">
         <div className="col-start-1 col-end-2">
           <label className="text-sm py-1">No. de contrato</label>
           <input
             type="text"
-            className="border-2 border-gray-300 rounded-md text-sm px-1 py-0.5"
+            className="border-2 border-gray-300 rounded-md text-sm md:w-3/4 px-1 py-0.5"
           />
         </div>
-        <div className="col-start-1 col-end-2">
+        <div className="col-start-2">
           <label className="text-sm py-1">Nombre de la obra</label>
           <input
             type="text"
-            className="border-2 border-gray-300 rounded-md text-sm px-1 py-0.5"
+            className="border-2 border-gray-300 rounded-md text-sm  px-1 py-0.5"
+          />
+        </div>
+        <div className="row-start-2 col-start-1 col-end-2">
+          <label className="text-sm py-1">Tipo de obra</label>
+          <select className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 md:w-auto px-1 py-0.5">
+            <option>Opción 1</option>
+            <option>Opción 2</option>
+            <option>Opción 3</option>
+            <option>Opción 4</option>
+            <option>Opción 5</option>
+          </select>
+        </div>
+        <div className="row-start-2 col-start-2">
+          <label className="text-sm py-1">Supervisor interno</label>
+          <select className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 md:w-auto px-1 py-0.5">
+            <option>Opción 1</option>
+            <option>Opción 2</option>
+            <option>Opción 3</option>
+            <option>Opción 4</option>
+            <option>Opción 5</option>
+          </select>
+        </div>
+        <div className="col-start-1 col-end-2">
+          <label className="text-sm py-1">No. de excepción</label>
+          <input
+            type="text"
+            className="border-2 border-gray-300 rounded-md text-sm md:w-3/4 px-1 py-0.5"
+          />
+        </div>
+        <div className="col-start-2">
+          <label className="text-sm py-1">Contratista</label>
+          <input
+            type="text"
+            className="border-2 border-gray-300 rounded-md text-sm  px-1 py-0.5"
           />
         </div>
       </form>
