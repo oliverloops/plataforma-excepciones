@@ -13,11 +13,11 @@ export default function ProjectCard() {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-xl md:w-80">
+    <div className="bg-white shadow-md rounded-xl md:w-80 xl:w-96">
       <Image
         className="rounded-t-xl"
-        width={376}
-        height={82}
+        width={385}
+        height={90}
         src={"/sierra_santa_rosa.jpeg"}
         alt="Sierra de Santa Rosa"
       />
