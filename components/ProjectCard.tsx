@@ -13,7 +13,11 @@ export default function ProjectCard() {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-xl md:w-80 xl:w-96">
+    <div
+      className={`bg-white shadow-md rounded-xl ${
+        !open && "md:max-h-80"
+      } md:w-80 xl:w-96`}
+    >
       <Image
         className="rounded-t-xl"
         width={385}
@@ -53,7 +57,7 @@ export default function ProjectCard() {
           Click para abrir formulario
         </p>
       )}
-      {open ? <ExtendedForm openForm={openForm} /> : <></>}
+      {open && <ExtendedForm openForm={openForm} />}
     </div>
   );
 }
@@ -73,10 +77,10 @@ function ExtendedForm({ openForm }) {
           <label className="text-sm py-1">Nombre de la obra</label>
           <input
             type="text"
-            className="border-2 border-gray-300 rounded-md text-sm  px-1 py-0.5"
+            className="border-2 border-gray-300 rounded-md text-sm w-full px-1 py-0.5"
           />
         </div>
-        <div className="row-start-2 col-start-1 col-end-2">
+        <div className="col-start-1 col-end-2">
           <label className="text-sm py-1">Tipo de obra</label>
           <select className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 md:w-auto px-1 py-0.5">
             <option>Opción 1</option>
@@ -86,7 +90,7 @@ function ExtendedForm({ openForm }) {
             <option>Opción 5</option>
           </select>
         </div>
-        <div className="row-start-2 col-start-2">
+        <div className="col-start-2">
           <label className="text-sm py-1">Supervisor interno</label>
           <select className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 md:w-auto px-1 py-0.5">
             <option>Opción 1</option>
@@ -107,8 +111,15 @@ function ExtendedForm({ openForm }) {
           <label className="text-sm py-1">Contratista</label>
           <input
             type="text"
-            className="border-2 border-gray-300 rounded-md text-sm  px-1 py-0.5"
+            className="border-2 border-gray-300 rounded-md text-sm md:w-full px-1 py-0.5"
           />
+        </div>
+        <div className="col-start-1 col-end-2">
+          <label className="text-sm py-1">Período (meses)</label>
+          <select className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 md:w-auto px-1 py-0.5">
+            <option>Opción 1</option>
+            <option>Opción 2</option>
+          </select>
         </div>
       </form>
       <p
