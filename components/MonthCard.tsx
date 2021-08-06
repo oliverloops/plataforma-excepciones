@@ -5,6 +5,7 @@ export default function MonthCard(props: {
   month: number;
   route: string;
   ica: number;
+  status: string;
 }) {
   return (
     <Link href={props.route}>
@@ -18,10 +19,21 @@ export default function MonthCard(props: {
             alt="picachos banner"
           />
           <span className="flex flex-col px-4 py-2">
-            <p className="text-lg font-bold">Mes {props.month}</p>
-            <span className="flex">
+            <p className="text-xl font-bold">Mes {props.month}</p>
+            <span className="flex justify-between">
               <p className="text-lg font-medium">ICA: {props.ica}</p>
-              <p>Autorizado</p>
+              <p className="flex items-center font-light">
+                <div
+                  className={`${
+                    props.status == "Autorizado"
+                      ? "bg-green-400"
+                      : props.status == "En Proceso"
+                      ? "bg-yellow-400"
+                      : props.status == "No Autorizado" && "bg-red-400"
+                  } rounded-full w-3 h-3`}
+                ></div>
+                <span className="text-sm pl-2">{props.status}</span>
+              </p>
             </span>
           </span>
         </div>
