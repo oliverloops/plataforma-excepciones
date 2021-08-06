@@ -11,9 +11,9 @@ export default function Button(props: {
       <a>
         <button
           style={{ backgroundColor: "#8CBA6E" }}
-          className="text-white rounded-lg h-10 w-32"
+          className="text-white rounded-lg h-12 w-36 md:h-10 md:w-32"
         >
-          <span className="flex justify-evenly items-center text-lg px-2">
+          <span className="flex justify-evenly items-center text-xl md:text-lg px-2">
             {props.arrow === "left" && <BsArrowLeft size={30} />}
             {props.text}
             {props.arrow === "right" && <BsArrowRight size={30} />}
