@@ -33,15 +33,15 @@ export default function Rubros() {
         <Button text={"Observaciones"} route={"#"} arrow={""} />
       </div>
       <div className="grid md:grid-cols-3 grid-rows-auto justify-items-center gap-y-8 px-4 md:px-8 py-8">
-        <RubroCard rubro={"Generales"} route={"#"} />
-        <RubroCard rubro={"Atm"} route={"#"} />
-        <RubroCard rubro={"Ruido"} route={"#"} />
-        <RubroCard rubro={"RSU"} route={"#"} />
-        <RubroCard rubro={"RME"} route={"#"} />
-        <RubroCard rubro={"RP"} route={"#"} />
-        <RubroCard rubro={"Flora"} route={"#"} />
-        <RubroCard rubro={"Fauna"} route={"#"} />
-        <RubroCard rubro={"Arbolado"} route={"#"} />
+        <RubroCard rubro={"Generales"} percentage={100} route={"#"} />
+        <RubroCard rubro={"Atm"} percentage={80} route={"#"} />
+        <RubroCard rubro={"Ruido"} percentage={10} route={"#"} />
+        <RubroCard rubro={"RSU"} percentage={70} route={"#"} />
+        <RubroCard rubro={"RME"} percentage={40} route={"#"} />
+        <RubroCard rubro={"RP"} percentage={40} route={"#"} />
+        <RubroCard rubro={"Flora"} percentage={50} route={"#"} />
+        <RubroCard rubro={"Fauna"} percentage={30} route={"#"} />
+        <RubroCard rubro={"Arbolado"} percentage={70} route={"#"} />
       </div>
       <Footer />
     </>
