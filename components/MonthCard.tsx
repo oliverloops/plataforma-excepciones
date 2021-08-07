@@ -10,7 +10,7 @@ export default function MonthCard(props: {
   return (
     <Link href={props.route}>
       <a>
-        <div className="bg-white shadow-md rounded-xl w-40 md:w-60">
+        <div className="bg-white shadow-md rounded-xl w-40 md:w-60 sm:h-36">
           <Image
             className="rounded-t-xl"
             src={"/picachos.jpg"}
@@ -18,7 +18,7 @@ export default function MonthCard(props: {
             height={70}
             alt="picachos banner"
           />
-          <span className="flex flex-col px-4 py-2">
+          <span className="flex flex-col px-4 md:py-2">
             <p className="text-xl font-bold">Mes {props.month}</p>
             <span className="flex flex-col md:flex-row justify-between py-2 md:py-0">
               <p className="text-lg font-medium">ICA: {props.ica}</p>

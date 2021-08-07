@@ -12,7 +12,7 @@ export default function Months() {
       <div className="flex p-4 md:p-8">
         <Button text={"Ir a Inicio"} route={"/"} arrow={"left"} />
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-auto justify-items-center gap-y-8 px-4 md:px-8 py-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-auto justify-items-center gap-y-8 px-4 md:px-8 py-8">
         <MonthCard month={1} ica={2} route={"#"} status={"Autorizado"} />
         <MonthCard month={2} ica={2} route={"#"} status={"No Autorizado"} />
         <MonthCard month={3} ica={2} route={"#"} status={"Autorizado"} />
