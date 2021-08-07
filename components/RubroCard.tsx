@@ -6,12 +6,12 @@ export default function RubroCard(props: { route: string; rubro: string }) {
   return (
     <Link href={props.route}>
       <a>
-        <div className="bg-white shadow-md rounded-xl w-40 md:w-60 sm:h-36">
+        <div className="bg-white shadow-md rounded-xl w-40 md:w-60 h-36 hover:shadow-xl">
           <Image
             className="rounded-t-xl"
             src={"/sierra_de_lobos.png"}
-            width={260}
-            height={70}
+            width={280}
+            height={60}
             alt="Sierra de Lobos banner"
           />
           <span className="flex flex-col px-4 md:py-2">

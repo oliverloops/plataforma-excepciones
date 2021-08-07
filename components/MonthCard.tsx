@@ -10,7 +10,7 @@ export default function MonthCard(props: {
   return (
     <Link href={props.route}>
       <a>
-        <div className="bg-white shadow-md rounded-xl w-40 md:w-60 sm:h-36">
+        <div className="bg-white shadow-md rounded-xl w-40 md:w-60 sm:h-36 hover:shadow-xl">
           <Image
             className="rounded-t-xl"
             src={"/picachos.jpg"}
