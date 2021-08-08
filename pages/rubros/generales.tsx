@@ -22,7 +22,7 @@ export default function Generales() {
 
 function Content() {
   return (
-    <form className="flex flex-col p-8">
+    <form className="flex flex-col p-8 md:px-16">
       <label className="text-xl font-semibold py-8 md:py-4">
         Cátalogo General de Obra
       </label>
