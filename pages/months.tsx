@@ -13,7 +13,12 @@ export default function Months() {
         <Button text={"Ir a Inicio"} route={"/"} arrow={"left"} />
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-auto justify-items-center gap-y-8 px-4 md:px-8 py-8">
-        <MonthCard month={1} ica={2} route={"/rubros"} status={"Autorizado"} />
+        <MonthCard
+          month={1}
+          ica={2}
+          route={"/rubros/select"}
+          status={"Autorizado"}
+        />
         <MonthCard month={2} ica={2} route={"#"} status={"No Autorizado"} />
         <MonthCard month={3} ica={2} route={"#"} status={"Autorizado"} />
         <MonthCard month={4} ica={2} route={"#"} status={"En Proceso"} />
