@@ -51,7 +51,7 @@ function Table() {
         <td className="px-12">
           <p className="text-center">1</p>
         </td>
-        <td className=" px-12 py-4">
+        <td className="border-l-2 border-r-2 border-gray-400 px-12 py-4">
           <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3">
             <option>Opción 1</option>
             <option>Opción 2</option>
@@ -66,7 +66,7 @@ function Table() {
         <td className="px-12">
           <p className="text-center">2</p>
         </td>
-        <td className="px-12 py-4">
+        <td className="border-l-2 border-r-2 border-gray-400 px-12 py-4">
           <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3">
             <option>Opción 1</option>
             <option>Opción 2</option>
@@ -81,7 +81,7 @@ function Table() {
         <td className="px-12">
           <p className="text-center">3</p>
         </td>
-        <td className="px-12 py-4">
+        <td className="border-l-2 border-r-2 border-gray-400 px-12 py-4">
           <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3">
             <option>Opción 1</option>
             <option>Opción 2</option>
@@ -96,7 +96,7 @@ function Table() {
         <td className="px-12">
           <p className="text-center">4</p>
         </td>
-        <td className="px-12 py-4">
+        <td className="border-l-2 border-r-2 border-gray-400 px-12 py-4">
           <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3">
             <option>Opción 1</option>
             <option>Opción 2</option>
@@ -111,7 +111,7 @@ function Table() {
         <td className="0 px-12">
           <p className="text-center">5</p>
         </td>
-        <td className="px-12 py-4">
+        <td className="border-l-2 border-r-2 border-gray-400 px-12 py-4">
           <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3">
             <option>Opción 1</option>
             <option>Opción 2</option>
@@ -126,7 +126,7 @@ function Table() {
         <td className="px-12">
           <p className="text-center">6</p>
         </td>
-        <td className=" px-12 py-4">
+        <td className="border-l-2 border-r-2 border-gray-400 px-12 py-4">
           <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3">
             <option>Opción 1</option>
             <option>Opción 2</option>
