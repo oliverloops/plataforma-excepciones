@@ -18,3 +18,26 @@ a {
 * {
   box-sizing: border-box;
 }
+
+input[type="file"] {
+  color: transparent;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+input[type="file"]::before {
+  content: "Subir";
+  background-color: #52c1ff;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  color: #fff;
+  padding: 5px;
+  width: 60px;
+
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+}
