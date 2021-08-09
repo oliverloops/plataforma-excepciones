@@ -15,7 +15,7 @@ export default function ProjectCard() {
   return (
     <div
       className={`bg-white shadow-md rounded-xl ${
-        !open && "md:max-h-80"
+        !open && "md:max-h-96"
       } md:w-80 xl:w-96`}
     >
       <Image
@@ -34,16 +34,19 @@ export default function ProjectCard() {
       <form className="flex flex-col px-4 py-2 pb-4">
         <label className="text-sm py-1">Usuario</label>
         <input
+          required
           type="text"
           className="border-2 border-gray-300 rounded-md md:w-3/4 text-sm px-1 py-0.5"
           placeholder="Ingresa tu nombre de usuario"
         />
         <label className="text-sm py-1">Contraseña</label>
         <input
+          required
           type="password"
           className="border-2 border-gray-300 rounded-md md:w-3/4 text-sm px-1 py-0.5"
           placeholder="Ingresa tu contraseña"
         />
+        {!open && <SubmitButton />}
       </form>
       <div className="w-full h-px bg-gray-200"></div>
       {open ? (
@@ -57,15 +60,15 @@ export default function ProjectCard() {
           Click para abrir formulario
         </p>
       )}
-      {open && <ExtendedForm openForm={openForm} />}
+      {open && <ExtendedForm open={open} openForm={openForm} />}
     </div>
   );
 }
 
-function ExtendedForm({ openForm }) {
+function ExtendedForm({ open, openForm }) {
   return (
     <>
-      <form className="grid grid-cols-auto grid-rows-auto gap-2 px-4 py-2 pb-4">
+      <form className="grid grid-cols-2 grid-rows-auto gap-2 px-4 py-2 pb-4">
         <div className="col-start-1 col-end-2">
           <label className="text-sm py-1">No. de contrato</label>
           <input
@@ -82,7 +85,7 @@ function ExtendedForm({ openForm }) {
         </div>
         <div className="col-start-1 col-end-2">
           <label className="text-sm py-1">Tipo de obra</label>
-          <select className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 md:w-auto px-1 py-0.5">
+          <select className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 px-1 py-0.5">
             <option>Opción 1</option>
             <option>Opción 2</option>
             <option>Opción 3</option>
@@ -116,10 +119,11 @@ function ExtendedForm({ openForm }) {
         </div>
         <div className="col-start-1 col-end-2">
           <label className="text-sm py-1">Período (meses)</label>
-          <select className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 md:w-auto px-1 py-0.5">
-            <option>Opción 1</option>
-            <option>Opción 2</option>
-          </select>
+          <input
+            type="date"
+            name="project-date"
+            className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-full md:w-auto px-1 py-0.5"
+          />
         </div>
       </form>
       <p
@@ -130,5 +134,16 @@ function ExtendedForm({ openForm }) {
         Cerrar formulario
       </p>
     </>
+  );
+}
+
+function SubmitButton() {
+  return (
+    <input
+      className="py-2 mx-20 mt-4 text-white font-medium cursor-pointer rounded-lg"
+      style={{ backgroundColor: "#8CBA6E" }}
+      type="submit"
+      value="Ingresar"
+    />
   );
 }
