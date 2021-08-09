@@ -32,7 +32,7 @@ function Content() {
           <th className="border-2 border-gray-400">Evidencia</th>
         </tr>
         <tr>
-          <td className="border-2 border-gray-400">
+          <td className="border-2 border-gray-400 px-12">
             <ul className="flex flex-col items-center">
               <li className="py-4 text-lg">1</li>
               <li className="py-4 text-lg">2</li>
@@ -42,45 +42,45 @@ function Content() {
               <li className="py-4 text-lg">6</li>
             </ul>
           </td>
-          <td className="border-2 border-gray-400">
+          <td className="border-2 border-gray-400 px-12">
             <ul className="flex flex-col items-center">
               <li>
-                <select className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 md:w-auto px-1 py-0.5">
+                <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3 py-0.5">
                   <option>Opción 1</option>
                   <option>Opción 2</option>
                   <option>Opción 3</option>
                 </select>
               </li>
               <li>
-                <select className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 md:w-auto px-1 py-0.5">
+                <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3 py-0.5">
                   <option>Opción 1</option>
                   <option>Opción 2</option>
                   <option>Opción 3</option>
                 </select>
               </li>
               <li>
-                <select className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 md:w-auto px-1 py-0.5">
+                <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3 py-0.5">
                   <option>Opción 1</option>
                   <option>Opción 2</option>
                   <option>Opción 3</option>
                 </select>
               </li>
               <li>
-                <select className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 md:w-auto px-1 py-0.5">
+                <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3 py-0.5">
                   <option>Opción 1</option>
                   <option>Opción 2</option>
                   <option>Opción 3</option>
                 </select>
               </li>
               <li>
-                <select className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 md:w-auto px-1 py-0.5">
+                <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3 py-0.5">
                   <option>Opción 1</option>
                   <option>Opción 2</option>
                   <option>Opción 3</option>
                 </select>
               </li>
               <li>
-                <select className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 md:w-auto px-1 py-0.5">
+                <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3 py-0.5">
                   <option>Opción 1</option>
                   <option>Opción 2</option>
                   <option>Opción 3</option>
@@ -112,8 +112,8 @@ function Content() {
           </td>
         </tr>
       </table>
-      <div className="md:col-start-2 md:row-start-2  bg-gray-200 rounded-xl w-60 h-40">
-        <ul className="list-disc text-sm font-light p-4">
+      <div className="md:col-start-2 md:row-start-2 justify-self-center bg-gray-200 rounded-xl md:w-64 md:h-36">
+        <ul className="list-disc text-sm font-light p-4 px-8">
           <li>
             Pueden subirse archivos de texto, documentos de excel, PDF e
             imagenes
