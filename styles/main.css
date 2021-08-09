@@ -18,3 +18,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+tr {
+  border-right: none;
+  border-left: none;
+  border-bottom: none;
+  border-top: none;
+}

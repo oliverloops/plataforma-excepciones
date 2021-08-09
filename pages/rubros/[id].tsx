@@ -41,30 +41,15 @@ function Content() {
 
 function Table() {
   return (
-    <table className="col-start-1 md:col-end-2">
-      <tr className="border-2 border-gray-400 text-lg">
+    <table className="col-start-1 md:col-end-2 border-2 border-gray-400">
+      <tr className="border-2 border-gray-400 bg-blue-100 text-lg">
         <th className="border-2 border-gray-400">MM</th>
         <th className="border-2 border-gray-400">Cumplimiento</th>
         <th className="border-2 border-gray-400">Evidencia</th>
       </tr>
       <tr>
-        <td className="border-2 border-gray-400 px-12">
+        <td className="px-12">
           <p className="text-center">1</p>
-        </td>
-        <td className="border-2 border-gray-400 px-12 py-4">
-          <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3">
-            <option>Opción 1</option>
-            <option>Opción 2</option>
-            <option>Opción 3</option>
-          </select>
-        </td>
-        <td className="border-2 border-gray-400">
-          <input type="file" title="Subir" />
-        </td>
-      </tr>
-      <tr>
-        <td className="border-2 border-gray-400 px-12">
-          <p className="text-center">2</p>
         </td>
         <td className=" px-12 py-4">
           <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3">
@@ -73,67 +58,82 @@ function Table() {
             <option>Opción 3</option>
           </select>
         </td>
-        <td className="border-2 border-gray-400">
+        <td>
           <input type="file" title="Subir" />
         </td>
       </tr>
       <tr>
-        <td className="border-2 border-gray-400 px-12">
+        <td className="px-12">
+          <p className="text-center">2</p>
+        </td>
+        <td className="px-12 py-4">
+          <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3">
+            <option>Opción 1</option>
+            <option>Opción 2</option>
+            <option>Opción 3</option>
+          </select>
+        </td>
+        <td>
+          <input type="file" title="Subir" />
+        </td>
+      </tr>
+      <tr>
+        <td className="px-12">
           <p className="text-center">3</p>
         </td>
-        <td className="border-2 border-gray-400  px-12 py-4">
+        <td className="px-12 py-4">
           <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3">
             <option>Opción 1</option>
             <option>Opción 2</option>
             <option>Opción 3</option>
           </select>
         </td>
-        <td className="border-2 border-gray-400">
+        <td>
           <input type="file" title="Subir" />
         </td>
       </tr>
       <tr>
-        <td className="border-2 border-gray-400 px-12">
+        <td className="px-12">
           <p className="text-center">4</p>
         </td>
-        <td className="border-2 border-gray-400  px-12 py-4">
+        <td className="px-12 py-4">
           <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3">
             <option>Opción 1</option>
             <option>Opción 2</option>
             <option>Opción 3</option>
           </select>
         </td>
-        <td className="border-2 border-gray-400">
+        <td>
           <input type="file" title="Subir" />
         </td>
       </tr>
       <tr>
-        <td className="border-2 border-gray-400 px-12">
+        <td className="0 px-12">
           <p className="text-center">5</p>
         </td>
-        <td className="border-2 border-gray-400  px-12 py-4">
+        <td className="px-12 py-4">
           <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3">
             <option>Opción 1</option>
             <option>Opción 2</option>
             <option>Opción 3</option>
           </select>
         </td>
-        <td className="border-2 border-gray-400">
+        <td>
           <input type="file" title="Subir" />
         </td>
       </tr>
       <tr>
-        <td className="border-2 border-gray-400 px-12">
+        <td className="px-12">
           <p className="text-center">6</p>
         </td>
-        <td className="border-2 border-gray-400  px-12 py-4">
+        <td className=" px-12 py-4">
           <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3">
             <option>Opción 1</option>
             <option>Opción 2</option>
             <option>Opción 3</option>
           </select>
         </td>
-        <td className="border-2 border-gray-400">
+        <td>
           <input type="file" title="Subir" />
         </td>
       </tr>
