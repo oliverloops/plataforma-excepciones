@@ -21,6 +21,7 @@ a {
 
 input[type="file"] {
   color: transparent;
+  width: 100px;
 }
 
 input[type="file"]::-webkit-file-upload-button {
@@ -34,8 +35,11 @@ input[type="file"]::before {
   border: none;
   outline: none;
   color: #fff;
+  font-weight: 600;
   padding: 5px;
-  width: 60px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 
   white-space: nowrap;
   user-select: none;

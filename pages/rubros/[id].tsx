@@ -1,3 +1,4 @@
+import { GrDocumentText, GrDocumentDownload } from "react-icons/gr";
 //UI Layout
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
@@ -27,13 +28,17 @@ function Content() {
         Título de Rubro
       </p>
       <Table />
-      <div className="col-start-1 row-start-2  md:col-start-2 md:row-start-2 justify-self-center bg-gray-200 rounded-xl md:w-64 md:h-36">
+      <div className="col-start-1 row-start-2  md:col-start-2 md:row-start-2 justify-self-center bg-gray-200 rounded-xl md:w-64 md:h-60">
         <ul className="list-disc text-sm font-light p-4 px-8">
           <li>
             Pueden subirse archivos de texto, documentos de excel, PDF e
             imagenes
           </li>
           <li className="py-2">Cada archivo debe ser menor a 10MB</li>
+          <li className="py-2">
+            Puede hacer click en los iconos que se encuentran a la izquierda
+            para visualizar o descargar el archivo
+          </li>
         </ul>
       </div>
     </main>
@@ -59,8 +64,10 @@ function Table() {
             <option>Opción 3</option>
           </select>
         </td>
-        <td className="w-1/2">
+        <td className="flex justify-between px-5 pt-5">
           <UploadButton />
+          <GrDocumentText size={25} />
+          <GrDocumentDownload size={25} />
         </td>
       </tr>
       <tr>
@@ -74,8 +81,10 @@ function Table() {
             <option>Opción 3</option>
           </select>
         </td>
-        <td>
+        <td className="flex justify-between px-5 pt-5">
           <UploadButton />
+          <GrDocumentText size={25} />
+          <GrDocumentDownload size={25} />
         </td>
       </tr>
       <tr>
@@ -89,8 +98,10 @@ function Table() {
             <option>Opción 3</option>
           </select>
         </td>
-        <td>
+        <td className="flex justify-between px-5 pt-5">
           <UploadButton />
+          <GrDocumentText size={25} />
+          <GrDocumentDownload size={25} />
         </td>
       </tr>
       <tr>
@@ -104,8 +115,10 @@ function Table() {
             <option>Opción 3</option>
           </select>
         </td>
-        <td>
+        <td className="flex justify-between px-5 pt-5">
           <UploadButton />
+          <GrDocumentText size={25} />
+          <GrDocumentDownload size={25} />
         </td>
       </tr>
       <tr>
@@ -119,8 +132,10 @@ function Table() {
             <option>Opción 3</option>
           </select>
         </td>
-        <td>
+        <td className="flex justify-between px-5 pt-5">
           <UploadButton />
+          <GrDocumentText size={25} />
+          <GrDocumentDownload size={25} />
         </td>
       </tr>
       <tr>
@@ -134,8 +149,10 @@ function Table() {
             <option>Opción 3</option>
           </select>
         </td>
-        <td>
+        <td className="flex justify-between px-5 pt-5">
           <UploadButton />
+          <GrDocumentText size={25} />
+          <GrDocumentDownload size={25} />
         </td>
       </tr>
     </table>
