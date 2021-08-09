@@ -1,8 +1,8 @@
-export default function UploadButton() {
+export default function UploadButton({ getFileName }) {
   return (
     <form>
       <label>
-        <input type="file" />
+        <input type="file" onChange={getFileName} />
       </label>
     </form>
   );
