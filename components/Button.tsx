@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import { FaLeaf } from "react-icons/fa";
 
 export default function Button(props: {
   text: unknown;
@@ -15,7 +16,16 @@ export default function Button(props: {
         >
           <span className="flex justify-evenly items-center text-xl md:text-lg px-2">
             {props.arrow === "left" && <BsArrowLeft size={30} />}
-            {props.text}
+            {props.text === "Rubros" ? (
+              <>
+                <p className="md:pl-4 pr-2">{props.text}</p>{" "}
+                <span className="md:pr-2">
+                  <FaLeaf size={20} />
+                </span>
+              </>
+            ) : (
+              props.text
+            )}
             {props.arrow === "right" && <BsArrowRight size={30} />}
           </span>
         </button>

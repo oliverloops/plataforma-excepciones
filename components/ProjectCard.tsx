@@ -68,12 +68,12 @@ export default function ProjectCard() {
 function ExtendedForm({ open, openForm }) {
   return (
     <>
-      <form className="grid grid-cols-2 grid-rows-auto gap-2 px-4 py-2 pb-4">
+      <form className="grid grid-cols-auto md:grid-cols-2 grid-rows-auto gap-2 px-4 pt-2">
         <div className="col-start-1 col-end-2">
           <label className="text-sm py-1">No. de contrato</label>
           <input
             type="text"
-            className="border-2 border-gray-300 rounded-md text-sm md:w-3/4 px-1 py-0.5"
+            className="border-2 border-gray-300 rounded-md text-sm w-36 md:w-3/4 px-1 py-0.5"
           />
         </div>
         <div className="col-start-2">
@@ -107,7 +107,7 @@ function ExtendedForm({ open, openForm }) {
           <label className="text-sm py-1">No. de excepción</label>
           <input
             type="text"
-            className="border-2 border-gray-300 rounded-md text-sm md:w-3/4 px-1 py-0.5"
+            className="border-2 border-gray-300 rounded-md text-sm w-36 md:w-3/4 px-1 py-0.5"
           />
         </div>
         <div className="col-start-2">
@@ -126,6 +126,7 @@ function ExtendedForm({ open, openForm }) {
           />
         </div>
       </form>
+      <div className="flex justify-center mb-2">{open && <SubmitButton />}</div>
       <p
         style={{ color: "#8CBA6E" }}
         className="cursor-pointer text-center text-xs underline p-2"
@@ -140,7 +141,7 @@ function ExtendedForm({ open, openForm }) {
 function SubmitButton() {
   return (
     <input
-      className="py-2 mx-20 mt-4 text-white font-medium cursor-pointer rounded-lg"
+      className="py-2 mx-20 px-14 mt-4 text-white font-medium cursor-pointer rounded-lg"
       style={{ backgroundColor: "#8CBA6E" }}
       type="submit"
       value="Ingresar"
