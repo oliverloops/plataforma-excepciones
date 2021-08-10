@@ -23,7 +23,7 @@ export default function Select() {
   return (
     <>
       <Header />
-      <div className="flex justify-evenly md:w-2/5 p-4 md:p-8">
+      <div className="flex justify-between md:w-2/6 p-4 md:p-8">
         <Button text={"Regresar"} route={"/months"} arrow={"left"} />
         <Button
           text={!leaf ? "Enviar a Evaluación" : <RiSendPlaneFill size={30} />}

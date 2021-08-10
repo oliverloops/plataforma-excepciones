@@ -15,10 +15,10 @@ export default function Button(props: {
           className="text-white rounded-lg h-12 md:h-10"
         >
           <span className="flex justify-evenly items-center text-xl md:text-lg px-2">
-            {props.arrow === "left" && <BsArrowLeft size={30} />}
+            {props.arrow === "left" && <BsArrowLeft size={28} />}
             {props.text === "Rubros" ? (
               <>
-                <p className="md:pl-4 pr-2">{props.text}</p>{" "}
+                <p className="md:pl-2 pr-1 md:pr-2">{props.text}</p>{" "}
                 <span className="md:pr-2">
                   <FaLeaf size={20} />
                 </span>
@@ -26,7 +26,7 @@ export default function Button(props: {
             ) : (
               props.text
             )}
-            {props.arrow === "right" && <BsArrowRight size={30} />}
+            {props.arrow === "right" && <BsArrowRight size={28} />}
           </span>
         </button>
       </a>

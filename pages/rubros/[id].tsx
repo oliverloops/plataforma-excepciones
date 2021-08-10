@@ -10,9 +10,9 @@ export default function Rubro() {
   return (
     <>
       <Header />
-      <div className="flex justify-between  md:w-2/6 p-4 md:p-8">
+      <div className="flex justify-between md:w-2/6 p-2 md:p-8">
         <Button text={"Regresar"} route={"/rubros/select"} arrow={"left"} />
-        <Button text={"Rubros"} route={"#"} arrow={""} />
+        <Button text={"Rubros"} route={"/rubros/select"} arrow={""} />
         <Button text={"Continuar"} route={"#"} arrow={"right"} />
       </div>
       <Content />
@@ -28,7 +28,7 @@ function Content() {
         Título de Rubro
       </p>
       <Table />
-      <div className="col-start-1 row-start-2  md:col-start-2 md:row-start-2 justify-self-center bg-gray-200 rounded-xl md:w-64 md:h-60">
+      <div className="col-start-1 row-start-2  md:col-start-2 md:row-start-2 bg-gray-200 rounded-xl md:w-64 md:h-60">
         <ul className="list-disc text-sm font-light p-4 px-8">
           <li>
             Pueden subirse archivos de texto, documentos de excel, PDF e

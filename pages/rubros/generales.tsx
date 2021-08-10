@@ -8,7 +8,7 @@ export default function Generales() {
   return (
     <>
       <Header />
-      <div className="flex justify-between  md:w-2/6 p-4 md:p-8">
+      <div className="flex justify-between md:w-2/6 p-2 md:p-8">
         <Button text={"Regresar"} route={"/rubros/select"} arrow={"left"} />
         <Button text={"Rubros"} route={"/rubros/select"} arrow={""} />
         <Button text={"Continuar"} route={"/rubros/1"} arrow={"right"} />
