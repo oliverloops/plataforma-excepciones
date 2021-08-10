@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { GetStaticProps } from "next";
 import Image from "next/image";
 //UI Layout
@@ -6,7 +7,9 @@ import Footer from "../layout/Footer";
 import SearchBar from "../components/SearchBar";
 import ProjectCard from "../components/ProjectCard";
 
-const Home = ({ props }) => {
+const Home = ({ data }) => {
+  console.log(data);
+
   return (
     <>
       <div className="flex justify-center pt-8 pb-4">
@@ -31,13 +34,15 @@ const Home = ({ props }) => {
 
 export default Home;
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   const res = await fetch("http://localhost:3000/api/hello")
-//   const data = res.json();
+export async function getStaticProps() {
+  const res = await fetch("http://localhost:3000/api/hello");
+  const data = await res.json();
 
-//   return {
-//     props: {
-//       data,
-//     },
-//   };
-// };
+  console.log(data);
+
+  return {
+    props: {
+      data,
+    },
+  };
+}
