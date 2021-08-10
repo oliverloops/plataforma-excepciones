@@ -20,7 +20,7 @@ export default function Header() {
         <p className="font-semibold text-md md:text-lg">No. de Contrato</p>
         <p className="font-semibold text-md md:text-lg">No. de Excepción</p>
       </div>
-      <p className="col-start-1 md:col-start-2 row-start-2 font-semibold text-xl">
+      <p className="col-start-1 col-span-2 md:col-start-2 row-start-2 pt-2 md:pt-0 font-semibold text-xl text-center md:text-left">
         Nombre de la Obra
       </p>
     </div>
