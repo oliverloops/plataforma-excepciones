@@ -46,7 +46,9 @@ export default function ProjectCard() {
           className="border-2 border-gray-300 rounded-md md:w-3/4 text-sm px-1 py-0.5"
           placeholder="Ingresa tu contraseña"
         />
-        {!open && <SubmitButton />}
+        <div className="flex justify-center mb-2">
+          {!open && <SubmitButton />}
+        </div>
       </form>
       <div className="w-full h-px bg-gray-200"></div>
       {open ? (
