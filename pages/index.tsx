@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { GetStaticProps } from "next";
 import Image from "next/image";
 //UI Layout
@@ -34,15 +33,13 @@ const Home = ({ data }) => {
 
 export default Home;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch("http://localhost:3000/api/hello");
   const data = await res.json();
-
-  console.log(data);
 
   return {
     props: {
       data,
     },
   };
-}
+};
