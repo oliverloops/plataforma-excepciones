@@ -1,9 +1,13 @@
 import { PSDB } from "planetscale-node";
 const conn = new PSDB("main");
 
-async function main() {
-  const [rows, fields] = await conn.query("select * from users", [0]);
-  console.log(rows, fields);
-}
+export default async function hanlder(req, res) {
+  const {
+    body: { email, name, password },
+    method,
+  } = req;
 
-main();
+  const [getRows, _] = await conn.query("select * from users");
+  res.statusCode(200);
+  res.json(getRows);
+}

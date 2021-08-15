@@ -34,12 +34,14 @@ const Home = ({ data }) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch("http://localhost:3000/api/hello");
-  const data = await res.json();
+  const res = await fetch("http://localhost:3000/api/database");
+  //const data = await res.json();
+
+  console.log(res);
 
   return {
     props: {
-      data,
+      data: "hi",
     },
   };
 };
