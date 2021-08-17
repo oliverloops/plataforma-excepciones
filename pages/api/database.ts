@@ -1,15 +1,12 @@
-import { PSDB } from "planetscale-node";
-const conn = new PSDB("main");
+import mysql from "mysql";
 
-export default async function hanlder(req, res) {
-  const {
-    body: { email, name, password },
-    method,
-  } = req;
+const conn = mysql.createConnection(process.env.DATABASE_URL);
+conn.connect();
 
-  const [getRows, _] = await conn.query("select * from users");
-  res.statusCode(200);
-  res.json(getRows);
+export default function handler(req, res) {
+  conn.query("SELECT * FROM users", (err, rows, fields) => {
+    if (err) throw err;
+
+    res.send(rows);
+  });
 }
-
-//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

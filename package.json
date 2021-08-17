@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "mysql": "^2.18.1",
     "next": "11.0.1",
     "planetscale-node": "^0.1.0",
     "react": "17.0.2",
