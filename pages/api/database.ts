@@ -4,6 +4,8 @@ const conn = mysql.createConnection(process.env.DATABASE_URL);
 conn.connect();
 
 export default function handler(req, res) {
+  console.log(req.method);
+
   conn.query("SELECT * FROM companies", (err, rows, fields) => {
     if (err) throw err;
 
