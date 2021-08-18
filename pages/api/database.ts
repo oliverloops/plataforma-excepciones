@@ -5,7 +5,7 @@ conn.connect();
 
 export default function handler(req, res) {
   console.log(`Request Method: ${req.method}`);
-  console.log(`Request Body: ${req.body}`);
+  console.log(req.body);
 
   switch (req.method) {
     case "GET":
@@ -15,10 +15,10 @@ export default function handler(req, res) {
       });
       break;
     case "POST":
-      // conn.query(`
-      // INSERT INTO companies (name, field, released)
-      // VALUES(${req.body.name}, ${req.body.field}, ${req.body.released})
-      // `);
+      conn.query(`
+      INSERT INTO companies (name, field, released)
+      VALUES("${req.body.name}", "${req.body.field}", "${req.body.released}")
+      `);
 
       break;
     default:
