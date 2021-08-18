@@ -4,11 +4,25 @@ const conn = mysql.createConnection(process.env.DATABASE_URL);
 conn.connect();
 
 export default function handler(req, res) {
-  console.log(req.method);
+  console.log(`Request Method: ${req.method}`);
+  console.log(`Request Body: ${req.body}`);
 
-  conn.query("SELECT * FROM companies", (err, rows, fields) => {
-    if (err) throw err;
+  switch (req.method) {
+    case "GET":
+      conn.query("SELECT * FROM companies", (err, rows, fields) => {
+        if (err) throw err;
+        res.send(rows);
+      });
+      break;
+    case "POST":
+      // conn.query(`
+      // INSERT INTO companies (name, field, released)
+      // VALUES(${req.body.name}, ${req.body.field}, ${req.body.released})
+      // `);
 
-    res.send(rows);
-  });
+      break;
+    default:
+      res.status(405).end();
+      break;
+  }
 }

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { GetStaticProps } from "next";
 import Image from "next/image";
 //UI Layout
@@ -8,6 +9,18 @@ import ProjectCard from "../components/ProjectCard";
 
 const Home = ({ data }) => {
   console.log(data);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/api/database", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: "Netflix",
+        field: "Entertaiment",
+        released: "1997",
+      }),
+    });
+  }, []);
 
   return (
     <>
