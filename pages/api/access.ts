@@ -18,11 +18,18 @@ export default async (req: NextApiRequest, res: NextApiResponse<Access>) => {
       console.log("Access Granted!");
       break;
     case "POST":
-      connection.query(`
-                INSERT INTO users (username, password)
-                VALUES("${req.body.username}", "${req.body.password}")
-            `);
-      console.log("User saved!");
+      connection.query("SELECT * FROM users", (err, rows, fields) => {
+        if (err) throw err;
+
+        rows.forEach((element) => {
+          if (
+            element.username === `${req.body.username}` &&
+            element.password === `${req.body.password}`
+          ) {
+            console.log("This user match in database!");
+          }
+        });
+      });
       break;
     default:
       res.status(405).end();
