@@ -16,12 +16,12 @@ export default async (req: NextApiRequest, res: NextApiResponse<Access>) => {
       res.send({ access: true });
       console.log("Access Granted!");
       break;
-    case "POST":
-      connection.query(`
-                INSERT INTO users (username, password)
-                VALUES("${req.body.username}", "${req.body.password}")
-            `);
-      break;
+    // case "POST":
+    //   connection.query(`
+    //             INSERT INTO users (username, password)
+    //             VALUES("${req.body.username}", "${req.body.password}")
+    //         `);
+    //   break;
     default:
       res.status(405).end();
       break;

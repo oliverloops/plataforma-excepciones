@@ -3,7 +3,10 @@ import Image from "next/image";
 
 export default function ProjectCard() {
   const [open, setOpen] = useState(false);
+  const [username, setUsername] = useState("");
+  const [pass, setPass] = useState("");
 
+  //function to expand card
   const openForm = () => {
     if (open) {
       setOpen(false);
@@ -38,6 +41,7 @@ export default function ProjectCard() {
           type="text"
           className="border-2 border-gray-300 rounded-md md:w-3/4 text-sm px-1 py-0.5"
           placeholder="Ingresa tu nombre de usuario"
+          onChange={(input) => setUsername(input.target.value)}
         />
         <label className="text-sm py-1">Contraseña</label>
         <input
@@ -45,9 +49,10 @@ export default function ProjectCard() {
           type="password"
           className="border-2 border-gray-300 rounded-md md:w-3/4 text-sm px-1 py-0.5"
           placeholder="Ingresa tu contraseña"
+          onChange={(input) => setPass(input.target.value)}
         />
         <div className="flex justify-center mb-2">
-          {!open && <SubmitButton />}
+          {!open && <SubmitButton username={username} password={pass} />}
         </div>
       </form>
       <div className="w-full h-px bg-gray-200"></div>
@@ -62,12 +67,19 @@ export default function ProjectCard() {
           Click para abrir formulario
         </p>
       )}
-      {open && <ExtendedForm open={open} openForm={openForm} />}
+      {open && (
+        <ExtendedForm
+          open={open}
+          openForm={openForm}
+          username={username}
+          password={pass}
+        />
+      )}
     </div>
   );
 }
 
-function ExtendedForm({ open, openForm }) {
+function ExtendedForm({ open, openForm, username, password }) {
   return (
     <>
       <form className="grid grid-cols-auto md:grid-cols-2 grid-rows-auto gap-2 px-4 pt-2">
@@ -128,7 +140,9 @@ function ExtendedForm({ open, openForm }) {
           />
         </div>
       </form>
-      <div className="flex justify-center mb-2">{open && <SubmitButton />}</div>
+      <div className="flex justify-center mb-2">
+        {open && <SubmitButton username={username} password={password} />}
+      </div>
       <p
         style={{ color: "#8CBA6E" }}
         className="cursor-pointer text-center text-xs underline p-2"
@@ -140,13 +154,23 @@ function ExtendedForm({ open, openForm }) {
   );
 }
 
-function SubmitButton() {
+function SubmitButton({ username, password }) {
+  //function to validate user access
+  const validateAccess = () => {
+    fetch("http://localhost:3000/api/access", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username: username, password: password }),
+    });
+  };
+
   return (
     <input
       className="py-2 mx-20 px-14 mt-4 text-white font-medium cursor-pointer rounded-lg"
       style={{ backgroundColor: "#8CBA6E" }}
       type="submit"
       value="Ingresar"
+      onClick={validateAccess}
     />
   );
 }
