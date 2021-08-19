@@ -156,7 +156,8 @@ function ExtendedForm({ open, openForm, username, password }) {
 
 function SubmitButton({ username, password }) {
   //function to validate user access
-  const validateAccess = () => {
+  const validateAccess = (event) => {
+    event.preventDefault();
     fetch("http://localhost:3000/api/access", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
