@@ -80,14 +80,25 @@ export default function ProjectCard() {
 }
 
 function ExtendedForm({ open, openForm, username, password }) {
+  //Hooks state managers
+  const [contractNum, setContractNum] = useState(0);
+  //Nombre de la obra
+  const [title, setTitle] = useState("");
+  const [projectType, setProjectType] = useState("");
+  const [supervisor, setSupervisor] = useState("");
+  //Númer de excepción
+  const [excNumber, setExcNumber] = useState(0);
+  const [contratist, setContratist] = useState("");
+
   return (
     <>
       <form className="grid grid-cols-auto md:grid-cols-2 grid-rows-auto gap-2 px-4 pt-2">
         <div className="col-start-1 col-end-2">
           <label className="text-sm py-1">No. de contrato</label>
           <input
-            type="text"
+            type="number"
             className="border-2 border-gray-300 rounded-md text-sm w-36 md:w-3/4 px-1 py-0.5"
+            onChange={(input) => setContractNum(input.target.value)}
           />
         </div>
         <div className="col-start-2">
@@ -95,11 +106,15 @@ function ExtendedForm({ open, openForm, username, password }) {
           <input
             type="text"
             className="border-2 border-gray-300 rounded-md text-sm w-full px-1 py-0.5"
+            onChange={(input) => setTitle(input.target.value)}
           />
         </div>
         <div className="col-start-1 col-end-2">
           <label className="text-sm py-1">Tipo de obra</label>
-          <select className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 px-1 py-0.5">
+          <select
+            onChange={(input) => setProjectType(input.target.value)}
+            className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 px-1 py-0.5"
+          >
             <option>Opción 1</option>
             <option>Opción 2</option>
             <option>Opción 3</option>
@@ -109,7 +124,10 @@ function ExtendedForm({ open, openForm, username, password }) {
         </div>
         <div className="col-start-2">
           <label className="text-sm py-1">Supervisor interno</label>
-          <select className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 md:w-auto px-1 py-0.5">
+          <select
+            onChange={(input) => setSupervisor(input.target.value)}
+            className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 md:w-auto px-1 py-0.5"
+          >
             <option>Opción 1</option>
             <option>Opción 2</option>
             <option>Opción 3</option>
@@ -120,8 +138,9 @@ function ExtendedForm({ open, openForm, username, password }) {
         <div className="col-start-1 col-end-2">
           <label className="text-sm py-1">No. de excepción</label>
           <input
-            type="text"
+            type="number"
             className="border-2 border-gray-300 rounded-md text-sm w-36 md:w-3/4 px-1 py-0.5"
+            onChange={(input) => setExcNumber(input.target.value)}
           />
         </div>
         <div className="col-start-2">
@@ -129,6 +148,7 @@ function ExtendedForm({ open, openForm, username, password }) {
           <input
             type="text"
             className="border-2 border-gray-300 rounded-md text-sm md:w-full px-1 py-0.5"
+            onChange={(input) => setContratist(input.target.value)}
           />
         </div>
         <div className="col-start-1 col-end-2">
@@ -154,14 +174,29 @@ function ExtendedForm({ open, openForm, username, password }) {
   );
 }
 
-function SubmitButton({ username, password }) {
+function SubmitButton({ username, password, form }) {
   //function to validate user access
   const validateAccess = (event) => {
     event.preventDefault();
+    if (form === "not expanded") {
+      validateUser();
+    } else {
+    }
+  };
+
+  const validateUser = () => {
     fetch("http://localhost:3000/api/access", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username: username, password: password }),
+    });
+  };
+
+  const uploadProjectData = () => {
+    fetch("http://localhost:3000/api/projects", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ data: "Fake Project Title" }),
     });
   };
 
