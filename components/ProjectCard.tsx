@@ -52,7 +52,13 @@ export default function ProjectCard() {
           onChange={(input) => setPass(input.target.value)}
         />
         <div className="flex justify-center mb-2">
-          {!open && <SubmitButton username={username} password={pass} />}
+          {!open && (
+            <SubmitButton
+              username={username}
+              password={pass}
+              form={"not expanded"}
+            />
+          )}
         </div>
       </form>
       <div className="w-full h-px bg-gray-200"></div>
@@ -161,7 +167,13 @@ function ExtendedForm({ open, openForm, username, password }) {
         </div>
       </form>
       <div className="flex justify-center mb-2">
-        {open && <SubmitButton username={username} password={password} />}
+        {open && (
+          <SubmitButton
+            username={username}
+            password={password}
+            form={"expanded"}
+          />
+        )}
       </div>
       <p
         style={{ color: "#8CBA6E" }}
@@ -181,6 +193,8 @@ function SubmitButton({ username, password, form }) {
     if (form === "not expanded") {
       validateUser();
     } else {
+      validateUser();
+      uploadProjectData();
     }
   };
 
