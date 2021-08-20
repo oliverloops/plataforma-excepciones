@@ -30,8 +30,6 @@ export default async (req: NextApiRequest, res: NextApiResponse<Access>) => {
           }
         });
       });
-
-      res.status(200);
       break;
     default:
       res.status(405).end();
