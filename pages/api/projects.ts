@@ -22,7 +22,12 @@ export default async function (
       });
       break;
     case "POST":
-      //connection.query("")
+      connection.query(
+        `SELECT project_title FROM projects WHERE contract_num=${req.body.consumer.formData.contractNum}`,
+        (err, rows, fields) => {
+          console.log(rows);
+        }
+      );
       break;
     default:
       res.status(405).end();
