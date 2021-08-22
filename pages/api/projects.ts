@@ -13,7 +13,7 @@ export default async function (
   res: NextApiResponse<Access>
 ) {
   console.log(`Request Method: ${req.method}`);
-  console.log(req.body);
+  console.log(req.body.consumer);
 
   switch (req.method) {
     case "GET":

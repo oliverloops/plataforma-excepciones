@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useState, createContext, useContext } from "react";
 import Image from "next/image";
+
+//Context API for extended form
+const formContext = createContext({});
 
 export default function ProjectCard() {
   const [open, setOpen] = useState(false);
@@ -96,6 +99,15 @@ function ExtendedForm({ open, openForm, username, password }) {
   const [excNumber, setExcNumber] = useState(0);
   const [contratist, setContratist] = useState("");
 
+  let formData = {
+    contractNum: contractNum,
+    title: title,
+    projectType: projectType,
+    supervisor: supervisor,
+    excNumber: excNumber,
+    contratist: contratist,
+  };
+
   return (
     <>
       <form className="grid grid-cols-auto md:grid-cols-2 grid-rows-auto gap-2 px-4 pt-2">
@@ -166,15 +178,17 @@ function ExtendedForm({ open, openForm, username, password }) {
           />
         </div>
       </form>
-      <div className="flex justify-center mb-2">
-        {open && (
-          <SubmitButton
-            username={username}
-            password={password}
-            form={"expanded"}
-          />
-        )}
-      </div>
+      <formContext.Provider value={{ formData }}>
+        <div className="flex justify-center mb-2">
+          {open && (
+            <SubmitButton
+              username={username}
+              password={password}
+              form={"expanded"}
+            />
+          )}
+        </div>
+      </formContext.Provider>
       <p
         style={{ color: "#8CBA6E" }}
         className="cursor-pointer text-center text-xs underline p-2"
@@ -187,13 +201,15 @@ function ExtendedForm({ open, openForm, username, password }) {
 }
 
 function SubmitButton({ username, password, form }) {
+  //Context consumer
+  const consumer = useContext(formContext);
+
   //function to validate user access
   const validateAccess = (event) => {
     event.preventDefault();
     if (form === "not expanded") {
       validateUser();
     } else {
-      validateUser();
       uploadProjectData();
     }
   };
@@ -207,10 +223,11 @@ function SubmitButton({ username, password, form }) {
   };
 
   const uploadProjectData = () => {
+    validateUser();
     fetch("http://localhost:3000/api/projects", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ data: "Fake Project Title" }),
+      body: JSON.stringify({ consumer }),
     });
   };
 
