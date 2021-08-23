@@ -28,7 +28,7 @@ export default async function (
         (err, rows, fields) => {
           if (rows.length === 0) {
             connection.query(
-              `INSERT INTO projects VALUES (${requestedData.contractNum}, "${requestedData.title}", "${requestedData.projectType}", "${requestedData.supervisor}", ${requestedData.excNumber}, "${requestedData.contratist}")`
+              `INSERT INTO projects (contract_num, project_title, project_type, supervisor, exc_number, contratist) VALUES (${requestedData.contractNum}, "${requestedData.title}", "${requestedData.projectType}", "${requestedData.supervisor}", ${requestedData.excNumber}, "${requestedData.contratist}")`
             );
           }
         }

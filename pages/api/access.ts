@@ -19,7 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Access>) => {
       break;
     case "POST":
       connection.query(
-        `SELECT owner_username, owner_password FROM projects WHERE owner_username="${req.body.username}" AND owner_password="${req.body.password}"`,
+        `SELECT username, password FROM users WHERE username="${req.body.username}" AND password="${req.body.password}"`,
         (err, rows, fields) => {
           if (err) throw err;
 
