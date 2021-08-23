@@ -18,18 +18,18 @@ export default async (req: NextApiRequest, res: NextApiResponse<Access>) => {
       console.log("Access Granted!");
       break;
     case "POST":
-      connection.query("SELECT * FROM users", (err, rows, fields) => {
-        if (err) throw err;
+      connection.query(
+        `SELECT username, password FROM users WHERE username="${req.body.username}" AND password="${req.body.password}"`,
+        (err, rows, fields) => {
+          if (err) throw err;
 
-        rows.forEach((element) => {
-          if (
-            element.username === `${req.body.username}` &&
-            element.password === `${req.body.password}`
-          ) {
-            console.log("This user match in database!");
+          if (rows.length === 0) {
+            console.log("Access Denied...");
+          } else {
+            console.log("Access Granted!");
           }
-        });
-      });
+        }
+      );
       break;
     default:
       res.status(405).end();
