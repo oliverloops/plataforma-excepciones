@@ -100,6 +100,7 @@ function ExtendedForm({ open, openForm, username, password }) {
   const [contratist, setContratist] = useState("");
 
   let formData = {
+    owner: username,
     contractNum: contractNum,
     title: title,
     projectType: projectType,
