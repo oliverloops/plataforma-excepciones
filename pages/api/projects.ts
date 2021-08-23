@@ -32,6 +32,7 @@ export default async function (
               `SELECT project_title FROM projects WHERE contract_num=${requestedData.contractNum}`,
               (err, rows, fields) => {
                 if (rows.length === 0) {
+                  //Specify querying column with WHERE statement
                   connection.query(
                     `INSERT INTO projects (contract_num, project_title, project_type, supervisor, exc_number, contratist) VALUES (${requestedData.contractNum}, "${requestedData.title}", "${requestedData.projectType}", "${requestedData.supervisor}", ${requestedData.excNumber}, "${requestedData.contratist}")`
                   );
