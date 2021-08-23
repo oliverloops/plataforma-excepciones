@@ -13,7 +13,8 @@ export default async function (
   res: NextApiResponse<Access>
 ) {
   console.log(`Request Method: ${req.method}`);
-  console.log(req.body.consumer);
+  console.log(req.body.consumer.formData);
+  let requestedData = req.body.consumer.formData;
 
   switch (req.method) {
     case "GET":
@@ -23,9 +24,13 @@ export default async function (
       break;
     case "POST":
       connection.query(
-        `SELECT project_title FROM projects WHERE contract_num=${req.body.consumer.formData.contractNum}`,
+        `SELECT project_title FROM projects WHERE contract_num=${requestedData.contractNum}`,
         (err, rows, fields) => {
-          console.log(rows);
+          if (rows.length === 0) {
+            connection.query(
+              `INSERT INTO projects VALUES (${requestedData.contractNum}, "${requestedData.title}", "${requestedData.projectType}", "${requestedData.supervisor}", ${requestedData.excNumber}, "${requestedData.contratist}")`
+            );
+          }
         }
       );
       break;
