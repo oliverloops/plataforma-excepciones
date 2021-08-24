@@ -29,12 +29,12 @@ export default async function (
         (err, rows, fields) => {
           if (rows.length !== 0) {
             connection.query(
-              `SELECT project_title FROM projects WHERE contract_num=${requestedData.contractNum}`,
+              `SELECT project_title FROM projects WHERE owner=${requestedData.owner}`,
               (err, rows, fields) => {
                 if (rows.length === 0) {
                   //Specify querying column with WHERE statement
                   connection.query(
-                    `INSERT INTO projects (contract_num, project_title, project_type, supervisor, exc_number, contratist) VALUES (${requestedData.contractNum}, "${requestedData.title}", "${requestedData.projectType}", "${requestedData.supervisor}", ${requestedData.excNumber}, "${requestedData.contratist}")`
+                    `UPDATE projects SET contract_num = ${requestedData.contractNum}, project_title = "${requestedData.title}", project_type = "${requestedData.projectType}", supervisor = "${requestedData.supervisor}", exc_number = ${requestedData.excNumber}, contratist = "${requestedData.contratist}") WHERE owner=${requestedData.owner}`
                   );
                 }
               }
