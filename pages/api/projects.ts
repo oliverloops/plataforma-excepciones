@@ -31,8 +31,9 @@ export default async function (
             connection.query(
               `SELECT project_title FROM projects WHERE contract_num=${requestedData.contractNum}`,
               (err, rows, fields) => {
-                let query: unknown = JSON.stringify(rows[0].project_title);
-                if (query === null) {
+                let query: string = JSON.stringify(rows[0].project_title);
+
+                if (query === "null") {
                   //Specify querying column with WHERE statement
                   connection.query(
                     `UPDATE projects SET contract_num = ${requestedData.contractNum}, project_title = '${requestedData.title}', project_type = '${requestedData.projectType}', supervisor = '${requestedData.supervisor}', exc_number = ${requestedData.excNumber}, contratist = '${requestedData.contratist}' WHERE owner='${requestedData.owner}'`
