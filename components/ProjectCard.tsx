@@ -95,9 +95,11 @@ function ExtendedForm({ open, openForm, username, password }) {
   const [title, setTitle] = useState("");
   const [projectType, setProjectType] = useState("");
   const [supervisor, setSupervisor] = useState("");
-  //Númer de excepción
+  //Número de excepción
   const [excNumber, setExcNumber] = useState(0);
   const [contratist, setContratist] = useState("");
+  //Fecha
+  const [date, setDate] = useState("");
 
   let formData = {
     owner: username,
@@ -108,6 +110,8 @@ function ExtendedForm({ open, openForm, username, password }) {
     excNumber: excNumber,
     contratist: contratist,
   };
+
+  console.log(date);
 
   return (
     <>
@@ -176,6 +180,7 @@ function ExtendedForm({ open, openForm, username, password }) {
             type="date"
             name="project-date"
             className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-full md:w-auto px-1 py-0.5"
+            onChange={(input) => setDate(input.target.value)}
           />
         </div>
       </form>
