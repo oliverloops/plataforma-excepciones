@@ -175,11 +175,20 @@ function ExtendedForm({ open, openForm, username, password }) {
           />
         </div>
         <div className="col-start-1 col-end-2">
-          <label className="text-sm py-1">Período (meses)</label>
+          <label className="text-sm py-1">Período Inicial</label>
           <input
             type="date"
             name="project-date"
-            className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-full md:w-auto px-1 py-0.5"
+            className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-full md:w-full px-1 py-0.5"
+            onChange={(input) => setDate(input.target.value)}
+          />
+        </div>
+        <div className="col-start-2">
+          <label className="text-sm py-1">Período Final</label>
+          <input
+            type="date"
+            name="project-date"
+            className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-full md:w-full px-1 py-0.5"
             onChange={(input) => setDate(input.target.value)}
           />
         </div>
