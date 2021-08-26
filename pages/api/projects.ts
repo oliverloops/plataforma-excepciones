@@ -45,7 +45,7 @@ export default async function (
                 }
 
                 connection.query(
-                  `INSERT INTO months (project_title, initialDate, finalDate) VALUES(project_title='${rows[0].project_title}', initial_date='${requestedData.initialDate}', final_date='${requestedData.finalDate}')`
+                  `INSERT INTO months (project_title, initial_date, final_date) VALUES(project_title='${rows[0].project_title}', initial_date='${requestedData.initialDate}', final_date='${requestedData.finalDate}')`
                 );
               }
             );
