@@ -43,6 +43,10 @@ export default async function (
                     `INSERT INTO months VALUES ('${requestedData.title}', '${requestedData.initial_date}', '${requestedData.final_date}')`
                   );
                 }
+
+                connection.query(
+                  `INSERT INTO months (project_title, initial_date, final_date) VALUES(project_title='${requestedData.title}', initial_date='${requestedData.initial_date}', final_date='${requestedData.final_date}'`
+                );
               }
             );
           } else {
