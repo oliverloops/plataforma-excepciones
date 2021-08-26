@@ -38,6 +38,10 @@ export default async function (
                   connection.query(
                     `UPDATE projects SET contract_num = ${requestedData.contractNum}, project_title = '${requestedData.title}', project_type = '${requestedData.projectType}', supervisor = '${requestedData.supervisor}', exc_number = ${requestedData.excNumber}, contratist = '${requestedData.contratist}' WHERE owner='${requestedData.owner}'`
                   );
+
+                  connection.query(
+                    `INSERT INTO months VALUES ('${requestedData.title}', '${requestedData.initial_date}', '${requestedData.final_date}')`
+                  );
                 }
               }
             );
