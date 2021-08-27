@@ -5,8 +5,8 @@ import Footer from "../layout/Footer";
 import Button from "../components/Button";
 import MonthCard from "../components/MonthCard";
 
-export default function Months({ props }) {
-  console.log(props);
+export default function Months({ data }) {
+  console.log(data);
 
   return (
     <>
@@ -39,7 +39,7 @@ export default function Months({ props }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("http://localhost:3000/api/projects");
+  const res = await fetch("http://localhost:3000/api/months");
   const data = await res.json();
 
   return {
