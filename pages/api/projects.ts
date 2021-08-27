@@ -21,7 +21,6 @@ export default async function (
       });
       break;
     case "POST":
-      console.log(req.body.consumer.formData);
       let requestedData = req.body.consumer.formData;
 
       connection.query(
@@ -43,6 +42,10 @@ export default async function (
                     `INSERT INTO months VALUES ('${requestedData.title}', '${requestedData.initialDate}', '${requestedData.finalDate}')`
                   );
                 }
+
+                console.log(
+                  `${requestedData.initial_date} - ${requestedData.final_date}`
+                );
 
                 connection.query(
                   `INSERT INTO months (project_title, initial_date, final_date) VALUES(project_title='${rows[0].project_title}', initial_date='${requestedData.initialDate}', final_date='${requestedData.finalDate}')`
