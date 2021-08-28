@@ -6,6 +6,7 @@ connection.connect();
 
 type Access = {
   access: boolean;
+  body: Object;
 };
 
 export default async (req: NextApiRequest, res: NextApiResponse<Access>) => {
@@ -14,7 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Access>) => {
 
   switch (req.method) {
     case "GET":
-      res.send({ access: true });
+      res.send({ access: true, body: {} });
       console.log("Access Granted!");
       break;
     case "POST":
@@ -28,13 +29,13 @@ export default async (req: NextApiRequest, res: NextApiResponse<Access>) => {
           } else {
             console.log("Access Granted!");
             connection.query(
-              `SELECT contract_num, project_title FROM projects WHERE owner="${req.body.username}"`,
+              `SELECT contract_num, project_title, exc_number FROM projects WHERE owner="${req.body.username}"`,
               (err, rows, fields) => {
                 if (rows.length === 0) {
                   console.log("This project is empty yet");
-                  res.send({ access: false });
+                  res.send({ access: false, body: {} });
                 } else {
-                  res.send({ access: true });
+                  res.send({ access: true, body: JSON.stringify(rows[0]) });
                 }
               }
             );

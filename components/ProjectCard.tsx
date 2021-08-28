@@ -242,7 +242,12 @@ function SubmitButton({ username, password, form }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.access) {
+          router.push({
+            pathname: "/months",
+            query: JSON.parse(data.body),
+          });
+        }
       });
   };
 
