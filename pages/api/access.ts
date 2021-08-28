@@ -32,8 +32,9 @@ export default async (req: NextApiRequest, res: NextApiResponse<Access>) => {
               (err, rows, fields) => {
                 if (rows.length === 0) {
                   console.log("This project is empty yet");
+                  res.send({ access: false });
                 } else {
-                  console.log(`This project contains: ${rows}`);
+                  res.send({ access: true });
                 }
               }
             );

@@ -1,4 +1,5 @@
 import { useState, createContext, useContext } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 
 //Context API for extended form
@@ -220,6 +221,9 @@ function SubmitButton({ username, password, form }) {
   //Context consumer
   const consumer = useContext(formContext);
 
+  //Route with URL object
+  const router = useRouter();
+
   //function to validate user access
   const validateAccess = (event) => {
     event.preventDefault();
@@ -230,12 +234,16 @@ function SubmitButton({ username, password, form }) {
     }
   };
 
-  const validateUser = () => {
-    fetch("http://localhost:3000/api/access", {
+  const validateUser = async () => {
+    await fetch("http://localhost:3000/api/access", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username: username, password: password }),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   const uploadProjectData = () => {
