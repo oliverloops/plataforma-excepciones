@@ -4,8 +4,10 @@ import Footer from "../layout/Footer";
 //UI Components
 import Button from "../components/Button";
 import MonthCard from "../components/MonthCard";
+//HOC components
+import withAuth from "../HOC/withAuth";
 
-export default function Months({ data }) {
+function Months({ data }) {
   return (
     <>
       <Header />
@@ -26,6 +28,8 @@ export default function Months({ data }) {
     </>
   );
 }
+
+export default withAuth(Months);
 
 export async function getStaticProps() {
   const res = await fetch("http://localhost:3000/api/months");
