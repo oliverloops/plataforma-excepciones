@@ -6,15 +6,16 @@ export default function MonthCard(props: {
   route: string;
   ica: number;
   status: string;
-  query: unknown;
+  query: string;
 }) {
-  console.log(props.query);
+  const routeData = JSON.parse(props.query);
+  routeData.month = props.month;
 
   return (
     <Link
       href={{
         pathname: props.route,
-        query: { name: "test" },
+        query: routeData,
       }}
     >
       <a>

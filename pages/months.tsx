@@ -23,7 +23,7 @@ function Months({ data }) {
             ica={elem.ica}
             route={"/rubros/select"}
             status={"Autorizado"}
-            query={router.query}
+            query={JSON.stringify(router.query)}
           />
         ))}
       </div>
