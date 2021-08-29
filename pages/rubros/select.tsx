@@ -12,6 +12,8 @@ export default function Select() {
   const [leaf, setLeaf] = useState(false);
   const router = useRouter();
 
+  console.log(router.query);
+
   useEffect(() => {
     if (typeof window !== undefined) {
       if (window.innerWidth <= 768 && !leaf) {

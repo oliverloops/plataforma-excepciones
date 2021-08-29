@@ -9,6 +9,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     case "GET":
       connection.query("SELECT * FROM months", (err, rows, fields) => {
         res.send(rows);
+        console.log(rows);
       });
       break;
     default:

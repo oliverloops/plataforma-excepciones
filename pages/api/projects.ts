@@ -44,10 +44,6 @@ export default async function (
                   );
                 }
 
-                console.log(
-                  `${requestedData.initialDate} - ${requestedData.finalDate}`
-                );
-
                 connection.query(
                   `INSERT INTO months (project_title, initial_date, final_date) VALUES ('${rows[0].project_title}', '${requestedData.initialDate}', '${requestedData.finalDate}')`
                 );
