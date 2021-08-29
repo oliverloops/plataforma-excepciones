@@ -6,9 +6,17 @@ export default function MonthCard(props: {
   route: string;
   ica: number;
   status: string;
+  query: unknown;
 }) {
+  console.log(props.query);
+
   return (
-    <Link href={props.route}>
+    <Link
+      href={{
+        pathname: props.route,
+        query: { name: "test" },
+      }}
+    >
       <a>
         <div className="bg-white shadow-md rounded-xl w-40 md:w-60 sm:h-36 hover:shadow-xl">
           <Image

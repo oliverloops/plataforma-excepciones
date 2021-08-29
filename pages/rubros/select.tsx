@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { RiSendPlaneFill } from "react-icons/ri";
 //UI Layout
 import Header from "../../layout/Header";
@@ -9,6 +10,7 @@ import RubroCard from "../../components/RubroCard";
 
 export default function Select() {
   const [leaf, setLeaf] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (typeof window !== undefined) {
@@ -22,7 +24,7 @@ export default function Select() {
 
   return (
     <>
-      <Header />
+      <Header projectData={router.query} />
       <div className="flex justify-between md:max-w-lg p-2 md:p-8">
         <Button text={"Regresar"} route={"/months"} arrow={"left"} />
         <Button

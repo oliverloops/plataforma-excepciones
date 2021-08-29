@@ -19,10 +19,11 @@ function Months({ data }) {
         {data.map((elem, id) => (
           <MonthCard
             key={id}
-            month={elem.initial_date}
+            month={id + 1}
             ica={elem.ica}
             route={"/rubros/select"}
             status={"Autorizado"}
+            query={router.query}
           />
         ))}
       </div>
