@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { useRouter } from "next/router";
 import { RiSendPlaneFill } from "react-icons/ri";
 //UI Layout
@@ -12,7 +12,18 @@ export default function Select() {
   const [leaf, setLeaf] = useState(false);
   const router = useRouter();
 
-  console.log(router.query);
+  const categories = {
+    generales: "Generales",
+    atm: "Atm",
+    ruido: "Ruido",
+    rsu: "RSU",
+    rme: "RME",
+    rp: "RP",
+    flora: "Flora",
+    fauna: "Fauna",
+    arbolado: "Arbolado",
+    month: router.query.month,
+  };
 
   useEffect(() => {
     if (typeof window !== undefined) {
@@ -22,6 +33,14 @@ export default function Select() {
         setLeaf(false);
       }
     }
+  }, []);
+
+  useLayoutEffect(() => {
+    fetch("http://localhost:3000/api/categories", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(categories),
+    });
   }, []);
 
   return (
