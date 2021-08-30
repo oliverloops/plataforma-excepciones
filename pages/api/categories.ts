@@ -1,54 +1,59 @@
 import mysql from "mysql";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-const connection = mysql.createConnection(process.env.DATABASE_URL, {
-  multipleStatements: true,
-});
+const connection = mysql.createConnection(process.env.DATABASE_URL);
 connection.connect();
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const data = req.body;
-  console.log(data);
+  console.log(req.body);
 
   switch (req.method) {
     case "GET":
       connection.query(
-        "SELECT progress FROM categories",
+        `SELECT category, progress FROM categories WHERE month=${req.body.month} AND project_title='${req.body.project_title}'`,
         (err, rows, fields) => {
           res.send(rows);
+          console.log(rows);
         }
       );
       break;
     case "POST":
       connection.query(
-        `INSERT INTO categories (month, category) VALUES (${data.month}, '${data.generales}')`
-      );
-      connection.query(
-        `INSERT INTO categories (month, category) VALUES (${data.month}, '${data.atm}');`
-      );
-      connection.query(
-        `INSERT INTO categories (month, category) VALUES (${data.month}, '${data.ruido}')`
-      );
-      connection.query(
-        `INSERT INTO categories (month, category) VALUES (${data.month}, '${data.rsu}')`
-      );
-      connection.query(
-        `INSERT INTO categories (month, category) VALUES (${data.month}, '${data.rme}');`
-      );
-      connection.query(
-        `INSERT INTO categories (month, category) VALUES (${data.month}, '${data.rp}')`
-      );
-      connection.query(
-        `INSERT INTO categories (month, category) VALUES (${data.month}, '${data.flora}')`
-      );
-      connection.query(
-        `INSERT INTO categories (month, category) VALUES (${data.month}, '${data.fauna}')`
-      );
-      connection.query(
-        `INSERT INTO categories (month, category) VALUES (${data.month}, '${data.arbolado}')`
+        `SELECT month FROM categories WHERE month=${req.body.month} AND project_title='${req.body.project_title}'`,
+        (err, rows, fields) => {
+          if (rows.length === 0) {
+            connection.query(
+              `INSERT INTO categories (project_title, month, category) VALUES ('${req.body.project_title}', ${req.body.month}, '${req.body.generales}')`
+            );
+            connection.query(
+              `INSERT INTO categories (project_title, month, category) VALUES ('${req.body.project_title}', ${req.body.month}, '${req.body.atm}');`
+            );
+            connection.query(
+              `INSERT INTO categories (project_title, month, category) VALUES ('${req.body.project_title}', ${req.body.month}, '${req.body.ruido}')`
+            );
+            connection.query(
+              `INSERT INTO categories (project_title, month, category) VALUES ('${req.body.project_title}', ${req.body.month}, '${req.body.rsu}')`
+            );
+            connection.query(
+              `INSERT INTO categories (project_title, month, category) VALUES ('${req.body.project_title}', ${req.body.month}, '${req.body.rme}');`
+            );
+            connection.query(
+              `INSERT INTO categories (project_title, month, category) VALUES ('${req.body.project_title}', ${req.body.month}, '${req.body.rp}')`
+            );
+            connection.query(
+              `INSERT INTO categories (project_title, month, category) VALUES ('${req.body.project_title}', ${req.body.month}, '${req.body.flora}')`
+            );
+            connection.query(
+              `INSERT INTO categories (project_title, month, category) VALUES ('${req.body.project_title}', ${req.body.month}, '${req.body.fauna}')`
+            );
+            connection.query(
+              `INSERT INTO categories (project_title, month, category) VALUES ('${req.body.project_title}', ${req.body.month}, '${req.body.arbolado}')`
+            );
+          }
+        }
       );
 
       break;
