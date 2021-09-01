@@ -8,18 +8,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log(req.body);
-
   switch (req.method) {
-    case "GET":
-      connection.query(
-        `SELECT category, progress FROM categories WHERE month=${req.body.month} AND project_title='${req.body.project_title}'`,
-        (err, rows, fields) => {
-          res.send(rows);
-          console.log(rows);
-        }
-      );
-      break;
     case "POST":
       connection.query(
         `SELECT month FROM categories WHERE month=${req.body.month} AND project_title='${req.body.project_title}'`,
@@ -53,6 +42,13 @@ export default async function handler(
               `INSERT INTO categories (project_title, month, category) VALUES ('${req.body.project_title}', ${req.body.month}, '${req.body.arbolado}')`
             );
           }
+
+          connection.query(
+            `SELECT category, progress FROM categories WHERE month=${req.body.month} AND project_title='${req.body.project_title}'`,
+            (err, rows, fields) => {
+              res.send(rows);
+            }
+          );
         }
       );
 
