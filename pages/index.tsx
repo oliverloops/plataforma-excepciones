@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { GetStaticProps } from "next";
 import Image from "next/image";
 //UI Layout
@@ -7,20 +7,18 @@ import Footer from "../layout/Footer";
 import SearchBar from "../components/SearchBar";
 import ProjectCard from "../components/ProjectCard";
 
-const Home = ({ data }) => {
-  console.log(data);
+const Home = ({ cards }) => {
+  const [templates, setTemplates] = useState([]);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/api/database", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({
-  //       name: "Netflix",
-  //       field: "Entertaiment",
-  //       released: "1997",
-  //     }),
-  //   });
-  // }, []);
+  useEffect(() => {
+    fetch("http://localhost:3000/api/basecards")
+      .then((res) => res.json())
+      .then((info) => {
+        for (let i = 0; i < info[0].quantity; i++) {
+          setTemplates((value) => [...value, i]);
+        }
+      });
+  }, []);
 
   return (
     <>
@@ -29,18 +27,14 @@ const Home = ({ data }) => {
       </div>
       <SearchBar />
       <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-auto gap-y-8 justify-items-center p-5 md:p-12">
-        <ProjectCard title={"Title"} />
-        {/* <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard /> */}
-        {data.map((elem, id) => (
+        {cards.map((elem, id) => (
           <ProjectCard key={id} title={elem.project_title} />
         ))}
+        {templates === [] ? (
+          <div>Loading...</div>
+        ) : (
+          templates.map((item, id) => <ProjectCard key={id} title={"Title"} />)
+        )}
       </div>
       <Footer />
     </>
@@ -55,7 +49,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      data: data,
+      cards: data,
     },
     revalidate: 10,
   };

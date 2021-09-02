@@ -12,15 +12,9 @@ export default async function (
   req: NextApiRequest,
   res: NextApiResponse<Access>
 ) {
-  console.log(`Request Method: ${req.method}`);
-
   switch (req.method) {
     case "GET":
       connection.query("SELECT * FROM projects", (err, rows, fields) => {
-        res.send(rows);
-      });
-
-      connection.query("SELECT * FROM basecards", (err, rows, fields) => {
         res.send(rows);
       });
 
