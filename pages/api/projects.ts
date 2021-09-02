@@ -19,6 +19,11 @@ export default async function (
       connection.query("SELECT * FROM projects", (err, rows, fields) => {
         res.send(rows);
       });
+
+      connection.query("SELECT * FROM basecards", (err, rows, fields) => {
+        res.send(rows);
+      });
+
       break;
     case "POST":
       const requestedData = req.body.consumer.formData;

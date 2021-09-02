@@ -29,15 +29,18 @@ const Home = ({ data }) => {
       </div>
       <SearchBar />
       <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-auto gap-y-8 justify-items-center p-5 md:p-12">
+        <ProjectCard title={"Title"} />
+        {/* <ProjectCard />
         <ProjectCard />
         <ProjectCard />
         <ProjectCard />
         <ProjectCard />
         <ProjectCard />
         <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
+        <ProjectCard /> */}
+        {data.map((elem, id) => (
+          <ProjectCard key={id} title={elem.project_title} />
+        ))}
       </div>
       <Footer />
     </>
@@ -54,5 +57,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       data: data,
     },
+    revalidate: 10,
   };
 };
