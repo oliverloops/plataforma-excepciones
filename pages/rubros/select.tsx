@@ -7,6 +7,7 @@ import Footer from "../../layout/Footer";
 //UI Components
 import Button from "../../components/Button";
 import RubroCard from "../../components/RubroCard";
+import KilaLoader from "../../components/KilaLoader";
 
 export default function Select() {
   const [leaf, setLeaf] = useState(false);
@@ -62,7 +63,9 @@ export default function Select() {
       </div>
       <div className="grid md:grid-cols-3 grid-rows-auto justify-items-center gap-y-8 px-4 md:px-8 py-8">
         {blocks === null ? (
-          <div>Loading...</div>
+          <div className="md:col-start-2 row-start-2 md:row-start-4">
+            <KilaLoader />
+          </div>
         ) : (
           blocks.map((elem, id) =>
             elem.category === "Generales" ? (
