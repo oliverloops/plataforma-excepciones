@@ -30,11 +30,8 @@ function Months() {
         <Button text={"Ir a Inicio"} route={"/"} arrow={"left"} />
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-auto justify-items-center gap-y-8 px-4 md:px-8 py-8">
-        <div className="col-start-1 md:col-start-2 row-start-2 md:row-start-4">
-          <KilaLoader />
-        </div>
-        {/* {months === null ? (
-          <div>
+        {months === null ? (
+          <div className="col-start-1 md:col-start-2 row-start-2 md:row-start-4">
             <KilaLoader />
           </div>
         ) : (
@@ -48,7 +45,7 @@ function Months() {
               query={JSON.stringify(router.query)}
             />
           ))
-        )} */}
+        )}
       </div>
       <Footer />
     </>
