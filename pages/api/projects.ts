@@ -14,6 +14,7 @@ export default async function (
 ) {
   switch (req.method) {
     case "GET":
+      //Query to retrieve all projects
       connection.query("SELECT * FROM projects", (err, rows, fields) => {
         res.send(rows);
       });
@@ -21,28 +22,29 @@ export default async function (
       break;
     case "POST":
       const requestedData = req.body.consumer.formData;
-      console.log(requestedData);
 
+      //filter a project by their owner
       connection.query(
         `SELECT owner FROM projects WHERE owner='${requestedData.owner}'`,
         (err, rows, fields) => {
           if (rows.length !== 0) {
+            //filter project title where requested contract number matches in db
             connection.query(
               `SELECT project_title FROM projects WHERE contract_num=${requestedData.contractNum}`,
               (err, rows, fields) => {
                 let query: string = JSON.stringify(rows[0].project_title);
 
                 if (query === "null") {
-                  //Specify querying column with WHERE statement
+                  //Update a whole project if it isn't yet created and where owner matches
                   connection.query(
                     `UPDATE projects SET contract_num = ${requestedData.contractNum}, project_title = '${requestedData.title}', project_type = '${requestedData.projectType}', supervisor = '${requestedData.supervisor}', exc_number = ${requestedData.excNumber}, contratist = '${requestedData.contratist}' WHERE owner='${requestedData.owner}'`
                   );
-
+                  //Insterts first posted date if it isn't yet created
                   connection.query(
                     `INSERT INTO months (project_title, initial_date, final_date) VALUES ('${requestedData.title}', '${requestedData.initialDate}', '${requestedData.finalDate}')`
                   );
                 }
-
+                //Insterts a new posted date and creates a new month card data
                 connection.query(
                   `INSERT INTO months (project_title, initial_date, final_date) VALUES ('${rows[0].project_title}', '${requestedData.initialDate}', '${requestedData.finalDate}')`
                 );
