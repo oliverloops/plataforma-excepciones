@@ -31,7 +31,7 @@ const Home = ({ cards }) => {
           <ProjectCard key={id} title={elem.project_title} />
         ))}
         {templates === [] ? (
-          <div>Loading...</div>
+          <></>
         ) : (
           templates.map((item, id) => <ProjectCard key={id} title={"Title"} />)
         )}

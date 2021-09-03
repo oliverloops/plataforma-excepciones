@@ -60,6 +60,7 @@ export default function ProjectCard({ title }) {
             <SubmitButton
               username={username}
               password={pass}
+              projectTitle={title}
               form={"not expanded"}
             />
           )}
@@ -83,13 +84,14 @@ export default function ProjectCard({ title }) {
           openForm={openForm}
           username={username}
           password={pass}
+          projectTitle={title}
         />
       )}
     </div>
   );
 }
 
-function ExtendedForm({ open, openForm, username, password }) {
+function ExtendedForm({ open, openForm, username, password, projectTitle }) {
   //Hooks state managers
   const [contractNum, setContractNum] = useState(0);
   //Nombre de la obra
@@ -201,6 +203,7 @@ function ExtendedForm({ open, openForm, username, password }) {
             <SubmitButton
               username={username}
               password={password}
+              projectTitle={title}
               form={"expanded"}
             />
           )}
@@ -217,7 +220,7 @@ function ExtendedForm({ open, openForm, username, password }) {
   );
 }
 
-function SubmitButton({ username, password, form }) {
+function SubmitButton({ username, password, projectTitle, form }) {
   //Context consumer
   const consumer = useContext(formContext);
 
@@ -238,7 +241,11 @@ function SubmitButton({ username, password, form }) {
     await fetch("http://localhost:3000/api/access", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username: username, password: password }),
+      body: JSON.stringify({
+        username: username,
+        password: password,
+        projectTitle: projectTitle,
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
