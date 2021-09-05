@@ -32,7 +32,7 @@ export default function MonthCard(props: {
             <span className="flex flex-col md:flex-row justify-between py-2 md:py-0">
               <p className="text-lg font-medium">ICA: {props.ica}</p>
               <p className="flex items-center font-light">
-                <div
+                <span
                   className={`${
                     props.status == "Autorizado"
                       ? "bg-green-400"
@@ -40,7 +40,7 @@ export default function MonthCard(props: {
                       ? "bg-yellow-400"
                       : props.status == "No Autorizado" && "bg-red-400"
                   } rounded-full w-3 h-3`}
-                ></div>
+                ></span>
                 <span className="text-sm pl-2">{props.status}</span>
               </p>
             </span>

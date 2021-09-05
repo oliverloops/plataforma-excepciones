@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect, useLayoutEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import { RiSendPlaneFill } from "react-icons/ri";
 //UI Layout
@@ -14,6 +14,8 @@ export default function Select() {
   const [blocks, setBlocks] = useState(null);
 
   const router = useRouter();
+
+  console.log(router.asPath.slice(0, 79));
 
   const categories = {
     generales: "Generales",

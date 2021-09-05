@@ -8,7 +8,11 @@ export default function Button(props: {
   arrow: string;
 }) {
   return (
-    <Link href={props.route}>
+    <Link
+      href={{
+        pathname: props.route,
+      }}
+    >
       <a>
         <button
           style={{ backgroundColor: "#8CBA6E" }}
