@@ -18,12 +18,19 @@ export default function Rubro() {
       <Header projectData={router.query} />
       <div className="flex justify-between md:max-w-lg p-2 md:p-8">
         <Button text={"Regresar"} route={"/rubros/select"} arrow={"left"} />
-        <Button text={"Rubros"} route={"/rubros/select"} arrow={""} />
+        <CategoryButton
+          text={"Rubros"}
+          route={"/rubros/select"}
+          arrow={""}
+          query={router.query}
+          categories={true}
+        />
         <CategoryButton
           text={"Continuar"}
-          route={"/rubros/select"}
+          route={"/rubros/"}
           arrow={"right"}
           query={router.query}
+          categories={false}
         />
       </div>
       <Content />
@@ -63,113 +70,117 @@ function Table() {
 
   return (
     <table className="col-start-1 md:col-end-2 border-2 border-gray-400">
-      <tr className="border-2 border-gray-400 bg-blue-100 text-lg">
-        <th className="border-2 border-gray-400">MM</th>
-        <th className="border-2 border-gray-400">Cumplimiento</th>
-        <th className="border-2 border-gray-400">Evidencia</th>
-      </tr>
-      <tr>
-        <td className="px-3 md:px-12">
-          <p className="text-center">1</p>
-        </td>
-        <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-          <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
-            <option>Opción 1</option>
-            <option>Opción 2</option>
-            <option>Opción 3</option>
-          </select>
-        </td>
-        <td className="flex justify-between px-2 md:px-5 pt-5">
-          <UploadButton getFileName={getFileName} />
-          <GrDocumentText size={28} />
-          <GrDocumentDownload size={28} />
-        </td>
-      </tr>
-      <tr>
-        <td className="px-3 md:px-12">
-          <p className="text-center">2</p>
-        </td>
-        <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-          <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
-            <option>Opción 1</option>
-            <option>Opción 2</option>
-            <option>Opción 3</option>
-          </select>
-        </td>
-        <td className="flex justify-between px-2 md:px-5 pt-5">
-          <UploadButton getFileName={getFileName} />
-          <GrDocumentText size={28} />
-          <GrDocumentDownload size={28} />
-        </td>
-      </tr>
-      <tr>
-        <td className="px-3 md:px-12">
-          <p className="text-center">3</p>
-        </td>
-        <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-          <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
-            <option>Opción 1</option>
-            <option>Opción 2</option>
-            <option>Opción 3</option>
-          </select>
-        </td>
-        <td className="flex justify-between px-2 md:px-5 pt-5">
-          <UploadButton getFileName={getFileName} />
-          <GrDocumentText size={28} />
-          <GrDocumentDownload size={28} />
-        </td>
-      </tr>
-      <tr>
-        <td className="px-3 md:px-12">
-          <p className="text-center">4</p>
-        </td>
-        <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-          <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
-            <option>Opción 1</option>
-            <option>Opción 2</option>
-            <option>Opción 3</option>
-          </select>
-        </td>
-        <td className="flex justify-between px-2 md:px-5 pt-5">
-          <UploadButton getFileName={getFileName} />
-          <GrDocumentText size={28} />
-          <GrDocumentDownload size={28} />
-        </td>
-      </tr>
-      <tr>
-        <td className="px-3 md:px-12">
-          <p className="text-center">5</p>
-        </td>
-        <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-          <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
-            <option>Opción 1</option>
-            <option>Opción 2</option>
-            <option>Opción 3</option>
-          </select>
-        </td>
-        <td className="flex justify-between px-2 md:px-5 pt-5">
-          <UploadButton getFileName={getFileName} />
-          <GrDocumentText size={28} />
-          <GrDocumentDownload size={28} />
-        </td>
-      </tr>
-      <tr>
-        <td className="px-3 md:px-12">
-          <p className="text-center">6</p>
-        </td>
-        <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-          <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
-            <option>Opción 1</option>
-            <option>Opción 2</option>
-            <option>Opción 3</option>
-          </select>
-        </td>
-        <td className="flex justify-between px-2 md:px-5 pt-5">
-          <UploadButton getFileName={getFileName} />
-          <GrDocumentText size={28} />
-          <GrDocumentDownload size={28} />
-        </td>
-      </tr>
+      <thead>
+        <tr className="border-2 border-gray-400 bg-blue-100 text-lg">
+          <th className="border-2 border-gray-400">MM</th>
+          <th className="border-2 border-gray-400">Cumplimiento</th>
+          <th className="border-2 border-gray-400">Evidencia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td className="px-3 md:px-12">
+            <p className="text-center">1</p>
+          </td>
+          <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
+            <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
+              <option>Opción 1</option>
+              <option>Opción 2</option>
+              <option>Opción 3</option>
+            </select>
+          </td>
+          <td className="flex justify-between px-2 md:px-5 pt-5">
+            <UploadButton getFileName={getFileName} />
+            <GrDocumentText size={28} />
+            <GrDocumentDownload size={28} />
+          </td>
+        </tr>
+        <tr>
+          <td className="px-3 md:px-12">
+            <p className="text-center">2</p>
+          </td>
+          <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
+            <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
+              <option>Opción 1</option>
+              <option>Opción 2</option>
+              <option>Opción 3</option>
+            </select>
+          </td>
+          <td className="flex justify-between px-2 md:px-5 pt-5">
+            <UploadButton getFileName={getFileName} />
+            <GrDocumentText size={28} />
+            <GrDocumentDownload size={28} />
+          </td>
+        </tr>
+        <tr>
+          <td className="px-3 md:px-12">
+            <p className="text-center">3</p>
+          </td>
+          <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
+            <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
+              <option>Opción 1</option>
+              <option>Opción 2</option>
+              <option>Opción 3</option>
+            </select>
+          </td>
+          <td className="flex justify-between px-2 md:px-5 pt-5">
+            <UploadButton getFileName={getFileName} />
+            <GrDocumentText size={28} />
+            <GrDocumentDownload size={28} />
+          </td>
+        </tr>
+        <tr>
+          <td className="px-3 md:px-12">
+            <p className="text-center">4</p>
+          </td>
+          <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
+            <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
+              <option>Opción 1</option>
+              <option>Opción 2</option>
+              <option>Opción 3</option>
+            </select>
+          </td>
+          <td className="flex justify-between px-2 md:px-5 pt-5">
+            <UploadButton getFileName={getFileName} />
+            <GrDocumentText size={28} />
+            <GrDocumentDownload size={28} />
+          </td>
+        </tr>
+        <tr>
+          <td className="px-3 md:px-12">
+            <p className="text-center">5</p>
+          </td>
+          <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
+            <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
+              <option>Opción 1</option>
+              <option>Opción 2</option>
+              <option>Opción 3</option>
+            </select>
+          </td>
+          <td className="flex justify-between px-2 md:px-5 pt-5">
+            <UploadButton getFileName={getFileName} />
+            <GrDocumentText size={28} />
+            <GrDocumentDownload size={28} />
+          </td>
+        </tr>
+        <tr>
+          <td className="px-3 md:px-12">
+            <p className="text-center">6</p>
+          </td>
+          <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
+            <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
+              <option>Opción 1</option>
+              <option>Opción 2</option>
+              <option>Opción 3</option>
+            </select>
+          </td>
+          <td className="flex justify-between px-2 md:px-5 pt-5">
+            <UploadButton getFileName={getFileName} />
+            <GrDocumentText size={28} />
+            <GrDocumentDownload size={28} />
+          </td>
+        </tr>
+      </tbody>
     </table>
   );
 }

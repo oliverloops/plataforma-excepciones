@@ -7,17 +7,20 @@ export default function CategoryButton(props: {
   route: string;
   arrow: string;
   query: any;
+  categories: boolean;
 }) {
-  console.log(props.query);
+  let finalPathName = props.categories
+    ? props.route
+    : props.route + (parseInt(props.query.id) + 1);
+
   return (
     <Link
       href={{
-        pathname: props.route,
+        pathname: finalPathName,
         query: {
           contract_num: props.query.contract_num,
           project_title: props.query.project_title,
-          exc_number: props.query.number,
-          id: parseInt(props.query.id) + 1,
+          exc_number: props.query.exc_number,
         },
       }}
     >
