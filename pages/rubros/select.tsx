@@ -15,7 +15,6 @@ export default function Select() {
   const [blocks, setBlocks] = useState(null);
 
   const router = useRouter();
-  const query = JSON.stringify(router.query).slice(0, 77).concat("}");
 
   const categories = {
     generales: "Generales",
