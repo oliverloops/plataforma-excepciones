@@ -8,8 +8,6 @@ export default function BackButton(props: {
   arrow: string;
   query: any;
 }) {
-  console.log(props.query.month);
-
   return (
     <Link
       href={{
