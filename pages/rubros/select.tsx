@@ -1,10 +1,11 @@
-import { useState, useEffect, useLayoutEffect, useContext } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { useRouter } from "next/router";
 import { RiSendPlaneFill } from "react-icons/ri";
 //UI Layout
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 //UI Components
+import BackButton from "../../components/BackButton";
 import Button from "../../components/Button";
 import RubroCard from "../../components/RubroCard";
 import KilaLoader from "../../components/KilaLoader";
@@ -14,8 +15,7 @@ export default function Select() {
   const [blocks, setBlocks] = useState(null);
 
   const router = useRouter();
-
-  console.log(router.asPath.slice(0, 79));
+  const query = JSON.stringify(router.query).slice(0, 77).concat("}");
 
   const categories = {
     generales: "Generales",
@@ -55,7 +55,13 @@ export default function Select() {
     <>
       <Header projectData={router.query} />
       <div className="flex justify-between md:max-w-lg p-2 md:p-8">
-        <Button text={"Regresar"} route={"/months"} arrow={"left"} />
+        <BackButton
+          text={"Regresar"}
+          route={"/months"}
+          arrow={"left"}
+          query={router.query}
+        />
+
         <Button
           text={!leaf ? "Enviar a Evaluación" : <RiSendPlaneFill size={30} />}
           route={"#"}

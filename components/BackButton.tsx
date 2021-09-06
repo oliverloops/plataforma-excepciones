@@ -2,13 +2,25 @@ import Link from "next/link";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { FaLeaf } from "react-icons/fa";
 
-export default function Button(props: {
+export default function BackButton(props: {
   text: unknown;
   route: string;
   arrow: string;
+  query: any;
 }) {
+  console.log(props.query.month);
+
   return (
-    <Link href={props.route}>
+    <Link
+      href={{
+        pathname: props.route,
+        query: {
+          contract_num: props.query.contract_num,
+          project_title: props.query.project_title,
+          exc_number: props.query.exc_number,
+        },
+      }}
+    >
       <a>
         <button
           style={{ backgroundColor: "#8CBA6E" }}
