@@ -8,6 +8,7 @@ export default function RubroCard(props: {
   route: string;
   rubro: string;
   percentage: number;
+  query: any;
 }) {
   const [progress, setProgress] = useState(0);
 
@@ -50,7 +51,12 @@ export default function RubroCard(props: {
   }, [progress, setProgress]);
 
   return (
-    <Link href={props.route}>
+    <Link
+      href={{
+        pathname: props.route,
+        query: props.query,
+      }}
+    >
       <a>
         <div className="bg-white shadow-md rounded-xl md:w-64 h-32 md:h-36 hover:shadow-xl">
           <Image

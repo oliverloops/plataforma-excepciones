@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 //UI Layout
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
@@ -5,9 +6,11 @@ import Footer from "../../layout/Footer";
 import Button from "../../components/Button";
 
 export default function Generales() {
+  const router = useRouter();
+
   return (
     <>
-      <Header />
+      <Header projectData={router.query} />
       <div className="flex justify-between md:max-w-lg p-2 md:p-8">
         <Button text={"Regresar"} route={"/rubros/select"} arrow={"left"} />
         <Button text={"Rubros"} route={"/rubros/select"} arrow={""} />

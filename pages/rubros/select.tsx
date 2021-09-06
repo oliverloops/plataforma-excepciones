@@ -81,6 +81,7 @@ export default function Select() {
                 rubro={elem.category}
                 percentage={elem.progress}
                 route={"/rubros/generales"}
+                query={router.query}
               />
             ) : (
               <RubroCard
@@ -88,6 +89,7 @@ export default function Select() {
                 rubro={elem.category}
                 percentage={elem.progress}
                 route={`/rubros/${id}`}
+                query={router.query}
               />
             )
           )
