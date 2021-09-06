@@ -1,19 +1,30 @@
+import { useRouter } from "next/router";
 import { GrDocumentText, GrDocumentDownload } from "react-icons/gr";
 //UI Layout
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 //UI Components
 import Button from "../../components/Button";
+import CategoryButton from "../../components/CategoryButton";
 import UploadButton from "../../components/UploadButton";
 
 export default function Rubro() {
+  const router = useRouter();
+
+  console.log(router.query);
+
   return (
     <>
-      <Header />
+      <Header projectData={router.query} />
       <div className="flex justify-between md:max-w-lg p-2 md:p-8">
         <Button text={"Regresar"} route={"/rubros/select"} arrow={"left"} />
         <Button text={"Rubros"} route={"/rubros/select"} arrow={""} />
-        <Button text={"Continuar"} route={"#"} arrow={"right"} />
+        <CategoryButton
+          text={"Continuar"}
+          route={"/rubros/select"}
+          arrow={"right"}
+          query={router.query}
+        />
       </div>
       <Content />
       <Footer />
@@ -23,7 +34,7 @@ export default function Rubro() {
 
 function Content() {
   return (
-    <main className="grid grid-cols-1 md:grid-cols-2 grid-rows-auto px-4 py-8 md:p-8 md:py-0 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-auto px-4 py-8 md:p-8 md:py-0 gap-8">
       <p className="text-2xl font-bold col-start-1 text-center md:text-left pt-4">
         Título de Rubro
       </p>
@@ -41,7 +52,7 @@ function Content() {
           </li>
         </ul>
       </div>
-    </main>
+    </div>
   );
 }
 
