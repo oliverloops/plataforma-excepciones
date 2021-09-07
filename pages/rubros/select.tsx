@@ -15,6 +15,7 @@ export default function Select() {
   const [blocks, setBlocks] = useState(null);
 
   const router = useRouter();
+  console.log(router.query);
 
   const categories = {
     generales: "Generales",
@@ -40,7 +41,7 @@ export default function Select() {
     }
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     fetch("http://localhost:3000/api/categories", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

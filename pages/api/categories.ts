@@ -10,6 +10,7 @@ export default async function handler(
 ) {
   switch (req.method) {
     case "POST":
+      console.log("You queryied successfully");
       connection.query(
         `SELECT month FROM categories WHERE month=${req.body.month} AND project_title='${req.body.project_title}'`,
         (err, rows, fields) => {

@@ -21,6 +21,7 @@ export default function CategoryButton(props: {
           contract_num: props.query.contract_num,
           project_title: props.query.project_title,
           exc_number: props.query.exc_number,
+          month: props.query.month,
         },
       }}
     >
