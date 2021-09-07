@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 //UI Components
-import Button from "../../components/Button";
 import CategoryButton from "../../components/CategoryButton";
 
 export default function Generales() {
@@ -27,7 +26,13 @@ export default function Generales() {
           query={router.query}
           categories={true}
         />
-        <Button text={"Continuar"} route={"/rubros/1"} arrow={"right"} />
+        <CategoryButton
+          text={"Continuar"}
+          route={"/rubros/1"}
+          arrow={"right"}
+          query={router.query}
+          categories={true}
+        />
       </div>
       <main className="md:pb-36">
         <Content />
