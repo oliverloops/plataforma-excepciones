@@ -54,7 +54,13 @@ export default function RubroCard(props: {
     <Link
       href={{
         pathname: props.route,
-        query: props.query,
+        query: {
+          contract_num: props.query.contract_num,
+          project_title: props.query.project_title,
+          exc_number: props.query.exc_number,
+          month: props.query.month,
+          rubro: props.rubro,
+        },
       }}
     >
       <a>

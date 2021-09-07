@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import router, { useRouter } from "next/router";
 import { GrDocumentText, GrDocumentDownload } from "react-icons/gr";
 //UI Layout
 import Header from "../../layout/Header";
@@ -43,7 +43,7 @@ function Content() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-auto px-4 py-8 md:p-8 md:py-0 gap-8">
       <p className="text-2xl font-bold col-start-1 text-center md:text-left pt-4">
-        Título de Rubro
+        {router.query.rubro}
       </p>
       <Table />
       <div className="col-start-1 row-start-2  md:col-start-2 md:row-start-2 bg-gray-200 rounded-xl md:w-64 md:h-60">

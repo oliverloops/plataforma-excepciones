@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import router, { useRouter } from "next/router";
 //UI Layout
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
