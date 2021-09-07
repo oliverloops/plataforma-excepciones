@@ -4,6 +4,7 @@ import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 //UI Components
 import Button from "../../components/Button";
+import CategoryButton from "../../components/CategoryButton";
 
 export default function Generales() {
   const router = useRouter();
@@ -12,8 +13,20 @@ export default function Generales() {
     <>
       <Header projectData={router.query} />
       <div className="flex justify-between md:max-w-lg p-2 md:p-8">
-        <Button text={"Regresar"} route={"/rubros/select"} arrow={"left"} />
-        <Button text={"Rubros"} route={"/rubros/select"} arrow={""} />
+        <CategoryButton
+          text={"Regresar"}
+          route={"/rubros/select"}
+          arrow={"left"}
+          query={router.query}
+          categories={true}
+        />
+        <CategoryButton
+          text={"Rubros"}
+          route={"/rubros/select"}
+          arrow={""}
+          query={router.query}
+          categories={true}
+        />
         <Button text={"Continuar"} route={"/rubros/1"} arrow={"right"} />
       </div>
       <main className="md:pb-36">
