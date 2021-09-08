@@ -1,4 +1,5 @@
-import router, { useRouter } from "next/router";
+import { useState, useLayoutEffect } from "react";
+import { useRouter } from "next/router";
 import { GrDocumentText, GrDocumentDownload } from "react-icons/gr";
 //UI Layout
 import Header from "../../layout/Header";
@@ -10,8 +11,6 @@ import UploadButton from "../../components/UploadButton";
 
 export default function Rubro() {
   const router = useRouter();
-
-  console.log(router.query);
 
   return (
     <>
@@ -33,17 +32,33 @@ export default function Rubro() {
           categories={false}
         />
       </div>
-      <Content />
+      <Content title={router.query.id} />
       <Footer />
     </>
   );
 }
 
-function Content() {
+function Content({ title }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-auto px-4 py-8 md:p-8 md:py-0 gap-8">
       <p className="text-2xl font-bold col-start-1 text-center md:text-left pt-4">
-        {router.query.rubro}
+        {title === "1"
+          ? "Atm"
+          : title === "2"
+          ? "Ruido"
+          : title === "3"
+          ? "RSU"
+          : title === "4"
+          ? "RME"
+          : title === "5"
+          ? "RP"
+          : title === "6"
+          ? "Flora"
+          : title === "7"
+          ? "Fauna"
+          : title === "8"
+          ? "Arbolado"
+          : "Ya no esta en la lista"}
       </p>
       <Table />
       <div className="col-start-1 row-start-2  md:col-start-2 md:row-start-2 bg-gray-200 rounded-xl md:w-64 md:h-60">
