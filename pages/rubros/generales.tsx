@@ -1,4 +1,5 @@
-import router, { useRouter } from "next/router";
+import { useState } from "react";
+import { useRouter } from "next/router";
 //UI Layout
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
@@ -43,12 +44,23 @@ export default function Generales() {
 }
 
 function Content() {
+  const [option, setOption] = useState([]);
+
+  const storeData = (event) => {
+    setOption((val) => [...val, event.target.value]);
+  };
+
+  console.log(option);
+
   return (
     <form className="flex flex-col p-8 md:px-16">
       <label className="text-xl font-semibold py-8 md:py-4">
         Cátalogo General de Obra
       </label>
-      <select className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3 py-0.5">
+      <select
+        onChange={(event) => storeData(event)}
+        className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3 py-0.5"
+      >
         <option>V1</option>
         <option>V2</option>
         <option>V3</option>
@@ -56,7 +68,10 @@ function Content() {
         <option>V5</option>
       </select>
       <label className="text-xl font-semibold py-8 md:py-4">Área</label>
-      <select className="border-2 bg-gray-200 border-gray-300 rounded-md  w-40 h-12 md:h-10 px-3 py-0.5">
+      <select
+        onChange={(event) => storeData(event)}
+        className="border-2 bg-gray-200 border-gray-300 rounded-md  w-40 h-12 md:h-10 px-3 py-0.5"
+      >
         <option>Frente 1</option>
         <option>Frente 2</option>
         <option>Frente 3</option>
@@ -66,7 +81,10 @@ function Content() {
       <label className="text-xl font-semibold py-8 md:py-4">
         Coordenadas UTM Centroíde
       </label>
-      <select className="border-2 bg-gray-200 border-gray-300 rounded-md  w-40 h-12 md:h-10 px-3 py-0.5">
+      <select
+        onChange={(event) => storeData(event)}
+        className="border-2 bg-gray-200 border-gray-300 rounded-md  w-40 h-12 md:h-10 px-3 py-0.5"
+      >
         <option>Frente 1</option>
         <option>Frente 2</option>
         <option>Frente 3</option>
