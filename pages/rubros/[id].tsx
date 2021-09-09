@@ -16,7 +16,13 @@ export default function Rubro() {
     <>
       <Header projectData={router.query} />
       <div className="flex justify-between md:max-w-lg p-2 md:p-8">
-        <Button text={"Regresar"} route={"/rubros/select"} arrow={"left"} />
+        <CategoryButton
+          text={"Regresar"}
+          route={"/rubros/"}
+          arrow={"left"}
+          query={router.query}
+          categories={false}
+        />
         <CategoryButton
           text={"Rubros"}
           route={"/rubros/select"}

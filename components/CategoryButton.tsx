@@ -11,7 +11,9 @@ export default function CategoryButton(props: {
 }) {
   let finalPathName = props.categories
     ? props.route
-    : props.route + (parseInt(props.query.id) + 1);
+    : props.text === "Continuar"
+    ? props.route + (parseInt(props.query.id) + 1)
+    : props.route + (parseInt(props.query.id) - 1);
 
   return (
     <Link
