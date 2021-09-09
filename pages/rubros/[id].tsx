@@ -30,13 +30,17 @@ export default function Rubro() {
           query={router.query}
           categories={true}
         />
-        <CategoryButton
-          text={"Continuar"}
-          route={"/rubros/"}
-          arrow={"right"}
-          query={router.query}
-          categories={false}
-        />
+        {parseInt(router.query.id) < 8 ? (
+          <CategoryButton
+            text={"Continuar"}
+            route={"/rubros/"}
+            arrow={"right"}
+            query={router.query}
+            categories={false}
+          />
+        ) : (
+          <div className="w-32 md:w-28"></div>
+        )}
       </div>
       <Content id={router.query.id} />
       <Footer />
