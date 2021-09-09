@@ -9,11 +9,19 @@ export default function CategoryButton(props: {
   query: any;
   categories: boolean;
 }) {
-  let finalPathName = props.categories
-    ? props.route
-    : props.text === "Continuar"
-    ? props.route + (parseInt(props.query.id) + 1)
-    : props.route + (parseInt(props.query.id) - 1);
+  let finalPathName = "";
+
+  if (props.categories) {
+    finalPathName = props.route;
+  } else if (props.text === "Continuar" && parseInt(props.query.id) <= 8) {
+    finalPathName = props.route + (parseInt(props.query.id) + 1);
+  } else if (props.text === "Regresar" && parseInt(props.query.id) >= 1) {
+    finalPathName = props.route + (parseInt(props.query.id) - 1);
+  } else if (props.text === "Regresar" && parseInt(props.query.id) === 1) {
+    finalPathName = props.route + "/generales";
+  } else {
+    return;
+  }
 
   return (
     <Link
