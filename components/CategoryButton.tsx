@@ -15,10 +15,10 @@ export default function CategoryButton(props: {
     finalPathName = props.route;
   } else if (props.text === "Continuar" && parseInt(props.query.id) <= 8) {
     finalPathName = props.route + (parseInt(props.query.id) + 1);
-  } else if (props.text === "Regresar" && parseInt(props.query.id) >= 1) {
+  } else if (props.text === "Regresar" && parseInt(props.query.id) > 1) {
     finalPathName = props.route + (parseInt(props.query.id) - 1);
   } else if (props.text === "Regresar" && parseInt(props.query.id) === 1) {
-    finalPathName = props.route + "/generales";
+    finalPathName = props.route + "generales";
   } else {
     return;
   }
