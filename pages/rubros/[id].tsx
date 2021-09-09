@@ -32,33 +32,55 @@ export default function Rubro() {
           categories={false}
         />
       </div>
-      <Content title={router.query.id} />
+      <Content id={router.query.id} />
       <Footer />
     </>
   );
 }
 
-function Content({ title }) {
+function Content({ id }) {
+  const [title, setTitle] = useState("");
+
+  function rubroFinder(id) {
+    switch (id) {
+      case "1":
+        setTitle("Atm");
+        break;
+      case "2":
+        setTitle("Ruido");
+        break;
+      case "3":
+        setTitle("RSU");
+        break;
+      case "4":
+        setTitle("RME");
+        break;
+      case "5":
+        setTitle("RP");
+        break;
+      case "6":
+        setTitle("Flora");
+        break;
+      case "7":
+        setTitle("Fauna");
+        break;
+      case "8":
+        setTitle("Arbolado");
+        break;
+      default:
+        return;
+        break;
+    }
+  }
+
+  useLayoutEffect(() => {
+    rubroFinder(id);
+  }, [id]);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-auto px-4 py-8 md:p-8 md:py-0 gap-8">
       <p className="text-2xl font-bold col-start-1 text-center md:text-left pt-4">
-        {title === "1"
-          ? "Atm"
-          : title === "2"
-          ? "Ruido"
-          : title === "3"
-          ? "RSU"
-          : title === "4"
-          ? "RME"
-          : title === "5"
-          ? "RP"
-          : title === "6"
-          ? "Flora"
-          : title === "7"
-          ? "Fauna"
-          : title === "8"
-          ? "Arbolado"
-          : "Ya no esta en la lista"}
+        {title}
       </p>
       <Table />
       <div className="col-start-1 row-start-2  md:col-start-2 md:row-start-2 bg-gray-200 rounded-xl md:w-64 md:h-60">
