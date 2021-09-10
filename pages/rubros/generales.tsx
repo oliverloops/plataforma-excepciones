@@ -91,6 +91,22 @@ function Content() {
         <option>Frente 4</option>
         <option>Frente 5</option>
       </select>
+      <div className="pt-14 pb-2 md:pb-0">
+        <UploadButton />
+      </div>
     </form>
   );
 }
+
+const UploadButton = () => {
+  return (
+    <button
+      style={{ backgroundColor: "#8CBA6E" }}
+      className="text-white w-full md:w-72 rounded-lg h-12 md:h-10"
+    >
+      <span className="flex justify-evenly font-semibold items-center text-xl md:text-lg px-2">
+        Subir
+      </span>
+    </button>
+  );
+};
