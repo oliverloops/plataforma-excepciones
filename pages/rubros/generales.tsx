@@ -47,17 +47,26 @@ function Content() {
   const [option, setOption] = useState([]);
 
   const storeData = (event) => {
-    setOption((val) => [...val, event.target.value]);
+    if (option.length < 3) {
+      setOption((val) => [...val, event.target.value]);
+    } else if (option.length === 3 && event.target.name === "catalogo") {
+      let temp = option;
+      temp[0] = event.target.value;
+      setOption(temp);
+    } else {
+      return;
+    }
   };
 
   console.log(option);
 
   return (
     <form className="flex flex-col p-8 md:px-16">
-      <label className="text-xl font-semibold py-8 md:py-4">
+      <label htmlFor="catalogo" className="text-xl font-semibold py-8 md:py-4">
         Cátalogo General de Obra
       </label>
       <select
+        name="catalogo"
         onChange={(event) => storeData(event)}
         className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3 py-0.5"
       >
@@ -67,8 +76,11 @@ function Content() {
         <option>v4</option>
         <option>V5</option>
       </select>
-      <label className="text-xl font-semibold py-8 md:py-4">Área</label>
+      <label htmlFor="are" className="text-xl font-semibold py-8 md:py-4">
+        Área
+      </label>
       <select
+        name="area"
         onChange={(event) => storeData(event)}
         className="border-2 bg-gray-200 border-gray-300 rounded-md  w-40 h-12 md:h-10 px-3 py-0.5"
       >
@@ -78,10 +90,14 @@ function Content() {
         <option>Frente 4</option>
         <option>Frente 5</option>
       </select>
-      <label className="text-xl font-semibold py-8 md:py-4">
+      <label
+        htmlFor="coordenadas"
+        className="text-xl font-semibold py-8 md:py-4"
+      >
         Coordenadas UTM Centroíde
       </label>
       <select
+        name="coordenadas"
         onChange={(event) => storeData(event)}
         className="border-2 bg-gray-200 border-gray-300 rounded-md  w-40 h-12 md:h-10 px-3 py-0.5"
       >
