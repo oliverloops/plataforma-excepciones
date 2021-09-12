@@ -132,7 +132,9 @@ const UploadButton = ({ data, projectData }) => {
         month: projectData.month,
         rubro: projectData.rubro,
       }),
-    });
+    })
+      .then((res) => res.json())
+      .then((info) => console.log(info));
   };
 
   return (
