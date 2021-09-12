@@ -5,7 +5,6 @@ import { GrDocumentText, GrDocumentDownload } from "react-icons/gr";
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 //UI Components
-import Button from "../../components/Button";
 import CategoryButton from "../../components/CategoryButton";
 import UploadButton from "../../components/UploadButton";
 
@@ -111,6 +110,42 @@ function Content({ id }) {
 }
 
 function Table() {
+  const [compliance, setCompliance] = useState([]);
+
+  const storeEvidence = (event) => {
+    if (compliance.length < 6) {
+      setCompliance((val) => [...val, event.target.value]);
+    } else if (compliance.length >= 6 && event.target.name === "1") {
+      let temp = compliance;
+      temp[0] = event.target.value;
+      setCompliance(temp);
+    } else if (compliance.length >= 6 && event.target.name === "2") {
+      let temp = compliance;
+      temp[1] = event.target.value;
+      setCompliance(temp);
+    } else if (compliance.length >= 6 && event.target.name === "3") {
+      let temp = compliance;
+      temp[2] = event.target.value;
+      setCompliance(temp);
+    } else if (compliance.length >= 6 && event.target.name === "4") {
+      let temp = compliance;
+      temp[3] = event.target.value;
+      setCompliance(temp);
+    } else if (compliance.length >= 6 && event.target.name === "5") {
+      let temp = compliance;
+      temp[4] = event.target.value;
+      setCompliance(temp);
+    } else if (compliance.length >= 6 && event.target.name === "6") {
+      let temp = compliance;
+      temp[5] = event.target.value;
+      setCompliance(temp);
+    } else {
+      return;
+    }
+  };
+
+  console.log(compliance);
+
   const getFileName = (value) => {
     console.log("uploaded");
   };
@@ -130,7 +165,11 @@ function Table() {
             <p className="text-center">1</p>
           </td>
           <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-            <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
+            <select
+              name="1"
+              onChange={storeEvidence}
+              className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2"
+            >
               <option>Opción 1</option>
               <option>Opción 2</option>
               <option>Opción 3</option>
@@ -147,7 +186,11 @@ function Table() {
             <p className="text-center">2</p>
           </td>
           <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-            <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
+            <select
+              name="2"
+              onChange={storeEvidence}
+              className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2"
+            >
               <option>Opción 1</option>
               <option>Opción 2</option>
               <option>Opción 3</option>
@@ -164,7 +207,11 @@ function Table() {
             <p className="text-center">3</p>
           </td>
           <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-            <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
+            <select
+              name="3"
+              onChange={storeEvidence}
+              className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2"
+            >
               <option>Opción 1</option>
               <option>Opción 2</option>
               <option>Opción 3</option>
@@ -181,7 +228,11 @@ function Table() {
             <p className="text-center">4</p>
           </td>
           <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-            <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
+            <select
+              name="4"
+              onChange={storeEvidence}
+              className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2"
+            >
               <option>Opción 1</option>
               <option>Opción 2</option>
               <option>Opción 3</option>
@@ -198,7 +249,11 @@ function Table() {
             <p className="text-center">5</p>
           </td>
           <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-            <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
+            <select
+              name="5"
+              onChange={storeEvidence}
+              className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2"
+            >
               <option>Opción 1</option>
               <option>Opción 2</option>
               <option>Opción 3</option>
@@ -215,7 +270,11 @@ function Table() {
             <p className="text-center">6</p>
           </td>
           <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-            <select className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2">
+            <select
+              name="6"
+              onChange={storeEvidence}
+              className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2"
+            >
               <option>Opción 1</option>
               <option>Opción 2</option>
               <option>Opción 3</option>
