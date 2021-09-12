@@ -57,11 +57,18 @@ export default async function handler(
 
       break;
     case "PUT":
-      let toStore = req.body.values.toString();
-      //Query that updates the form values from Generales field with user selected data
-      connection.query(
-        `UPDATE categories SET evidence='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
-      );
+      if (req.body.rubro === "Generales") {
+        let toStore = req.body.values.toString();
+        //Query that updates the form values from Generales field with user selected data
+        connection.query(
+          `UPDATE categories SET evidence='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+        );
+      } else {
+        let toStore = req.body.complianceData.toString();
+        connection.query(
+          `UPDATE categories SET compliance='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+        );
+      }
 
       break;
     default:

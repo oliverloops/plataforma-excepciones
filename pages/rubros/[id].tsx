@@ -41,13 +41,13 @@ export default function Rubro() {
           <div className="w-32 md:w-28"></div>
         )}
       </div>
-      <Content id={router.query.id} />
+      <Content id={router.query.id} projectData={router.query} />
       <Footer />
     </>
   );
 }
 
-function Content({ id }) {
+function Content({ id, projectData }) {
   const [title, setTitle] = useState("");
 
   function rubroFinder(id) {
@@ -91,7 +91,7 @@ function Content({ id }) {
       <p className="text-2xl font-bold col-start-1 text-center md:text-left pt-4">
         {title}
       </p>
-      <Table />
+      <Table rubro={title} projectData={projectData} />
       <div className="col-start-1 row-start-2  md:col-start-2 md:row-start-2 bg-gray-200 rounded-xl md:w-64 md:h-60">
         <ul className="list-disc text-sm font-light p-4 px-8">
           <li>
@@ -109,7 +109,7 @@ function Content({ id }) {
   );
 }
 
-function Table() {
+function Table({ rubro, projectData }) {
   const [compliance, setCompliance] = useState([]);
 
   const storeEvidence = (event) => {
@@ -144,10 +144,22 @@ function Table() {
     }
   };
 
-  console.log(compliance);
-
   const getFileName = (value) => {
     console.log("uploaded");
+  };
+
+  const uploadEvidenceToDb = () => {
+    event.preventDefault();
+    fetch("http://localhost:3000/api/categories", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        complianceData: compliance,
+        project: projectData.project_title,
+        month: projectData.month,
+        rubro: rubro,
+      }),
+    });
   };
 
   return (
@@ -176,7 +188,7 @@ function Table() {
             </select>
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
-            <UploadButton getFileName={getFileName} />
+            <UploadButton upload={uploadEvidenceToDb} />
             <GrDocumentText size={28} />
             <GrDocumentDownload size={28} />
           </td>
@@ -197,7 +209,7 @@ function Table() {
             </select>
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
-            <UploadButton getFileName={getFileName} />
+            <UploadButton upload={uploadEvidenceToDb} />
             <GrDocumentText size={28} />
             <GrDocumentDownload size={28} />
           </td>
@@ -218,7 +230,7 @@ function Table() {
             </select>
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
-            <UploadButton getFileName={getFileName} />
+            <UploadButton upload={uploadEvidenceToDb} />
             <GrDocumentText size={28} />
             <GrDocumentDownload size={28} />
           </td>
@@ -239,7 +251,7 @@ function Table() {
             </select>
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
-            <UploadButton getFileName={getFileName} />
+            <UploadButton upload={uploadEvidenceToDb} />
             <GrDocumentText size={28} />
             <GrDocumentDownload size={28} />
           </td>
@@ -260,7 +272,7 @@ function Table() {
             </select>
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
-            <UploadButton getFileName={getFileName} />
+            <UploadButton upload={uploadEvidenceToDb} />
             <GrDocumentText size={28} />
             <GrDocumentDownload size={28} />
           </td>
@@ -281,7 +293,7 @@ function Table() {
             </select>
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
-            <UploadButton getFileName={getFileName} />
+            <UploadButton upload={uploadEvidenceToDb} />
             <GrDocumentText size={28} />
             <GrDocumentDownload size={28} />
           </td>
