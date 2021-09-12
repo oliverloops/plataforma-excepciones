@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 //UI Layout
 import Header from "../../layout/Header";
@@ -49,16 +49,22 @@ function Content() {
   const storeData = (event) => {
     if (option.length < 3) {
       setOption((val) => [...val, event.target.value]);
-    } else if (option.length === 3 && event.target.name === "catalogo") {
+    } else if (option.length >= 3 && event.target.name === "catalogo") {
       let temp = option;
       temp[0] = event.target.value;
+      setOption(temp);
+    } else if (option.length >= 3 && event.target.name === "area") {
+      let temp = option;
+      temp[1] = event.target.value;
+      setOption(temp);
+    } else if (option.length >= 3 && event.target.name === "coordenadas") {
+      let temp = option;
+      temp[2] = event.target.value;
       setOption(temp);
     } else {
       return;
     }
   };
-
-  console.log(option);
 
   return (
     <form className="flex flex-col p-8 md:px-16">
@@ -76,7 +82,7 @@ function Content() {
         <option>v4</option>
         <option>V5</option>
       </select>
-      <label htmlFor="are" className="text-xl font-semibold py-8 md:py-4">
+      <label htmlFor="area" className="text-xl font-semibold py-8 md:py-4">
         Área
       </label>
       <select
