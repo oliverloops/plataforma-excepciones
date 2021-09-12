@@ -114,13 +114,23 @@ function Content() {
         <option>Frente 5</option>
       </select>
       <div className="pt-14 pb-2 md:pb-0">
-        <UploadButton />
+        <UploadButton data={option} />
       </div>
     </form>
   );
 }
 
-const UploadButton = () => {
+const UploadButton = ({ data }) => {
+  const uploadForm = () => {
+    fetch("http://localhost:3000/api/categories", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        values: data,
+      }),
+    });
+  };
+
   return (
     <button
       style={{ backgroundColor: "#8CBA6E" }}
