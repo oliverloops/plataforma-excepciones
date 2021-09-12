@@ -10,10 +10,11 @@ export default async function handler(
 ) {
   switch (req.method) {
     case "POST":
-      console.log("You queryied successfully");
+      //Query that matches an specific month with the user's requested project name and month
       connection.query(
         `SELECT month FROM categories WHERE month=${req.body.month} AND project_title='${req.body.project_title}'`,
         (err, rows, fields) => {
+          //This queries inserts all category cards with the new project's basic info
           if (rows.length === 0) {
             connection.query(
               `INSERT INTO categories (project_title, month, category) VALUES ('${req.body.project_title}', ${req.body.month}, '${req.body.generales}')`
@@ -44,6 +45,7 @@ export default async function handler(
             );
           }
 
+          //This query returns all category records and their progress after store it
           connection.query(
             `SELECT category, progress FROM categories WHERE month=${req.body.month} AND project_title='${req.body.project_title}'`,
             (err, rows, fields) => {
@@ -56,6 +58,7 @@ export default async function handler(
       break;
     case "PUT":
       let toStore = req.body.values.toString();
+      //Query that updates the form values from Generales field with user selected data
       connection.query(
         `UPDATE categories SET evidence='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
       );
