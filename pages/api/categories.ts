@@ -57,10 +57,7 @@ export default async function handler(
     case "PUT":
       let toStore = req.body.values.toString();
       connection.query(
-        `UPDATE categories SET evidence='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`,
-        (err, rows, fields) => {
-          res.send("Subido exitosamente");
-        }
+        `UPDATE categories SET evidence='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
       );
 
       break;
