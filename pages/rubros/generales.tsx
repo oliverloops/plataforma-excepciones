@@ -36,14 +36,14 @@ export default function Generales() {
         />
       </div>
       <main className="md:pb-36">
-        <Content />
+        <Content projectData={router.query} />
       </main>
       <Footer />
     </>
   );
 }
 
-function Content() {
+function Content({ projectData }) {
   const [option, setOption] = useState([]);
 
   const storeData = (event) => {
@@ -114,19 +114,23 @@ function Content() {
         <option>Frente 5</option>
       </select>
       <div className="pt-14 pb-2 md:pb-0">
-        <UploadButton data={option} />
+        <UploadButton data={option} projectData={projectData} />
       </div>
     </form>
   );
 }
 
-const UploadButton = ({ data }) => {
+const UploadButton = ({ data, projectData }) => {
   const uploadForm = () => {
+    event.preventDefault();
     fetch("http://localhost:3000/api/categories", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         values: data,
+        project: projectData.project_title,
+        month: projectData.month,
+        rubro: projectData.rubro,
       }),
     });
   };
@@ -135,6 +139,7 @@ const UploadButton = ({ data }) => {
     <button
       style={{ backgroundColor: "#8CBA6E" }}
       className="text-white w-full md:w-72 rounded-lg h-12 md:h-10"
+      onClick={uploadForm}
     >
       <span className="flex justify-evenly font-semibold items-center text-xl md:text-lg px-2">
         Subir

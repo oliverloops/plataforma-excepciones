@@ -54,6 +54,11 @@ export default async function handler(
       );
 
       break;
+    case "PUT":
+      console.log(req.body);
+
+      //connection.query(`UPDATE categories SET evidence='${}'`, (err, rows, fields) => {})
+      break;
     default:
       res.status(405).end();
       break;
