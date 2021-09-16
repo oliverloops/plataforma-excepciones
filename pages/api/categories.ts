@@ -4,6 +4,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 const connection = mysql.createConnection(process.env.DATABASE_URL);
 connection.connect();
 
+console.log(process.env.DATABASE_URL);
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
