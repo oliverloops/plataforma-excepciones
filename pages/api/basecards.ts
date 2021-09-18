@@ -1,7 +1,12 @@
 import mysql from "mysql";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-const connection = mysql.createConnection(process.env.DATABASE_URL);
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "12345678",
+  database: "kila_db",
+});
 connection.connect();
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {

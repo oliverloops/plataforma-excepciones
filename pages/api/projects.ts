@@ -1,7 +1,12 @@
 import mysql from "mysql";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-const connection = mysql.createConnection(process.env.DATABASE_URL);
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "12345678",
+  database: "kila_db",
+});
 connection.connect();
 
 type Access = {
@@ -17,6 +22,7 @@ export default async function (
       //Query to retrieve all projects
       connection.query("SELECT * FROM projects", (err, rows, fields) => {
         res.send(rows);
+        console.log(rows);
       });
 
       break;
