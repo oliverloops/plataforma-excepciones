@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
   password: "12345678",
   database: "kila_db",
 });
-// const connection = mysql.createConnection(process.env.DATABASE_URL);
+
 connection.connect((err) => {
   if (err) throw err;
   console.log("Connected!");
