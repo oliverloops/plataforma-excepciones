@@ -1,4 +1,4 @@
-import mysql from "mysql";
+import mysql from "mysql2";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const connection = mysql.createConnection({
@@ -17,16 +17,13 @@ type Access = {
   access: boolean;
 };
 
-export default async function (
-  req: NextApiRequest,
-  res: NextApiResponse<Access>
-) {
+export default async function (req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case "GET":
       //Query to retrieve all projects
       connection.query("SELECT * FROM projects", function (err, rows, fields) {
         console.log(rows);
-        return res.send(rows);
+        res.send(rows);
       });
 
       break;
