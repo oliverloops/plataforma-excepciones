@@ -7,7 +7,11 @@ const connection = mysql.createConnection({
   password: "12345678",
   database: "kila_db",
 });
-connection.connect();
+// const connection = mysql.createConnection(process.env.DATABASE_URL);
+connection.connect((err) => {
+  if (err) throw err;
+  console.log("Connected!");
+});
 
 type Access = {
   access: boolean;
@@ -20,9 +24,9 @@ export default async function (
   switch (req.method) {
     case "GET":
       //Query to retrieve all projects
-      connection.query("SELECT * FROM projects", (err, rows, fields) => {
-        res.send(rows);
+      connection.query("SELECT * FROM projects", function (err, rows, fields) {
         console.log(rows);
+        return res.send(rows);
       });
 
       break;

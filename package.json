@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "mysql": "^2.18.1",
+    "mysql2": "^2.3.0",
     "next": "11.0.1",
     "planetscale-node": "^0.1.0",
     "react": "17.0.2",

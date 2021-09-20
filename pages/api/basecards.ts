@@ -7,6 +7,7 @@ const connection = mysql.createConnection({
   password: "12345678",
   database: "kila_db",
 });
+// const connection = mysql.createConnection(process.env.DATABASE_URL);
 connection.connect();
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
