@@ -1,4 +1,4 @@
-import mysql from "mysql";
+import mysql from "mysql2";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const connection = mysql.createConnection({
