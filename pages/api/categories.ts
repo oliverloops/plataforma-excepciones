@@ -1,10 +1,13 @@
 import mysql from "mysql2";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-const connection = mysql.createConnection(process.env.DATABASE_URL);
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "12345678",
+  database: "kila_db",
+});
 connection.connect();
-
-console.log(process.env.DATABASE_URL);
 
 export default async function handler(
   req: NextApiRequest,
@@ -68,7 +71,7 @@ export default async function handler(
       } else {
         let toStore = req.body.complianceData.toString();
         connection.query(
-          `UPDATE categories SET compliance='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+          `UPDATE categories SET evidence='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
         );
       }
 
