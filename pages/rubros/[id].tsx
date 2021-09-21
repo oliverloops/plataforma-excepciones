@@ -147,7 +147,7 @@ function Table({ rubro, projectData }) {
   //Method for DB query and store
   const uploadEvidenceToDb = (value) => {
     event.preventDefault();
-    console.log(value.target.files[0].name);
+    console.log(value.target.files[0]);
     fetch("http://localhost:3000/api/categories", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
