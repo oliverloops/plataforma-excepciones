@@ -144,12 +144,7 @@ function Table({ rubro, projectData }) {
     }
   };
 
-  //Method to store the selected file in the cloud
-  const getFileName = (value) => {
-    console.log("uploaded");
-  };
-
-  //Method for DB query
+  //Method for DB query and store
   const uploadEvidenceToDb = (value) => {
     event.preventDefault();
     console.log(value.target.files[0].name);
@@ -161,6 +156,7 @@ function Table({ rubro, projectData }) {
         project: projectData.project_title,
         month: projectData.month,
         rubro: rubro,
+        file: value.target.files[0].name,
       }),
     });
   };

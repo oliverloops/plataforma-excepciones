@@ -1,4 +1,5 @@
 import mysql from "mysql2";
+import fs from "fs";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const connection = mysql.createConnection({
@@ -70,8 +71,13 @@ export default async function handler(
         );
       } else {
         let toStore = req.body.complianceData.toString();
+        let file = {
+          img: fs.readFileSync(req.body.file),
+          file_name: req.body.file.toString(),
+        };
+
         connection.query(
-          `UPDATE categories SET evidence='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+          `UPDATE categories SET evidence='${toStore}', files='${file}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
         );
       }
 
