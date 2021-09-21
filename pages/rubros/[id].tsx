@@ -144,12 +144,15 @@ function Table({ rubro, projectData }) {
     }
   };
 
+  //Method to store the selected file in the cloud
   const getFileName = (value) => {
     console.log("uploaded");
   };
 
-  const uploadEvidenceToDb = () => {
+  //Method for DB query
+  const uploadEvidenceToDb = (value) => {
     event.preventDefault();
+    console.log(value.target.files[0].name);
     fetch("http://localhost:3000/api/categories", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
