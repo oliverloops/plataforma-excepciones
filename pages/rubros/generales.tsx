@@ -8,6 +8,7 @@ import CategoryButton from "../../components/CategoryButton";
 
 export default function Generales() {
   const router = useRouter();
+  console.log(router.query);
 
   return (
     <>

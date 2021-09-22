@@ -1,4 +1,5 @@
 import mysql from "mysql2";
+import multer from "multer";
 import fs from "fs";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -9,6 +10,8 @@ const connection = mysql.createConnection({
   database: "kila_db",
 });
 connection.connect();
+
+const upload = multer({ dest: "../../public/uploads" });
 
 export default async function handler(
   req: NextApiRequest,
@@ -63,6 +66,7 @@ export default async function handler(
 
       break;
     case "PUT":
+      console.log(req.body);
       if (req.body.rubro === "Generales") {
         let toStore = req.body.values.toString();
         //Query that updates the form values from Generales field with user selected data
@@ -71,13 +75,16 @@ export default async function handler(
         );
       } else {
         let toStore = req.body.complianceData.toString();
-        let file = {
-          img: fs.readFileSync(req.body.file),
-          file_name: req.body.file.toString(),
-        };
+        // let file = {
+        //   img: fs.readFileSync(req.body.file),
+        //   file_name: req.body.file,
+        // };
+
+        // console.log(file);
+        // upload.single(file.img);
 
         connection.query(
-          `UPDATE categories SET evidence='${toStore}', files='${file}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+          `UPDATE categories SET evidence='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
         );
       }
 
