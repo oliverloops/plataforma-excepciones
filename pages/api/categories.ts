@@ -66,25 +66,25 @@ export default async function handler(
 
       break;
     case "PUT":
-      console.log(req.body);
+      console.log(req.body.file);
       if (req.body.rubro === "Generales") {
         let toStore = req.body.values.toString();
         //Query that updates the form values from Generales field with user selected data
         connection.query(
-          `UPDATE categories SET evidence='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+          `UPDATE categories SET compliance='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
         );
       } else {
         let toStore = req.body.complianceData.toString();
-        // let file = {
-        //   img: fs.readFileSync(req.body.file),
-        //   file_name: req.body.file,
-        // };
+        let file = {
+          img: fs.readFileSync(req.body.file),
+          file_name: req.body.file,
+        };
 
-        // console.log(file);
-        // upload.single(file.img);
+        console.log(file);
+        upload.single(file.img);
 
         connection.query(
-          `UPDATE categories SET evidence='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+          `UPDATE categories SET compliance='${toStore}', files='${file}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
         );
       }
 
