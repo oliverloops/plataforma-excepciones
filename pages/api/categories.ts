@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
-const upload = multer({ dest: "../../public/uploads" });
+const upload = multer({ dest: "./public/uploads" });
 
 export default async function handler(
   req: NextApiRequest,
@@ -80,11 +80,10 @@ export default async function handler(
           file_name: req.body.file,
         };
 
-        console.log(file);
-        upload.single(file.img);
+        console.log(req.body.file);
 
         connection.query(
-          `UPDATE categories SET compliance='${toStore}', files='${file}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+          `UPDATE categories SET compliance='${toStore}', evidence='${file.file_name}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
         );
       }
 
