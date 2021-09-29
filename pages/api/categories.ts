@@ -14,8 +14,8 @@ connection.connect();
 const uploadToCloud = async (file) => {
   //Cloudinary API - Wrapping into format handler and request
   const data = new FormData();
-  data.append("file", file);
-  data.append("upload_preset", "Assets");
+  data.append("file", fs.createReadStream(file));
+  data.append("upload_preset", "Evidencias");
 
   fetch("https://api.cloudinary.com/v1_1/dggf3zgah/image/upload", {
     method: "POST",
