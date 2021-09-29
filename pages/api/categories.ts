@@ -11,21 +11,6 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
-const uploadToCloud = async (file) => {
-  //Cloudinary API - Wrapping into format handler and request
-  const data = new FormData();
-  data.append("file", fs.createReadStream(file));
-  data.append("upload_preset", "Evidencias");
-
-  fetch("https://api.cloudinary.com/v1_1/dggf3zgah/image/upload", {
-    method: "POST",
-    body: data,
-  })
-    //Cloudinary response
-    .then((res) => res.json())
-    .then((fileResponse) => console.log(fileResponse));
-};
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -88,17 +73,25 @@ export default async function handler(
         );
       } else {
         let toStore = req.body.complianceData.toString();
-        let file = {
-          img: fs.readFileSync(req.body.file),
-          file_name: req.body.file,
-        };
-
         console.log(req.body.file);
-        uploadToCloud(req.body.file);
 
-        connection.query(
-          `UPDATE categories SET compliance='${toStore}', evidence='${file.file_name}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
-        );
+        //Cloudinary API - Wrapping into format handler and request
+        const data = new FormData();
+        data.append("file", fs.createReadStream(req.body.file));
+        data.append("upload_preset", "Evidencias");
+
+        await fetch("https://api.cloudinary.com/v1_1/dggf3zgah/image/upload", {
+          method: "POST",
+          body: data,
+        })
+          //Cloudinary response
+          .then((res) => res.json())
+          .then((fileResponse) => {
+            console.log(fileResponse.secure_url);
+            connection.query(
+              `UPDATE categories SET compliance='${toStore}', evidence='${fileResponse.secure_url}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+            );
+          });
       }
 
       break;
