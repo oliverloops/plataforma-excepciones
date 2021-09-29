@@ -1,5 +1,5 @@
 import mysql from "mysql2";
-import multer from "multer";
+import FormData from "form-data";
 import fs from "fs";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -11,7 +11,20 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
-const upload = multer({ dest: "./public/uploads" });
+const uploadToCloud = async (file) => {
+  //Cloudinary API - Wrapping into format handler and request
+  const data = new FormData();
+  data.append("file", file);
+  data.append("upload_preset", "Assets");
+
+  fetch("https://api.cloudinary.com/v1_1/dggf3zgah/image/upload", {
+    method: "POST",
+    body: data,
+  })
+    //Cloudinary response
+    .then((res) => res.json())
+    .then((fileResponse) => console.log(fileResponse));
+};
 
 export default async function handler(
   req: NextApiRequest,
@@ -81,25 +94,7 @@ export default async function handler(
         };
 
         console.log(req.body.file);
-
-        //Cloudinary API - Wrapping into format handler and request
-        const data = new FormData();
-        data.append("file", req.body.file);
-        data.append("upload_preset", "");
-
-        const res = async () => {
-          await fetch(
-            "https://api.cloudinary.com/v1_1/dggf3zgah/image/upload",
-            {
-              method: "POST",
-              body: data,
-            }
-          );
-        };
-
-        //Cloudinary response
-        const fileResponse = await res.json();
-        console.log(fileResponse);
+        uploadToCloud(req.body.file);
 
         connection.query(
           `UPDATE categories SET compliance='${toStore}', evidence='${file.file_name}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
