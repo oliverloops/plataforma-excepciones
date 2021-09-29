@@ -82,6 +82,21 @@ export default async function handler(
 
         console.log(req.body.file);
 
+        //Cloudinary API
+        const data = new FormData();
+        data.append("file", req.body.file);
+        data.append("upload_preset", "");
+
+        const res = async () => {
+          await fetch("https://api.cloudinary.com/v1_1/dggf3zgah", {
+            method: "POST",
+            body: data,
+          });
+        };
+
+        const fileResponse = await res.json();
+        console.log(fileResponse);
+
         connection.query(
           `UPDATE categories SET compliance='${toStore}', evidence='${file.file_name}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
         );
