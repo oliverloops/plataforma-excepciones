@@ -82,18 +82,22 @@ export default async function handler(
 
         console.log(req.body.file);
 
-        //Cloudinary API
+        //Cloudinary API - Wrapping into format handler and request
         const data = new FormData();
         data.append("file", req.body.file);
         data.append("upload_preset", "");
 
         const res = async () => {
-          await fetch("https://api.cloudinary.com/v1_1/dggf3zgah", {
-            method: "POST",
-            body: data,
-          });
+          await fetch(
+            "https://api.cloudinary.com/v1_1/dggf3zgah/image/upload",
+            {
+              method: "POST",
+              body: data,
+            }
+          );
         };
 
+        //Cloudinary response
         const fileResponse = await res.json();
         console.log(fileResponse);
 
