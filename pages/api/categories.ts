@@ -83,6 +83,10 @@ export default async function handler(
               const data = new FormData();
               data.append("file", fs.createReadStream(req.body.files));
               data.append("upload_preset", "Evidencias");
+              data.append("options", {
+                folder: "Prueba",
+                use_filename: true,
+              });
 
               fetch("https://api.cloudinary.com/v1_1/dggf3zgah/image/upload", {
                 method: "POST",
@@ -103,6 +107,7 @@ export default async function handler(
               const data = new FormData();
               data.append("file", fs.createReadStream(req.body.files));
               data.append("upload_preset", "Evidencias");
+              data.append("folder", "Prueba");
 
               //This request updates evidence record with new urls array
               fetch("https://api.cloudinary.com/v1_1/dggf3zgah/image/upload", {
