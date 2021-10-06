@@ -83,10 +83,10 @@ export default async function handler(
               const data = new FormData();
               data.append("file", fs.createReadStream(req.body.files));
               data.append("upload_preset", "Evidencias");
-              data.append("options", {
-                folder: "Prueba",
-                use_filename: true,
-              });
+              data.append(
+                "folder",
+                `${req.body.project}/Mes ${req.body.month}/${req.body.rubro}`
+              );
 
               fetch("https://api.cloudinary.com/v1_1/dggf3zgah/image/upload", {
                 method: "POST",
@@ -127,8 +127,6 @@ export default async function handler(
                     `UPDATE categories SET compliance='${toStore}', evidence='${tempUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
                   );
                 });
-
-              console.log(val[0]);
             }
           }
         );
