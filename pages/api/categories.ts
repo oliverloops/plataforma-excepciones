@@ -64,7 +64,6 @@ export default async function handler(
 
       break;
     case "PUT":
-      console.log(req.body.file);
       if (req.body.rubro === "Generales") {
         let toStore = req.body.values.toString();
         //Query that updates the form values from Generales field with user selected data
@@ -73,25 +72,36 @@ export default async function handler(
         );
       } else {
         let toStore = req.body.complianceData.toString();
-        console.log(req.body.file);
+        console.log(req.body.files);
 
-        //Cloudinary API - Wrapping into format handler and request
-        const data = new FormData();
-        data.append("file", fs.createReadStream(req.body.file));
-        data.append("upload_preset", "Evidencias");
+        connection.query(
+          `SELECT evidence FROM categories WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`,
+          (err, rows, fields) => {
+            let val = JSON.parse(JSON.stringify(rows));
+            if (Object.is(val[0].evidence, null)) {
+              //Cloudinary API - Wrapping into format handler and request
+              const data = new FormData();
+              data.append("file", fs.createReadStream(req.body.files));
+              data.append("upload_preset", "Evidencias");
 
-        await fetch("https://api.cloudinary.com/v1_1/dggf3zgah/image/upload", {
-          method: "POST",
-          body: data,
-        })
-          //Cloudinary response
-          .then((res) => res.json())
-          .then((fileResponse) => {
-            console.log(fileResponse.secure_url);
-            connection.query(
-              `UPDATE categories SET compliance='${toStore}', evidence='${fileResponse.secure_url}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
-            );
-          });
+              fetch("https://api.cloudinary.com/v1_1/dggf3zgah/image/upload", {
+                method: "POST",
+                body: data,
+              })
+                //Cloudinary response
+                .then((res) => res.json())
+                .then((fileResponse) => {
+                  let fileUrls = [fileResponse.secure_url];
+                  connection.query(
+                    `UPDATE categories SET compliance='${toStore}', evidence='${fileUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+                  );
+                });
+            } else {
+              console.log("Evidence isn't null");
+              console.log(val);
+            }
+          }
+        );
       }
 
       break;

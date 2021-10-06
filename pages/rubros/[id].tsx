@@ -111,6 +111,7 @@ function Content({ id, projectData }) {
 
 function Table({ rubro, projectData }) {
   const [compliance, setCompliance] = useState([]);
+  const [files, setFiles] = useState([]);
 
   const storeEvidence = (event) => {
     if (compliance.length < 6) {
@@ -146,8 +147,14 @@ function Table({ rubro, projectData }) {
 
   //Method for DB query and store
   const uploadEvidenceToDb = (value) => {
-    event.preventDefault();
+    value.preventDefault();
     console.log(value.target.files[0].name);
+
+    setFiles((val) => [
+      ...val,
+      `/Users/oliver/downloads/${value.target.files[0].name}`,
+    ]);
+
     fetch("http://localhost:3000/api/categories", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -156,7 +163,7 @@ function Table({ rubro, projectData }) {
         project: projectData.project_title,
         month: projectData.month,
         rubro: rubro,
-        file: `/Users/oliver/downloads/${value.target.files[0].name}`,
+        files: `/Users/oliver/downloads/${value.target.files[0].name}`,
       }),
     });
   };

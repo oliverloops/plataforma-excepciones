@@ -13,10 +13,6 @@ connection.connect((err) => {
   console.log("Connected!");
 });
 
-type Access = {
-  access: boolean;
-};
-
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case "GET":
