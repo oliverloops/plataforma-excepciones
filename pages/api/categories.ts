@@ -107,7 +107,10 @@ export default async function handler(
               const data = new FormData();
               data.append("file", fs.createReadStream(req.body.files));
               data.append("upload_preset", "Evidencias");
-              data.append("folder", "Prueba");
+              data.append(
+                "folder",
+                `${req.body.project}/Mes ${req.body.month}/${req.body.rubro}`
+              );
 
               //This request updates evidence record with new urls array
               fetch("https://api.cloudinary.com/v1_1/dggf3zgah/image/upload", {
