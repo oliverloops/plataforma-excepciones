@@ -15,11 +15,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log(req.method);
   switch (req.method) {
-    case "GET":
+    case "DELETE":
+      console.log(req.body);
       connection.query(
-        `SELECT evidence FROM categories WHERE project_title='Otra Obra desde CLI' AND month=1 AND category='Atm'`,
+        `SELECT evidence FROM categories WHERE project_title='${req.body.project}' AND month=${req.body.month} AND category='${req.body.rubro}'`,
         (err, rows, fields) => {
           res.send(rows);
         }

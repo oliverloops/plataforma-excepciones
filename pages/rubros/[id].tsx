@@ -114,9 +114,21 @@ function Table({ rubro, projectData }) {
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/categories")
+    fetch("http://localhost:3000/api/categories", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        project: projectData.project_title,
+        month: projectData.month,
+        rubro: rubro,
+      }),
+    })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        // let ordered = data[0].evidence.split(",");
+        // setFiles(ordered);
+        console.log(data[0].evidence);
+      });
   }, [rubro]);
 
   const storeEvidence = (event) => {
@@ -155,11 +167,6 @@ function Table({ rubro, projectData }) {
   const uploadEvidenceToDb = (value) => {
     value.preventDefault();
     console.log(value.target.files[0].name);
-
-    setFiles((val) => [
-      ...val,
-      `/Users/oliver/downloads/${value.target.files[0].name}`,
-    ]);
 
     fetch("http://localhost:3000/api/categories", {
       method: "PUT",
