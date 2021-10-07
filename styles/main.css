@@ -21,7 +21,7 @@ a {
 
 input[type="file"] {
   color: transparent;
-  width: 100px;
+  width: 110px;
 }
 
 input[type="file"]::-webkit-file-upload-button {

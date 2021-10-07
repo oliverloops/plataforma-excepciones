@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from "react";
+import { useState, useLayoutEffect, useEffect } from "react";
 import { useRouter } from "next/router";
 import { GrDocumentText, GrDocumentDownload } from "react-icons/gr";
 //UI Layout
@@ -113,6 +113,12 @@ function Table({ rubro, projectData }) {
   const [compliance, setCompliance] = useState([]);
   const [files, setFiles] = useState([]);
 
+  useEffect(() => {
+    fetch("http://localhost:3000/api/categories")
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  }, [rubro]);
+
   const storeEvidence = (event) => {
     if (compliance.length < 6) {
       setCompliance((val) => [...val, event.target.value]);
@@ -195,8 +201,8 @@ function Table({ rubro, projectData }) {
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
-            <GrDocumentText size={28} />
-            <GrDocumentDownload size={28} />
+            {/* <GrDocumentText size={28} /> */}
+            <GrDocumentDownload size={30} />
           </td>
         </tr>
         <tr>
@@ -216,8 +222,8 @@ function Table({ rubro, projectData }) {
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
-            <GrDocumentText size={28} />
-            <GrDocumentDownload size={28} />
+            {/* <GrDocumentText size={28} /> */}
+            <GrDocumentDownload size={30} />
           </td>
         </tr>
         <tr>
@@ -237,8 +243,8 @@ function Table({ rubro, projectData }) {
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
-            <GrDocumentText size={28} />
-            <GrDocumentDownload size={28} />
+            {/* <GrDocumentText size={28} /> */}
+            <GrDocumentDownload size={30} />
           </td>
         </tr>
         <tr>
@@ -258,8 +264,8 @@ function Table({ rubro, projectData }) {
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
-            <GrDocumentText size={28} />
-            <GrDocumentDownload size={28} />
+            {/* <GrDocumentText size={28} /> */}
+            <GrDocumentDownload size={30} />
           </td>
         </tr>
         <tr>
@@ -279,8 +285,8 @@ function Table({ rubro, projectData }) {
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
-            <GrDocumentText size={28} />
-            <GrDocumentDownload size={28} />
+            {/* <GrDocumentText size={28} /> */}
+            <GrDocumentDownload size={30} />
           </td>
         </tr>
         <tr>
@@ -300,8 +306,8 @@ function Table({ rubro, projectData }) {
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
-            <GrDocumentText size={28} />
-            <GrDocumentDownload size={28} />
+            {/* <GrDocumentText size={28} /> */}
+            <GrDocumentDownload size={30} />
           </td>
         </tr>
       </tbody>

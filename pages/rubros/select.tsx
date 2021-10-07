@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { RiSendPlaneFill } from "react-icons/ri";
 //UI Layout
@@ -10,7 +10,7 @@ import Button from "../../components/Button";
 import RubroCard from "../../components/RubroCard";
 import KilaLoader from "../../components/KilaLoader";
 
-export default function Select() {
+function Select() {
   const [leaf, setLeaf] = useState(false);
   const [blocks, setBlocks] = useState(null);
 
@@ -99,3 +99,5 @@ export default function Select() {
     </>
   );
 }
+
+export default React.memo(Select);

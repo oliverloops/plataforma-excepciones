@@ -15,7 +15,17 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  console.log(req.method);
   switch (req.method) {
+    case "GET":
+      connection.query(
+        `SELECT evidence FROM categories WHERE project_title='Otra Obra desde CLI' AND month=1 AND category='Atm'`,
+        (err, rows, fields) => {
+          res.send(rows);
+        }
+      );
+
+      break;
     case "POST":
       //Query that matches an specific month with the user's requested project name and month
       connection.query(
@@ -122,7 +132,7 @@ export default async function handler(
                 .then((fileResponse) => {
                   let tempUrls = [val[0].evidence];
                   tempUrls.push(fileResponse.secure_url);
-
+                  console.log(fileResponse.secure_url);
                   connection.query(
                     `UPDATE categories SET compliance='${toStore}', evidence='${tempUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
                   );
