@@ -20,12 +20,16 @@ const Home = ({ cards }) => {
       });
   }, []);
 
+  const getInput = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
     <>
       <div className="flex justify-center pt-8 pb-4">
         <Image src={"/kila_logo.png"} width={150} height={60} alt="Kila Logo" />
       </div>
-      <SearchBar />
+      <SearchBar getInput={getInput} />
       <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-auto gap-y-8 justify-items-center p-5 md:p-12">
         {cards.map((elem, id) => (
           <ProjectCard key={id} title={elem.project_title} />
