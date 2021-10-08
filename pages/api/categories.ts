@@ -106,7 +106,7 @@ export default async function handler(
                 .then((fileResponse) => {
                   let fileUrls = [fileResponse.secure_url];
                   connection.query(
-                    `UPDATE categories SET compliance='${toStore}', evidence='${fileUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+                    `UPDATE categories SET progress=16, compliance='${toStore}', evidence='${fileUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
                   );
                 });
             } else {
@@ -132,8 +132,17 @@ export default async function handler(
                   let tempUrls = [val[0].evidence];
                   tempUrls.push(fileResponse.secure_url);
                   console.log(fileResponse.secure_url);
+
                   connection.query(
-                    `UPDATE categories SET progress=16, compliance='${toStore}', evidence='${tempUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+                    `SELECT progress FROM categories WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`,
+                    (err, rows, fields) => {
+                      let fullValue = JSON.parse(JSON.stringify(rows));
+                      let status = fullValue[0].progress + 16;
+
+                      connection.query(
+                        `UPDATE categories SET progress=${status}, compliance='${toStore}', evidence='${tempUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+                      );
+                    }
                   );
                 });
             }
