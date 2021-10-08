@@ -1,5 +1,6 @@
 import { useState, useLayoutEffect, useEffect } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { GrDocumentText, GrDocumentDownload } from "react-icons/gr";
 //UI Layout
 import Header from "../../layout/Header";
@@ -125,11 +126,17 @@ function Table({ rubro, projectData }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        // let ordered = data[0].evidence.split(",");
-        // setFiles(ordered);
-        console.log(data[0].evidence);
+        if (data[0].evidence !== null) {
+          let ordered = data[0].evidence.split(",");
+          setFiles(ordered);
+          console.log(ordered);
+        } else {
+          console.log(data[0]);
+        }
       });
   }, [rubro]);
+
+  console.log(files);
 
   const storeEvidence = (event) => {
     if (compliance.length < 6) {
@@ -209,7 +216,11 @@ function Table({ rubro, projectData }) {
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
             {/* <GrDocumentText size={28} /> */}
-            <GrDocumentDownload size={30} />
+            <Link href={`${files[0]}`}>
+              <a target="_blank">
+                <GrDocumentDownload size={30} />
+              </a>
+            </Link>
           </td>
         </tr>
         <tr>

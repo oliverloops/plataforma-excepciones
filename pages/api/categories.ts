@@ -17,7 +17,6 @@ export default async function handler(
 ) {
   switch (req.method) {
     case "DELETE":
-      console.log(req.body);
       connection.query(
         `SELECT evidence FROM categories WHERE project_title='${req.body.project}' AND month=${req.body.month} AND category='${req.body.rubro}'`,
         (err, rows, fields) => {
