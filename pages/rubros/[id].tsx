@@ -241,7 +241,11 @@ function Table({ rubro, projectData }) {
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
             {/* <GrDocumentText size={28} /> */}
-            <GrDocumentDownload size={30} />
+            <Link href={`${files[1]}`}>
+              <a target="_blank">
+                <GrDocumentDownload size={30} />
+              </a>
+            </Link>
           </td>
         </tr>
         <tr>
@@ -262,7 +266,11 @@ function Table({ rubro, projectData }) {
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
             {/* <GrDocumentText size={28} /> */}
-            <GrDocumentDownload size={30} />
+            <Link href={`${files[2]}`}>
+              <a target="_blank">
+                <GrDocumentDownload size={30} />
+              </a>
+            </Link>
           </td>
         </tr>
         <tr>
@@ -283,7 +291,11 @@ function Table({ rubro, projectData }) {
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
             {/* <GrDocumentText size={28} /> */}
-            <GrDocumentDownload size={30} />
+            <Link href={`${files[3]}`}>
+              <a target="_blank">
+                <GrDocumentDownload size={30} />
+              </a>
+            </Link>
           </td>
         </tr>
         <tr>
@@ -304,7 +316,11 @@ function Table({ rubro, projectData }) {
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
             {/* <GrDocumentText size={28} /> */}
-            <GrDocumentDownload size={30} />
+            <Link href={`${files[4]}`}>
+              <a target="_blank">
+                <GrDocumentDownload size={30} />
+              </a>
+            </Link>
           </td>
         </tr>
         <tr>
@@ -325,7 +341,11 @@ function Table({ rubro, projectData }) {
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
             {/* <GrDocumentText size={28} /> */}
-            <GrDocumentDownload size={30} />
+            <Link href={`${files[5]}`}>
+              <a target="_blank">
+                <GrDocumentDownload size={30} />
+              </a>
+            </Link>
           </td>
         </tr>
       </tbody>

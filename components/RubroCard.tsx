@@ -14,36 +14,36 @@ export default function RubroCard(props: {
 
   useEffect(() => {
     switch (props.percentage) {
-      case 10:
-        setProgress(12.4);
+      case 16:
+        setProgress(20.6667);
         break;
-      case 20:
-        setProgress(24.8);
+      case 32:
+        setProgress(41.3334);
         break;
-      case 30:
-        setProgress(37.2);
-        break;
-      case 40:
-        setProgress(49.6);
-        break;
-      case 50:
+      case 48:
         setProgress(62);
         break;
-      case 60:
-        setProgress(74);
-        break;
-      case 70:
-        setProgress(86.4);
+      case 64:
+        setProgress(82.6668);
         break;
       case 80:
-        setProgress(98.8);
+        setProgress(103.3335);
         break;
-      case 90:
-        setProgress(111.6);
-        break;
-      case 100:
+      case 96:
         setProgress(124);
         break;
+      // case 70:
+      //   setProgress(86.4);
+      //   break;
+      // case 80:
+      //   setProgress(98.8);
+      //   break;
+      // case 90:
+      //   setProgress(111.6);
+      //   break;
+      // case 100:
+      //   setProgress(124);
+      //   break;
       default:
         setProgress(0);
         break;

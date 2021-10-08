@@ -133,7 +133,7 @@ export default async function handler(
                   tempUrls.push(fileResponse.secure_url);
                   console.log(fileResponse.secure_url);
                   connection.query(
-                    `UPDATE categories SET compliance='${toStore}', evidence='${tempUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+                    `UPDATE categories SET progress=16, compliance='${toStore}', evidence='${tempUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
                   );
                 });
             }
