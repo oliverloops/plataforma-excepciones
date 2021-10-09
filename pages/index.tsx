@@ -27,13 +27,9 @@ const Home = ({ cards }) => {
   };
 
   //Filter stored values on key event
-  // const filtered = cards.map((elem) => {
-  //   return elem.filter((items) =>
-  //     items.project_title.toLowerCase().includes(filteredItems)
-  //   );
-  // });
-
-  console.log(cards);
+  const filtered = cards.filter((items) =>
+    items.project_title.toLowerCase().includes(filteredItems)
+  );
 
   return (
     <>
@@ -42,10 +38,10 @@ const Home = ({ cards }) => {
       </div>
       <SearchBar getInput={getInput} />
       <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-auto gap-y-8 justify-items-center p-5 md:p-12">
-        {cards.map((elem, id) => (
+        {filtered.map((elem, id) => (
           <ProjectCard key={id} title={elem.project_title} />
         ))}
-        {templates === [] ? (
+        {templates === [] || filtered.lenght !== 8 ? (
           <></>
         ) : (
           templates.map((item, id) => <ProjectCard key={id} title={"Title"} />)
