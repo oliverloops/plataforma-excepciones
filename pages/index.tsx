@@ -9,6 +9,7 @@ import ProjectCard from "../components/ProjectCard";
 
 const Home = ({ cards }) => {
   const [templates, setTemplates] = useState([]);
+  const [filteredItems, setFilteredItems] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3000/api/basecards")
@@ -20,9 +21,19 @@ const Home = ({ cards }) => {
       });
   }, []);
 
+  //Search Bar Input handler
   const getInput = (e) => {
-    console.log(e.target.value);
+    setFilteredItems(e.target.value.toLowerCase());
   };
+
+  //Filter stored values on key event
+  // const filtered = cards.map((elem) => {
+  //   return elem.filter((items) =>
+  //     items.project_title.toLowerCase().includes(filteredItems)
+  //   );
+  // });
+
+  console.log(cards);
 
   return (
     <>
