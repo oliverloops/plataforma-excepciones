@@ -41,7 +41,7 @@ const Home = ({ cards }) => {
         {filtered.map((elem, id) => (
           <ProjectCard key={id} title={elem.project_title} />
         ))}
-        {templates === [] || filtered.lenght !== 8 ? (
+        {templates === [] && filtered.lenght !== 8 ? (
           <></>
         ) : (
           templates.map((item, id) => <ProjectCard key={id} title={"Title"} />)
