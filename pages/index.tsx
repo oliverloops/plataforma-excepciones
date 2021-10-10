@@ -27,9 +27,9 @@ const Home = ({ cards }) => {
   };
 
   //Filter stored values on key event
-  const filtered = cards.filter((items) =>
-    items.project_title.toLowerCase().includes(filteredItems)
-  );
+  const filtered = cards.filter((items) => {
+    return items.project_title.toLowerCase().includes(filteredItems);
+  });
 
   return (
     <>
@@ -44,7 +44,9 @@ const Home = ({ cards }) => {
         {templates === [] || filteredItems !== "" ? (
           <></>
         ) : (
-          templates.map((item, id) => <ProjectCard key={id} title={"Title"} />)
+          templates.map((item, id) => (
+            <ProjectCard key={id} title={"Nuevo Proyecto"} />
+          ))
         )}
       </div>
       <Footer />

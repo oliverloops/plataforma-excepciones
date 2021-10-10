@@ -18,7 +18,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     case "GET":
       //Query to retrieve all projects
       connection.query("SELECT * FROM projects", function (err, rows, fields) {
-        console.log(rows);
         res.send(rows);
       });
 
@@ -30,6 +29,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
       connection.query(
         `SELECT owner FROM projects WHERE owner='${requestedData.owner}'`,
         (err, rows, fields) => {
+          console.log(rows);
           if (rows.length !== 0) {
             //filter project title where requested contract number matches in db
             connection.query(
@@ -55,6 +55,9 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             );
           } else {
             console.log("You're not the owner of this project");
+            connection.query(
+              `INSERT INTO projects VALUES('${requestedData.owner}', ${requestedData.contractNum}, '${requestedData.title}', '${requestedData.projectType}', '${requestedData.supervisor}', ${requestedData.excNumber}, '${requestedData.contratist}')`
+            );
           }
         }
       );
