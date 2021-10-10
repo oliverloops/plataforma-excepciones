@@ -126,17 +126,14 @@ function Table({ rubro, projectData }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data[0].evidence !== null) {
-          let ordered = data[0].evidence.split(",");
-          setFiles(ordered);
-          console.log(ordered);
-        } else {
-          console.log(data[0]);
+        if (data.length !== 0) {
+          if (data[0].evidence !== null) {
+            let ordered = data[0].evidence.split(",");
+            setFiles(ordered);
+          }
         }
       });
   }, [rubro]);
-
-  console.log(files);
 
   const storeEvidence = (event) => {
     if (compliance.length < 6) {
