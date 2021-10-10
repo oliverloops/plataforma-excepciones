@@ -54,7 +54,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
               }
             );
           } else {
-            console.log("You're not the owner of this project");
+            console.log("This project is new");
             connection.query(
               `INSERT INTO projects VALUES('${requestedData.owner}', ${requestedData.contractNum}, '${requestedData.title}', '${requestedData.projectType}', '${requestedData.supervisor}', ${requestedData.excNumber}, '${requestedData.contratist}')`
             );
