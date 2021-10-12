@@ -41,7 +41,7 @@ function Months() {
               month={id + 1}
               ica={elem.ica}
               route={"/rubros/select"}
-              status={"Autorizado"}
+              status={elem.status}
               query={JSON.stringify(router.query)}
             />
           ))
