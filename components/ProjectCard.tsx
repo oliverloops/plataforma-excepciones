@@ -262,12 +262,15 @@ function SubmitButton({ username, password, projectTitle, form }) {
   };
 
   const uploadProjectData = () => {
-    validateUser();
     fetch("http://localhost:3000/api/projects", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ consumer }),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        validateUser();
+      });
   };
 
   return (
