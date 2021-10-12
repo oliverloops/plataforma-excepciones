@@ -63,7 +63,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             );
 
             connection.query(
-              `INSERT INTO months (project_title, initial_date, final_date, ID) VALUES ('${rows[0].project_title}', '${requestedData.initialDate}', '${requestedData.finalDate}', ${randomId})`
+              `INSERT INTO months (project_title, initial_date, final_date, ID) VALUES ('${requestedData.title}', '${requestedData.initialDate}', '${requestedData.finalDate}', ${randomId})`
             );
           }
           res.send(rows);
