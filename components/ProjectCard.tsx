@@ -37,7 +37,7 @@ export default function ProjectCard({ title, compliance }) {
         <p className="text-xs">
           Cumplimiento Ambiental:{" "}
           <span className="font-bold">
-            {Object.is(compliance, undefined) ? "-" : compliance}
+            {compliance === undefined || compliance === null ? "-" : compliance}
           </span>
         </p>
       </span>

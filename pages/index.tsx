@@ -49,7 +49,7 @@ const Home = ({ cards }) => {
           <></>
         ) : (
           templates.map((item, id) => (
-            <ProjectCard key={id} title={"Nuevo Proyecto"} />
+            <ProjectCard key={id} title={"Nuevo Proyecto"} compliance={null} />
           ))
         )}
       </div>
