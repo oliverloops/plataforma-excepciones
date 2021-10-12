@@ -39,7 +39,11 @@ const Home = ({ cards }) => {
       <SearchBar getInput={getInput} />
       <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-auto gap-y-8 justify-items-center p-5 md:p-12">
         {filtered.map((elem, id) => (
-          <ProjectCard key={id} title={elem.project_title} />
+          <ProjectCard
+            key={id}
+            title={elem.project_title}
+            compliance={elem.compliance}
+          />
         ))}
         {templates === [] || filteredItems !== "" ? (
           <></>

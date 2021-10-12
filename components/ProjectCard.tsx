@@ -5,7 +5,7 @@ import Image from "next/image";
 //Context API for extended form
 const formContext = createContext({});
 
-export default function ProjectCard({ title }) {
+export default function ProjectCard({ title, compliance }) {
   const [open, setOpen] = useState(false);
   const [username, setUsername] = useState("");
   const [pass, setPass] = useState("");
@@ -35,7 +35,10 @@ export default function ProjectCard({ title }) {
       <span className="flex items-center justify-between px-4 py-2">
         <p className="text-xl font-semibold">{title}</p>
         <p className="text-xs">
-          Cumplimiento Ambiental: <span className="font-bold">X</span>
+          Cumplimiento Ambiental:{" "}
+          <span className="font-bold">
+            {Object.is(compliance, undefined) ? "-" : compliance}
+          </span>
         </p>
       </span>
       <form className="flex flex-col px-4 py-2 pb-4">

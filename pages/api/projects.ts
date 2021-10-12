@@ -36,6 +36,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
               `SELECT project_title FROM projects WHERE contract_num=${requestedData.contractNum}`,
               (err, rows, fields) => {
                 let query: string = JSON.stringify(rows[0].project_title);
+                let randomId = Math.floor(Math.random() * 1000000 + 1);
 
                 if (query === "null") {
                   //Update a whole project if it isn't yet created and where owner matches
@@ -44,17 +45,18 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
                   );
                   //Insterts first posted date if it isn't yet created
                   connection.query(
-                    `INSERT INTO months (project_title, initial_date, final_date) VALUES ('${requestedData.title}', '${requestedData.initialDate}', '${requestedData.finalDate}')`
+                    `INSERT INTO months (project_title, initial_date, final_date, ID) VALUES ('${requestedData.title}', '${requestedData.initialDate}', '${requestedData.finalDate}', ${randomId})`
                   );
                 }
                 //Insterts a new posted date and creates a new month card data
                 connection.query(
-                  `INSERT INTO months (project_title, initial_date, final_date) VALUES ('${rows[0].project_title}', '${requestedData.initialDate}', '${requestedData.finalDate}')`
+                  `INSERT INTO months (project_title, initial_date, final_date, ID) VALUES ('${rows[0].project_title}', '${requestedData.initialDate}', '${requestedData.finalDate}', ${randomId})`
                 );
               }
             );
           } else {
             console.log("This project is new");
+
             connection.query(
               `INSERT INTO projects VALUES('${requestedData.owner}', ${requestedData.contractNum}, '${requestedData.title}', '${requestedData.projectType}', '${requestedData.supervisor}', ${requestedData.excNumber}, '${requestedData.contratist}')`
             );

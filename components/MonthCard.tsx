@@ -30,7 +30,9 @@ export default function MonthCard(props: {
           <span className="flex flex-col px-4 md:py-2">
             <p className="text-xl font-bold">Mes {props.month}</p>
             <span className="flex flex-col md:flex-row justify-between py-2 md:py-0">
-              <p className="text-lg font-medium">ICA: {props.ica}</p>
+              <p className="text-lg font-medium">
+                ICA: {props.ica === null ? "-" : props.ica}
+              </p>
               <p className="flex items-center font-light">
                 <span
                   className={`${
