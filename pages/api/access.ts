@@ -2,10 +2,10 @@ import mysql from "mysql2";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "12345678",
-  database: "kila_db",
+  host: "eu-cdbr-west-01.cleardb.com",
+  user: "b6e4f89bd3ac67",
+  password: "5b0f57a3",
+  database: "heroku_0a589e8de137ec8",
 });
 connection.connect();
 
