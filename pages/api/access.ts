@@ -32,7 +32,9 @@ export default async (req: NextApiRequest, res: NextApiResponse<Access>) => {
       connection.query(
         `SELECT username, password FROM users WHERE username="${req.body.username}" AND password="${req.body.password}"`,
         (err, rows, fields) => {
-          if (rows.length === 0) {
+          let collects = JSON.parse(JSON.stringify(rows));
+
+          if (collects.length === 0) {
             console.log("Access Denied...");
           } else {
             if (req.body.projectTitle !== "Nuevo Proyecto") {
@@ -48,7 +50,9 @@ export default async (req: NextApiRequest, res: NextApiResponse<Access>) => {
                     connection.query(
                       `SELECT contract_num, project_title, exc_number FROM projects WHERE owner="${req.body.username}"`,
                       (err, rows, fields) => {
-                        if (rows.length === 0) {
+                        let collects = JSON.parse(JSON.stringify(rows));
+
+                        if (collects.length === 0) {
                           console.log("This project is empty yet");
                           res.send({ access: false, body: {} });
                         } else {

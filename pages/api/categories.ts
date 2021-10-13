@@ -39,8 +39,9 @@ export default async function handler(
       connection.query(
         `SELECT month FROM categories WHERE month=${req.body.month} AND project_title='${req.body.project_title}'`,
         (err, rows, fields) => {
+          let collects = JSON.parse(JSON.stringify(rows));
           //This queries inserts all category cards with the new project's basic info
-          if (rows.length === 0) {
+          if (collects.length === 0) {
             connection.query(
               `INSERT INTO categories (project_title, month, category) VALUES ('${req.body.project_title}', ${req.body.month}, '${req.body.generales}')`
             );
@@ -98,7 +99,7 @@ export default async function handler(
             let val = JSON.parse(JSON.stringify(rows));
             if (Object.is(val[0].evidence, null)) {
               //Cloudinary API - Wrapping into format handler and request
-              const data = new FormData();
+              const data: any = new FormData();
               data.append("file", fs.createReadStream(req.body.files));
               data.append("upload_preset", "Evidencias");
               data.append(
@@ -122,7 +123,7 @@ export default async function handler(
               console.log("Evidence isn't null");
 
               //Cloudinary API - Wrapping into format handler and request
-              const data = new FormData();
+              const data: any = new FormData();
               data.append("file", fs.createReadStream(req.body.files));
               data.append("upload_preset", "Evidencias");
               data.append(

@@ -36,10 +36,10 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
       connection.query(
         `SELECT owner FROM projects WHERE owner='${requestedData.owner}'`,
         (err, rows, fields) => {
-          console.log(rows);
+          let collects = JSON.parse(JSON.stringify(rows));
           let randomId = Math.floor(Math.random() * 1000000 + 1);
 
-          if (rows.length !== 0) {
+          if (collects.length !== 0) {
             //filter project title where requested contract number matches in db
             connection.query(
               `SELECT project_title FROM projects WHERE contract_num=${requestedData.contractNum}`,
