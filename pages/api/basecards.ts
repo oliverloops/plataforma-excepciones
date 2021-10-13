@@ -8,12 +8,15 @@ const connection = mysql.createConnection({
   database: "heroku_0a589e8de137ec8",
 });
 
-connection.connect();
-
-//Handle live connection
-setInterval(() => {
-  connection.query("SELECT 1");
-}, 5000);
+connection.connect(function (err) {
+  if (err) {
+    //Handle live connection
+    setInterval(() => {
+      connection.query("SELECT 1");
+      console.log("DB server reconnected");
+    }, 5000);
+  }
+});
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   console.log(req.body);
