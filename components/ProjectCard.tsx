@@ -97,13 +97,13 @@ export default function ProjectCard({ title, compliance }) {
 
 function ExtendedForm({ open, openForm, username, password, projectTitle }) {
   //Hooks state managers
-  const [contractNum, setContractNum] = useState(0);
+  const [contractNum, setContractNum] = useState("");
   //Nombre de la obra
   const [title, setTitle] = useState("");
   const [projectType, setProjectType] = useState("");
   const [supervisor, setSupervisor] = useState("");
   //Número de excepción
-  const [excNumber, setExcNumber] = useState(0);
+  const [excNumber, setExcNumber] = useState("");
   const [contratist, setContratist] = useState("");
   //Fechas
   const [initialDate, setInitialDate] = useState("");
