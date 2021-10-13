@@ -79,17 +79,19 @@ export default function RubroCard(props: {
             </span>
           </span>
           <div className="h-px bg-gray-200"></div>
-          <div className="flex justify-between text-xs font-light px-4 py-3">
-            <div className="border-2 border-gray-300 rounded-full h-4 w-32">
-              <div
-                style={{ width: `${progress}px` }}
-                className={`bg-blue-400 ${
-                  props.percentage < 96 ? "rounded-l-full" : "rounded-full"
-                } h-3 z-10`}
-              ></div>
+          {props.rubro !== "Generales" && (
+            <div className="flex justify-between text-xs font-light px-4 py-3">
+              <div className="border-2 border-gray-300 rounded-full h-4 w-32">
+                <div
+                  style={{ width: `${progress}px` }}
+                  className={`bg-blue-400 ${
+                    props.percentage < 96 ? "rounded-l-full" : "rounded-full"
+                  } h-3 z-10`}
+                ></div>
+              </div>
+              Cargado - {props.percentage === 96 ? 100 : props.percentage}%
             </div>
-            Cargado - {props.percentage === 96 ? 100 : props.percentage}%
-          </div>
+          )}
         </div>
       </a>
     </Link>
