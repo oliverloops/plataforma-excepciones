@@ -9,6 +9,11 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
+//Handle live connection
+setInterval(() => {
+  connection.query("SELECT 1");
+}, 5000);
+
 type Access = {
   access: boolean;
   body: Object;
