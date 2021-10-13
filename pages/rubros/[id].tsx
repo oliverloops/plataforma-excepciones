@@ -11,6 +11,7 @@ import UploadButton from "../../components/UploadButton";
 
 export default function Rubro() {
   const router = useRouter();
+  const id = parseInt(router.query.id.toString());
 
   return (
     <>
@@ -30,7 +31,7 @@ export default function Rubro() {
           query={router.query}
           categories={true}
         />
-        {parseInt(router.query.id) < 8 ? (
+        {id < 8 ? (
           <CategoryButton
             text={"Continuar"}
             route={"/rubros/"}
