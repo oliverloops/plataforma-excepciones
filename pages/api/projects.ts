@@ -8,10 +8,7 @@ const connection = mysql.createConnection({
   database: "heroku_0a589e8de137ec8",
 });
 
-connection.connect((err) => {
-  if (err) throw err;
-  console.log("Connected!");
-});
+connection.connect();
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {

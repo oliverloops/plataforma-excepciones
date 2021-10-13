@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
   password: "5b0f57a3",
   database: "heroku_0a589e8de137ec8",
 });
-// const connection = mysql.createConnection(process.env.DATABASE_URL);
+
 connection.connect();
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
