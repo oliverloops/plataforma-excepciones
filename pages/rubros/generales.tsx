@@ -124,7 +124,7 @@ function Content({ projectData }) {
 const UploadButton = ({ data, projectData }) => {
   const uploadForm = () => {
     event.preventDefault();
-    fetch(`${process.env.HOST}/api/categories`, {
+    fetch(`https://kila-plataforma.netlify.app/api/categories`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -115,7 +115,7 @@ function Table({ rubro, projectData }) {
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.HOST}/api/categories`, {
+    fetch(`https://kila-plataforma.netlify.app/api/categories`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

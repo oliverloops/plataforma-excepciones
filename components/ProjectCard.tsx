@@ -246,7 +246,7 @@ function SubmitButton({ username, password, projectTitle, form }) {
   };
 
   const validateUser = async () => {
-    await fetch("http://localhost:3000/api/access", {
+    await fetch("https://kila-plataforma.netlify.app/api/access", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -267,7 +267,7 @@ function SubmitButton({ username, password, projectTitle, form }) {
   };
 
   const uploadProjectData = () => {
-    fetch("http://localhost:3000/api/projects", {
+    fetch("https://kila-plataforma.netlify.app/api/projects", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ consumer }),

@@ -14,7 +14,7 @@ function Months() {
   const router = useRouter();
 
   useLayoutEffect(() => {
-    fetch(`${process.env.HOST}/api/months`, {
+    fetch(`https://kila-plataforma.netlify.app/api/months`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(router.query.project_title),

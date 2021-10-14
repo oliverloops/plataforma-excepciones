@@ -41,7 +41,7 @@ function Select() {
   }, []);
 
   useEffect(() => {
-    fetch(`${process.env.HOST}/api/categories`, {
+    fetch(`https://kila-plataforma.netlify.app/api/categories`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(categories),
