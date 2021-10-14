@@ -14,7 +14,7 @@ function Months() {
   const router = useRouter();
 
   useLayoutEffect(() => {
-    fetch("http://localhost:3000/api/months", {
+    fetch(`${process.env.HOST}/api/months`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(router.query.project_title),

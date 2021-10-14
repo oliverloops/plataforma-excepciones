@@ -11,7 +11,6 @@ import UploadButton from "../../components/UploadButton";
 
 export default function Rubro() {
   const router = useRouter();
-  const id = parseInt(router.query.id.toString());
 
   return (
     <>
@@ -31,7 +30,7 @@ export default function Rubro() {
           query={router.query}
           categories={true}
         />
-        {id < 8 ? (
+        {parseInt(String(router.query.id)) < 8 ? (
           <CategoryButton
             text={"Continuar"}
             route={"/rubros/"}
@@ -116,7 +115,7 @@ function Table({ rubro, projectData }) {
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/categories", {
+    fetch(`${process.env.HOST}/api/categories`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -173,7 +172,7 @@ function Table({ rubro, projectData }) {
     value.preventDefault();
     console.log(value.target.files[0].name);
 
-    fetch("http://localhost:3000/api/categories", {
+    fetch(`${process.env.HOST}/api/categories`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

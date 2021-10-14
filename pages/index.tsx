@@ -12,7 +12,7 @@ const Home = ({ cards }) => {
   const [filteredItems, setFilteredItems] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/basecards")
+    fetch(`${process.env.HOST}/api/basecards`)
       .then((res) => res.json())
       .then((info) => {
         for (let i = 0; i < info[0].quantity; i++) {
@@ -61,7 +61,7 @@ const Home = ({ cards }) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch("http://localhost:3000/api/projects");
+  const res = await fetch(`${process.env.HOST}/api/projects`);
   const data = await res.json();
 
   return {

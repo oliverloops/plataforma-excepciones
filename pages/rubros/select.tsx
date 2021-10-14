@@ -41,7 +41,7 @@ function Select() {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/categories", {
+    fetch(`${process.env.HOST}/api/categories`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(categories),
