@@ -6,11 +6,8 @@ import Footer from "../../layout/Footer";
 //UI Components
 import CategoryButton from "../../components/CategoryButton";
 
-const env = process.env.NODE_ENV;
-
 export default function Generales() {
   const router = useRouter();
-  console.log(router.query);
 
   return (
     <>

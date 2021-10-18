@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import Image from "next/image";
 //UI Layout
 import Footer from "../layout/Footer";
@@ -60,14 +60,12 @@ const Home = ({ cards }) => {
 
 export default Home;
 
-export const getStaticProps: GetStaticProps = async () => {
-  const env = process.env.NODE_ENV;
-
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const res = await fetch(
     `${
-      env === "production"
-        ? "https://kila-plataforma.netlify.app"
-        : "http://localhost:3000"
+      context.req.headers.host.includes("localhost")
+        ? "http://localhost:3000"
+        : "https://kila-plataforma.netlify.app"
     }/api/projects`
   );
   const data = await res.json();
@@ -76,6 +74,5 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       cards: data,
     },
-    revalidate: 10,
   };
 };
