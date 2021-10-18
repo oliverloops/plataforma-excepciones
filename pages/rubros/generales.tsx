@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 //UI Layout
 import Header from "../../layout/Header";
@@ -126,7 +126,7 @@ function Content({ projectData }) {
 const UploadButton = ({ data, projectData }) => {
   const uploadForm = () => {
     event.preventDefault();
-    fetch(`http://localhost:3000/api/categories`, {
+    fetch(`/api/categories`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

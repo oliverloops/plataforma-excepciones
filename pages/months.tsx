@@ -8,15 +8,13 @@ import Button from "../components/Button";
 import MonthCard from "../components/MonthCard";
 import KilaLoader from "../components/KilaLoader";
 
-const env = process.env.NODE_ENV;
-
 function Months() {
   const [months, setMonths] = useState(null);
 
   const router = useRouter();
 
   useLayoutEffect(() => {
-    fetch(`http://localhost:3000/api/months`, {
+    fetch(`/api/months`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(router.query.project_title),

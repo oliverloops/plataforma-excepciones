@@ -10,8 +10,6 @@ import Button from "../../components/Button";
 import RubroCard from "../../components/RubroCard";
 import KilaLoader from "../../components/KilaLoader";
 
-const env = process.env.NODE_ENV;
-
 function Select() {
   const [leaf, setLeaf] = useState(false);
   const [blocks, setBlocks] = useState(null);
@@ -43,7 +41,7 @@ function Select() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/categories`, {
+    fetch(`/api/categories`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(categories),
