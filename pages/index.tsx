@@ -7,12 +7,18 @@ import Footer from "../layout/Footer";
 import SearchBar from "../components/SearchBar";
 import ProjectCard from "../components/ProjectCard";
 
+import mysql from "mysql2";
+import type { NextApiRequest, NextApiResponse } from "next";
+
+//API endpoint
+import projects from "./api/projects";
+
 const Home = ({ cards }) => {
   const [templates, setTemplates] = useState([]);
   const [filteredItems, setFilteredItems] = useState("");
 
   useEffect(() => {
-    fetch(`https://kila-plataforma.netlify.app/api/basecards`)
+    fetch(`/api/basecards`)
       .then((res) => res.json())
       .then((info) => {
         for (let i = 0; i < info[0].quantity; i++) {
@@ -61,7 +67,7 @@ const Home = ({ cards }) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch(`https://kila-plataforma.netlify.app/api/projects`);
+  const res = await fetch(`http://localhost:3000/api/projects`);
   const data = await res.json();
 
   return {

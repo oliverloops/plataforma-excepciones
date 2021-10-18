@@ -6,6 +6,8 @@ import Footer from "../../layout/Footer";
 //UI Components
 import CategoryButton from "../../components/CategoryButton";
 
+const env = process.env.NODE_ENV;
+
 export default function Generales() {
   const router = useRouter();
   console.log(router.query);
@@ -124,7 +126,7 @@ function Content({ projectData }) {
 const UploadButton = ({ data, projectData }) => {
   const uploadForm = () => {
     event.preventDefault();
-    fetch(`https://kila-plataforma.netlify.app/api/categories`, {
+    fetch(`http://localhost:3000/api/categories`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
