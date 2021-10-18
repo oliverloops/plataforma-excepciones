@@ -1,6 +1,4 @@
-import Head from "next/head";
-import { useState, useEffect } from "react";
-import { GetServerSideProps } from "next";
+import { useState, useLayoutEffect, useEffect } from "react";
 import Image from "next/image";
 //UI Layout
 import Footer from "../layout/Footer";
@@ -8,7 +6,8 @@ import Footer from "../layout/Footer";
 import SearchBar from "../components/SearchBar";
 import ProjectCard from "../components/ProjectCard";
 
-const Home = ({ cards }) => {
+const Home = () => {
+  const [cards, setCards] = useState([]);
   const [templates, setTemplates] = useState([]);
   const [filteredItems, setFilteredItems] = useState("");
 
@@ -19,6 +18,14 @@ const Home = ({ cards }) => {
         for (let i = 0; i < info[0].quantity; i++) {
           setTemplates((value) => [...value, i]);
         }
+      });
+  }, []);
+
+  useLayoutEffect(() => {
+    fetch(`/api/projects`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCards(data);
       });
   }, []);
 
@@ -61,19 +68,19 @@ const Home = ({ cards }) => {
 
 export default Home;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch(
-    `${
-      context.req.headers.host.includes("localhost")
-        ? "http://localhost:3000"
-        : "https://kila-plataforma.netlify.app"
-    }/api/projects`
-  );
-  const data = await res.json();
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const res = await fetch(
+//     `${
+//       context.req.headers.host.includes("localhost")
+//         ? "http://localhost:3000"
+//         : "https://kila-plataforma.netlify.app"
+//     }/api/projects`
+//   );
+//   const data = await res.json();
 
-  return {
-    props: {
-      cards: data,
-    },
-  };
-};
+//   return {
+//     props: {
+//       cards: data,
+//     },
+//   };
+// };
