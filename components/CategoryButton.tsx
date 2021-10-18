@@ -19,8 +19,6 @@ export default function CategoryButton(props: {
     finalPathName = props.route + (parseInt(props.query.id) - 1);
   } else if (props.text === "Regresar" && parseInt(props.query.id) === 1) {
     finalPathName = props.route + "generales";
-  } else {
-    return;
   }
 
   return (

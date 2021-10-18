@@ -1,7 +1,7 @@
 import { useState, useLayoutEffect, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { GrDocumentText, GrDocumentDownload } from "react-icons/gr";
+import { GrDocumentDownload } from "react-icons/gr";
 //UI Layout
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
@@ -30,6 +30,7 @@ export default function Rubro() {
           query={router.query}
           categories={true}
         />
+
         {parseInt(String(router.query.id)) < 8 ? (
           <CategoryButton
             text={"Continuar"}
@@ -79,7 +80,6 @@ function Content({ id, projectData }) {
         break;
       default:
         return;
-        break;
     }
   }
 
@@ -96,13 +96,19 @@ function Content({ id, projectData }) {
       <div className="col-start-1 row-start-2  md:col-start-2 md:row-start-2 bg-gray-200 rounded-xl md:w-64 md:h-60">
         <ul className="list-disc text-sm font-light p-4 px-8">
           <li>
-            Pueden subirse archivos de texto, documentos de excel, PDF e
-            imagenes
+            <p>
+              Pueden subirse archivos de texto, documentos de excel, PDF e
+              imagenes
+            </p>
           </li>
-          <li className="py-2">Cada archivo debe ser menor a 10MB</li>
           <li className="py-2">
-            Puede hacer click en los iconos que se encuentran a la izquierda
-            para visualizar o descargar el archivo
+            <p>Cada archivo debe ser menor a 10MB</p>
+          </li>
+          <li className="py-2">
+            <p>
+              Puede hacer click en los iconos que se encuentran a la izquierda
+              para visualizar o descargar el archivo
+            </p>
           </li>
         </ul>
       </div>
@@ -172,6 +178,8 @@ function Table({ rubro, projectData }) {
     value.preventDefault();
     console.log(value.target.files[0].name);
 
+    let file = value.target.files;
+
     fetch(`/api/categories`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -180,7 +188,7 @@ function Table({ rubro, projectData }) {
         project: projectData.project_title,
         month: projectData.month,
         rubro: rubro,
-        files: `/Users/oliver/downloads/${value.target.files[0].name}`,
+        files: file,
       }),
     });
   };
@@ -212,7 +220,6 @@ function Table({ rubro, projectData }) {
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
-            {/* <GrDocumentText size={28} /> */}
             <Link href={`${files[0]}`}>
               <a target="_blank">
                 <GrDocumentDownload size={30} />
@@ -237,7 +244,6 @@ function Table({ rubro, projectData }) {
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
-            {/* <GrDocumentText size={28} /> */}
             <Link href={`${files[1]}`}>
               <a target="_blank">
                 <GrDocumentDownload size={30} />
@@ -262,7 +268,7 @@ function Table({ rubro, projectData }) {
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
-            {/* <GrDocumentText size={28} /> */}
+
             <Link href={`${files[2]}`}>
               <a target="_blank">
                 <GrDocumentDownload size={30} />
@@ -287,7 +293,7 @@ function Table({ rubro, projectData }) {
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
-            {/* <GrDocumentText size={28} /> */}
+
             <Link href={`${files[3]}`}>
               <a target="_blank">
                 <GrDocumentDownload size={30} />
@@ -312,7 +318,7 @@ function Table({ rubro, projectData }) {
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
-            {/* <GrDocumentText size={28} /> */}
+
             <Link href={`${files[4]}`}>
               <a target="_blank">
                 <GrDocumentDownload size={30} />
@@ -337,7 +343,7 @@ function Table({ rubro, projectData }) {
           </td>
           <td className="flex justify-between px-2 md:px-5 pt-5">
             <UploadButton upload={uploadEvidenceToDb} />
-            {/* <GrDocumentText size={28} /> */}
+
             <Link href={`${files[5]}`}>
               <a target="_blank">
                 <GrDocumentDownload size={30} />

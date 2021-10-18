@@ -100,7 +100,7 @@ export default async function handler(
             if (Object.is(val[0].evidence, null)) {
               //Cloudinary API - Wrapping into format handler and request
               const data: any = new FormData();
-              data.append("file", fs.createReadStream(req.body.files));
+              data.append("file", fs.createReadStream(req.body.files[0]));
               data.append("upload_preset", "Evidencias");
               data.append(
                 "folder",
@@ -124,7 +124,7 @@ export default async function handler(
 
               //Cloudinary API - Wrapping into format handler and request
               const data: any = new FormData();
-              data.append("file", fs.createReadStream(req.body.files));
+              data.append("file", fs.createReadStream(req.body.files[0]));
               data.append("upload_preset", "Evidencias");
               data.append(
                 "folder",
