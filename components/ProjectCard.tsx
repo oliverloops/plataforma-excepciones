@@ -146,9 +146,7 @@ function ExtendedForm({ open, openForm, username, password, projectTitle }) {
             onChange={(input) => setProjectType(input.target.value)}
             className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 px-1 py-0.5"
           >
-            <option value="Opción 1" selected>
-              Opción 1
-            </option>
+            <option value="Opción 1">Opción 1</option>
             <option value="Opción 2">Opción 2</option>
             <option value="Opción 3">Opción 3</option>
             <option value="Opción 4">Opción 4</option>
@@ -161,9 +159,7 @@ function ExtendedForm({ open, openForm, username, password, projectTitle }) {
             onChange={(input) => setSupervisor(input.target.value)}
             className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 md:w-auto px-1 py-0.5"
           >
-            <option value="Opción 1" selected>
-              Opción 1
-            </option>
+            <option value="Opción 1">Opción 1</option>
             <option value="Opción 2">Opción 2</option>
             <option value="Opción 3">Opción 3</option>
             <option value="Opción 4">Opción 4</option>

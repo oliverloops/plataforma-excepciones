@@ -8,7 +8,11 @@ import SearchBar from "../components/SearchBar";
 import ProjectCard from "../components/ProjectCard";
 import KilaLoader from "../components/KilaLoader";
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetcher = (url) =>
+  fetch(url, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  }).then((res) => res.json());
 
 const Home = () => {
   const [templates, setTemplates] = useState([]);
