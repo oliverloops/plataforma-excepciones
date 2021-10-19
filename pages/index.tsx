@@ -26,8 +26,6 @@ const Home = () => {
 
   const { data, error } = useSWR("/api/projects", fetcher);
 
-  console.log(data);
-
   if (error) return <div>Error al cargar...</div>;
   if (!data)
     return (
@@ -48,36 +46,47 @@ const Home = () => {
     setFilteredItems(e.target.value.toLowerCase());
   };
 
-  //Filter stored values on key event
-  const filtered = data.filter((items) => {
-    return items.project_title.toLowerCase().includes(filteredItems);
-  });
+  if (data) {
+    //Filter stored values on key event
+    const filtered = data.filter((items) => {
+      return items.project_title.toLowerCase().includes(filteredItems);
+    });
 
-  return (
-    <>
-      <div className="flex justify-center pt-8 pb-4">
-        <Image src={"/kila_logo.png"} width={150} height={60} alt="Kila Logo" />
-      </div>
-      <SearchBar getInput={getInput} />
-      <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-auto gap-y-8 justify-items-center p-5 md:p-12">
-        {filtered.map((elem, id) => (
-          <ProjectCard
-            key={id}
-            title={elem.project_title}
-            compliance={elem.compliance}
+    return (
+      <>
+        <div className="flex justify-center pt-8 pb-4">
+          <Image
+            src={"/kila_logo.png"}
+            width={150}
+            height={60}
+            alt="Kila Logo"
           />
-        ))}
-        {templates === [] || filteredItems !== "" ? (
-          <></>
-        ) : (
-          templates.map((item, id) => (
-            <ProjectCard key={id} title={"Nuevo Proyecto"} compliance={null} />
-          ))
-        )}
-      </div>
-      <Footer />
-    </>
-  );
+        </div>
+        <SearchBar getInput={getInput} />
+        <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-auto gap-y-8 justify-items-center p-5 md:p-12">
+          {filtered.map((elem, id) => (
+            <ProjectCard
+              key={id}
+              title={elem.project_title}
+              compliance={elem.compliance}
+            />
+          ))}
+          {templates === [] || filteredItems !== "" ? (
+            <></>
+          ) : (
+            templates.map((item, id) => (
+              <ProjectCard
+                key={id}
+                title={"Nuevo Proyecto"}
+                compliance={null}
+              />
+            ))
+          )}
+        </div>
+        <Footer />
+      </>
+    );
+  }
 };
 
 export default Home;
