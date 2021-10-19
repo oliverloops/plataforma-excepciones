@@ -21,7 +21,7 @@ const Home = () => {
       });
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     fetch(`/api/projects`)
       .then((res) => res.json())
       .then((data) => {
