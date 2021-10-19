@@ -1,10 +1,13 @@
 import { useState, useLayoutEffect, useEffect } from "react";
 import Image from "next/image";
+import useSWR from "swr";
 //UI Layout
 import Footer from "../layout/Footer";
 //UI components
 import SearchBar from "../components/SearchBar";
 import ProjectCard from "../components/ProjectCard";
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const Home = () => {
   const [cards, setCards] = useState([]);
@@ -21,13 +24,10 @@ const Home = () => {
       });
   }, []);
 
-  useLayoutEffect(() => {
-    fetch(`/api/projects`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCards(data);
-      });
-  }, []);
+  const { data, error } = useSWR("/api/projects", fetcher);
+
+  if (error) return <div>Failed to load!</div>;
+  if (!data) return <div>cargando...</div>;
 
   //Search Bar Input handler
   const getInput = (e) => {
@@ -35,7 +35,7 @@ const Home = () => {
   };
 
   //Filter stored values on key event
-  const filtered = cards.filter((items) => {
+  const filtered = data.filter((items) => {
     return items.project_title.toLowerCase().includes(filteredItems);
   });
 
