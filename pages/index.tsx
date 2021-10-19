@@ -8,8 +8,7 @@ import SearchBar from "../components/SearchBar";
 import ProjectCard from "../components/ProjectCard";
 import KilaLoader from "../components/KilaLoader";
 
-const fetcher = (_, ...args: any[]) =>
-  fetch(_, ...args).then((res) => res.json());
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const Home = () => {
   const [templates, setTemplates] = useState([]);
@@ -26,6 +25,8 @@ const Home = () => {
   }, []);
 
   const { data, error } = useSWR("/api/projects", fetcher);
+
+  console.log(data);
 
   if (error) return <div>Error al cargar...</div>;
   if (!data)
