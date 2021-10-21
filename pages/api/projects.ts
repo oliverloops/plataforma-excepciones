@@ -21,65 +21,71 @@ connection.connect(function (err) {
 });
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-  switch (req.method) {
-    case "GET":
-      //Query to retrieve all projects
-      connection.query("SELECT * FROM projects", function (err, rows, fields) {
-        res.send(rows);
-      });
+  return new Promise((resolve) => {
+    switch (req.method) {
+      case "GET":
+        //Query to retrieve all projects
+        connection.query(
+          "SELECT * FROM projects",
+          function (err, rows, fields) {
+            res.send(rows);
+          }
+        );
 
-      break;
-    case "POST":
-      const requestedData = req.body.consumer.formData;
+        break;
+      case "POST":
+        const requestedData = req.body.consumer.formData;
 
-      //filter a project by their owner
-      connection.query(
-        `SELECT owner FROM projects WHERE owner='${requestedData.owner}'`,
-        (err, rows, fields) => {
-          let collects = JSON.parse(JSON.stringify(rows));
-          let randomId = Math.floor(Math.random() * 1000000 + 1);
+        //filter a project by their owner
+        connection.query(
+          `SELECT owner FROM projects WHERE owner='${requestedData.owner}'`,
+          (err, rows, fields) => {
+            let collects = JSON.parse(JSON.stringify(rows));
+            let randomId = Math.floor(Math.random() * 1000000 + 1);
 
-          if (collects.length !== 0) {
-            //filter project title where requested contract number matches in db
-            connection.query(
-              `SELECT project_title FROM projects WHERE contract_num=${requestedData.contractNum}`,
-              (err, rows, fields) => {
-                let query: string = JSON.stringify(rows[0].project_title);
+            if (collects.length !== 0) {
+              //filter project title where requested contract number matches in db
+              connection.query(
+                `SELECT project_title FROM projects WHERE contract_num=${requestedData.contractNum}`,
+                (err, rows, fields) => {
+                  let query: string = JSON.stringify(rows[0].project_title);
 
-                if (query === "null") {
-                  //Update a whole project if it isn't yet created and where owner matches
+                  if (query === "null") {
+                    //Update a whole project if it isn't yet created and where owner matches
+                    connection.query(
+                      `UPDATE projects SET contract_num = ${requestedData.contractNum}, project_title = '${requestedData.title}', project_type = '${requestedData.projectType}', supervisor = '${requestedData.supervisor}', exc_number = ${requestedData.excNumber}, contratist = '${requestedData.contratist}' WHERE owner='${requestedData.owner}'`
+                    );
+                    //Insterts first posted date if it isn't yet created
+                    connection.query(
+                      `INSERT INTO months (project_title, initial_date, final_date, ID) VALUES ('${requestedData.title}', '${requestedData.initialDate}', '${requestedData.finalDate}', ${randomId})`
+                    );
+                  }
+                  //Insterts a new posted date and creates a new month card data
                   connection.query(
-                    `UPDATE projects SET contract_num = ${requestedData.contractNum}, project_title = '${requestedData.title}', project_type = '${requestedData.projectType}', supervisor = '${requestedData.supervisor}', exc_number = ${requestedData.excNumber}, contratist = '${requestedData.contratist}' WHERE owner='${requestedData.owner}'`
-                  );
-                  //Insterts first posted date if it isn't yet created
-                  connection.query(
-                    `INSERT INTO months (project_title, initial_date, final_date, ID) VALUES ('${requestedData.title}', '${requestedData.initialDate}', '${requestedData.finalDate}', ${randomId})`
+                    `INSERT INTO months (project_title, initial_date, final_date, ID) VALUES ('${rows[0].project_title}', '${requestedData.initialDate}', '${requestedData.finalDate}', ${randomId})`
                   );
                 }
-                //Insterts a new posted date and creates a new month card data
-                connection.query(
-                  `INSERT INTO months (project_title, initial_date, final_date, ID) VALUES ('${rows[0].project_title}', '${requestedData.initialDate}', '${requestedData.finalDate}', ${randomId})`
-                );
-              }
-            );
-          } else {
-            console.log("This project is new");
+              );
+            } else {
+              console.log("This project is new");
 
-            connection.query(
-              `INSERT INTO projects (owner, contract_num, project_title, project_type, supervisor, exc_number, contratist) VALUES('${requestedData.owner}', ${requestedData.contractNum}, '${requestedData.title}', '${requestedData.projectType}', '${requestedData.supervisor}', ${requestedData.excNumber}, '${requestedData.contratist}')`
-            );
+              connection.query(
+                `INSERT INTO projects (owner, contract_num, project_title, project_type, supervisor, exc_number, contratist) VALUES('${requestedData.owner}', ${requestedData.contractNum}, '${requestedData.title}', '${requestedData.projectType}', '${requestedData.supervisor}', ${requestedData.excNumber}, '${requestedData.contratist}')`
+              );
 
-            connection.query(
-              `INSERT INTO months (project_title, initial_date, final_date, ID) VALUES ('${requestedData.title}', '${requestedData.initialDate}', '${requestedData.finalDate}', ${randomId})`
-            );
+              connection.query(
+                `INSERT INTO months (project_title, initial_date, final_date, ID) VALUES ('${requestedData.title}', '${requestedData.initialDate}', '${requestedData.finalDate}', ${randomId})`
+              );
+            }
+            res.send(rows);
           }
-          res.send(rows);
-        }
-      );
+        );
 
-      break;
-    default:
-      res.status(405).end();
-      break;
-  }
+        break;
+      default:
+        res.status(405).end();
+        break;
+    }
+    return resolve;
+  });
 }

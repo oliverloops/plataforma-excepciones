@@ -19,19 +19,20 @@ connection.connect(function (err) {
 });
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-  console.log(req.body);
-
-  switch (req.method) {
-    case "GET":
-      connection.query(
-        "SELECT quantity FROM basecards",
-        (err, rows, fields) => {
-          res.send(rows);
-        }
-      );
-      break;
-    default:
-      res.status(405).end();
-      break;
-  }
+  return new Promise((resolve) => {
+    switch (req.method) {
+      case "GET":
+        connection.query(
+          "SELECT quantity FROM basecards",
+          (err, rows, fields) => {
+            res.send(rows);
+          }
+        );
+        break;
+      default:
+        res.status(405).end();
+        break;
+    }
+    return resolve;
+  });
 }

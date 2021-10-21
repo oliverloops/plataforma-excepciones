@@ -188,7 +188,7 @@ function Table({ rubro, projectData }) {
         project: projectData.project_title,
         month: projectData.month,
         rubro: rubro,
-        files: file,
+        files: `/Users/oliver/Downloads/${value.target.files[0].name}`,
       }),
     });
   };
