@@ -64,7 +64,7 @@ export default function RubroCard(props: {
       }}
     >
       <a>
-        <div className="bg-white shadow-md rounded-xl md:w-64 h-32 md:h-36 hover:shadow-xl">
+        <div className="bg-white shadow-md rounded-xl w-auto md:w-64 h-42 hover:shadow-xl">
           <Image
             className="rounded-t-xl"
             src={"/sierra_de_lobos.png"}
@@ -74,7 +74,7 @@ export default function RubroCard(props: {
           />
           <span className="flex flex-col px-4 md:py-2">
             <span className="flex items-center">
-              <p className="text-xl font-semibold pr-2">{props.rubro}</p>
+              <p className="md:text-xl font-semibold pr-2">{props.rubro}</p>
               <FaLeaf className="text-gray-300" size={18} />
             </span>
           </span>
