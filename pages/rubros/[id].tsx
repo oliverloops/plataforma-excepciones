@@ -55,28 +55,31 @@ function Content({ id, projectData }) {
   function rubroFinder(id) {
     switch (id) {
       case "1":
-        setTitle("Atm");
+        setTitle("Biótico");
         break;
       case "2":
-        setTitle("Ruido");
+        setTitle("Suelo");
         break;
       case "3":
-        setTitle("RSU");
+        setTitle("Agua");
         break;
       case "4":
-        setTitle("RME");
+        setTitle("Aire");
         break;
       case "5":
-        setTitle("RP");
+        setTitle("Hidrología");
         break;
       case "6":
-        setTitle("Flora");
+        setTitle("Manejo de Residuos");
         break;
       case "7":
-        setTitle("Fauna");
+        setTitle("Operación y Mantenimiento");
         break;
       case "8":
-        setTitle("Arbolado");
+        setTitle("Abandono y Restauración");
+        break;
+      case "9":
+        setTitle("Seguridad");
         break;
       default:
         return;

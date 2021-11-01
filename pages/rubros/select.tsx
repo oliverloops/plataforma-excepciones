@@ -18,14 +18,15 @@ function Select() {
 
   const categories = {
     generales: "Generales",
-    atm: "Atm",
-    ruido: "Ruido",
-    rsu: "RSU",
-    rme: "RME",
-    rp: "RP",
-    flora: "Flora",
-    fauna: "Fauna",
-    arbolado: "Arbolado",
+    biotico: "Biótico",
+    suelo: "Suelo",
+    aire: "Aire",
+    agua: "Agua",
+    hidrologia: "Hidrología",
+    residuos: "Manejo de Residuos",
+    operacion: "Operación y Mantenimiento",
+    abandono: "Abandono y Restauración",
+    seguridad: "Seguridad",
     project_title: router.query.project_title,
     month: router.query.month,
   };
