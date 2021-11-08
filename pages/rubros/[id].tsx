@@ -8,6 +8,8 @@ import Footer from "../../layout/Footer";
 //UI Components
 import CategoryButton from "../../components/CategoryButton";
 import UploadButton from "../../components/UploadButton";
+//Utils
+import rubrosData from "../../utils/rubrosData";
 
 export default function Rubro() {
   const router = useRouter();
@@ -31,7 +33,7 @@ export default function Rubro() {
           categories={true}
         />
 
-        {parseInt(String(router.query.id)) < 8 ? (
+        {parseInt(String(router.query.id)) < 9 ? (
           <CategoryButton
             text={"Continuar"}
             route={"/rubros/"}
@@ -96,7 +98,7 @@ function Content({ id, projectData }) {
         {title}
       </p>
       <Table rubro={title} projectData={projectData} />
-      <div className="col-start-1 row-start-2  md:col-start-2 md:row-start-2 bg-gray-200 rounded-xl md:w-64 md:h-60">
+      {/* <div className="col-start-1 row-start-2  md:col-start-2 md:row-start-2 bg-gray-200 rounded-xl md:w-64 md:h-60">
         <ul className="list-disc text-sm font-light p-4 px-8">
           <li>
             <p>
@@ -114,7 +116,7 @@ function Content({ id, projectData }) {
             </p>
           </li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -181,8 +183,6 @@ function Table({ rubro, projectData }) {
     value.preventDefault();
     console.log(value.target.files[0].name);
 
-    let file = value.target.files;
-
     fetch(`/api/categories`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -196,8 +196,10 @@ function Table({ rubro, projectData }) {
     });
   };
 
+  const tableContent = rubrosData(rubro);
+
   return (
-    <table className="col-start-1 md:col-end-2 border-2 border-gray-400">
+    <table className="col-start-1 md:col-end-3 border-2 border-gray-400">
       <thead>
         <tr className="border-2 border-gray-400 bg-blue-100 text-lg">
           <th className="border-2 border-gray-400">MM</th>
@@ -206,154 +208,24 @@ function Table({ rubro, projectData }) {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td className="px-3 md:px-12">
-            <p className="text-center">1</p>
-          </td>
-          <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-            <select
-              name="1"
-              onChange={storeEvidence}
-              className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2"
-            >
-              <option>Opción 1</option>
-              <option>Opción 2</option>
-              <option>Opción 3</option>
-            </select>
-          </td>
-          <td className="flex justify-between px-2 md:px-5 pt-5">
-            <UploadButton upload={uploadEvidenceToDb} />
-            <Link href={`${files[0]}`}>
-              <a target="_blank">
-                <GrDocumentDownload size={30} />
-              </a>
-            </Link>
-          </td>
-        </tr>
-        <tr>
-          <td className="px-3 md:px-12">
-            <p className="text-center">2</p>
-          </td>
-          <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-            <select
-              name="2"
-              onChange={storeEvidence}
-              className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2"
-            >
-              <option>Opción 1</option>
-              <option>Opción 2</option>
-              <option>Opción 3</option>
-            </select>
-          </td>
-          <td className="flex justify-between px-2 md:px-5 pt-5">
-            <UploadButton upload={uploadEvidenceToDb} />
-            <Link href={`${files[1]}`}>
-              <a target="_blank">
-                <GrDocumentDownload size={30} />
-              </a>
-            </Link>
-          </td>
-        </tr>
-        <tr>
-          <td className="px-3 md:px-12">
-            <p className="text-center">3</p>
-          </td>
-          <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-            <select
-              name="3"
-              onChange={storeEvidence}
-              className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2"
-            >
-              <option>Opción 1</option>
-              <option>Opción 2</option>
-              <option>Opción 3</option>
-            </select>
-          </td>
-          <td className="flex justify-between px-2 md:px-5 pt-5">
-            <UploadButton upload={uploadEvidenceToDb} />
-
-            <Link href={`${files[2]}`}>
-              <a target="_blank">
-                <GrDocumentDownload size={30} />
-              </a>
-            </Link>
-          </td>
-        </tr>
-        <tr>
-          <td className="px-3 md:px-12">
-            <p className="text-center">4</p>
-          </td>
-          <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-            <select
-              name="4"
-              onChange={storeEvidence}
-              className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2"
-            >
-              <option>Opción 1</option>
-              <option>Opción 2</option>
-              <option>Opción 3</option>
-            </select>
-          </td>
-          <td className="flex justify-between px-2 md:px-5 pt-5">
-            <UploadButton upload={uploadEvidenceToDb} />
-
-            <Link href={`${files[3]}`}>
-              <a target="_blank">
-                <GrDocumentDownload size={30} />
-              </a>
-            </Link>
-          </td>
-        </tr>
-        <tr>
-          <td className="px-3 md:px-12">
-            <p className="text-center">5</p>
-          </td>
-          <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-            <select
-              name="5"
-              onChange={storeEvidence}
-              className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2"
-            >
-              <option>Opción 1</option>
-              <option>Opción 2</option>
-              <option>Opción 3</option>
-            </select>
-          </td>
-          <td className="flex justify-between px-2 md:px-5 pt-5">
-            <UploadButton upload={uploadEvidenceToDb} />
-
-            <Link href={`${files[4]}`}>
-              <a target="_blank">
-                <GrDocumentDownload size={30} />
-              </a>
-            </Link>
-          </td>
-        </tr>
-        <tr>
-          <td className="px-3 md:px-12">
-            <p className="text-center">6</p>
-          </td>
-          <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-            <select
-              name="6"
-              onChange={storeEvidence}
-              className="border-2 bg-gray-200 border-gray-300 rounded-md md:w-40 h-10 md:h-12 px-2"
-            >
-              <option>Opción 1</option>
-              <option>Opción 2</option>
-              <option>Opción 3</option>
-            </select>
-          </td>
-          <td className="flex justify-between px-2 md:px-5 pt-5">
-            <UploadButton upload={uploadEvidenceToDb} />
-
-            <Link href={`${files[5]}`}>
-              <a target="_blank">
-                <GrDocumentDownload size={30} />
-              </a>
-            </Link>
-          </td>
-        </tr>
+        {tableContent.map((item, id) => (
+          <tr key={id} className="border-b-2 border-gray-400">
+            <td className="px-3 py-4">
+              <p className="text-left">{item.mm}</p>
+            </td>
+            <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
+              <p>{item.cumplimiento}</p>
+            </td>
+            <td className="flex justify-between px-2 md:px-5 pt-5">
+              <UploadButton upload={uploadEvidenceToDb} />
+              <Link href={`${files[id]}`}>
+                <a target="_blank">
+                  <GrDocumentDownload size={30} />
+                </a>
+              </Link>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );
