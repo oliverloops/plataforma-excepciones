@@ -67,53 +67,71 @@ function Content({ projectData }) {
   };
 
   return (
-    <form className="flex flex-col p-8 md:px-16">
-      <label htmlFor="catalogo" className="text-xl font-semibold py-8 md:py-4">
-        Cátalogo General de Obra
-      </label>
-      <select
-        name="catalogo"
-        onChange={(event) => storeData(event)}
-        className="border-2 bg-gray-200 border-gray-300 rounded-md w-40 h-12 md:h-10 px-3 py-0.5"
-      >
-        <option>V1</option>
-        <option>V2</option>
-        <option>V3</option>
-        <option>v4</option>
-        <option>V5</option>
-      </select>
-      <label htmlFor="area" className="text-xl font-semibold py-8 md:py-4">
-        Área
-      </label>
-      <select
-        name="area"
-        onChange={(event) => storeData(event)}
-        className="border-2 bg-gray-200 border-gray-300 rounded-md  w-40 h-12 md:h-10 px-3 py-0.5"
-      >
-        <option>Frente 1</option>
-        <option>Frente 2</option>
-        <option>Frente 3</option>
-        <option>Frente 4</option>
-        <option>Frente 5</option>
-      </select>
-      <label
-        htmlFor="coordenadas"
-        className="text-xl font-semibold py-8 md:py-4"
-      >
-        Coordenadas UTM Centroíde
-      </label>
-      <select
-        name="coordenadas"
-        onChange={(event) => storeData(event)}
-        className="border-2 bg-gray-200 border-gray-300 rounded-md  w-40 h-12 md:h-10 px-3 py-0.5"
-      >
-        <option>Frente 1</option>
-        <option>Frente 2</option>
-        <option>Frente 3</option>
-        <option>Frente 4</option>
-        <option>Frente 5</option>
-      </select>
-      <div className="pt-14 pb-2 md:pb-0">
+    <form className="grid grid-cols-1 md:grid-cols-2 p-8 md:px-16">
+      <div className="md:row-start-2 md:col-start-1">
+        <div className="md:col-start-1 flex flex-col">
+          <label htmlFor="catalogo" className="text-xl font-semibold py-4">
+            Cátalogo General de Obra
+          </label>
+          <input
+            className="bg-gray-50 border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
+            type="text"
+            placeholder="Ingrese la información"
+          />
+          <label htmlFor="area" className="text-xl font-semibold py-8 md:py-4">
+            Coordenadas UTM Centroíde
+          </label>
+          <input
+            className="bg-gray-50  border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
+            type="text"
+            placeholder="Ingrese la información"
+          />
+          <label
+            htmlFor="coordenadas"
+            className="text-xl font-semibold py-8 md:py-4"
+          >
+            Trabajadores con seguro
+          </label>
+          <input
+            className="bg-gray-50  border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
+            type="text"
+            placeholder="Ingrese la información"
+          />
+        </div>
+      </div>
+      <div className="md:row-start-2 md:col-start-2 flex flex-col">
+        <label
+          htmlFor="catalogo"
+          className="text-xl font-semibold py-8 md:py-4"
+        >
+          Área
+        </label>
+        <input
+          className="bg-gray-50  border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
+          type="text"
+          placeholder="Ingrese la información"
+        />
+        <label htmlFor="area" className="text-xl font-semibold py-8 md:py-4">
+          Número de trabajadores
+        </label>
+        <input
+          className="bg-gray-50 border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
+          type="text"
+          placeholder="Ingrese la información"
+        />
+        <label
+          htmlFor="coordenadas"
+          className="text-xl font-semibold py-8 md:py-4"
+        >
+          Fecha de entrega
+        </label>
+        <input
+          className="bg-gray-50  border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
+          type="text"
+          placeholder="Ingrese la información"
+        />
+      </div>
+      <div className="md:row-start-3 pt-14 pb-2 md:pb-0">
         <UploadButton data={option} projectData={projectData} />
       </div>
     </form>
@@ -138,7 +156,7 @@ const UploadButton = ({ data, projectData }) => {
   return (
     <button
       style={{ backgroundColor: "#8CBA6E" }}
-      className="text-white w-full md:w-72 rounded-lg h-12 md:h-10"
+      className="text-white w-full md:w-72 rounded-lg h-14 md:h-12"
       onClick={uploadForm}
     >
       <span className="flex justify-evenly font-semibold items-center text-xl md:text-lg px-2">
