@@ -43,31 +43,71 @@ export default function Generales() {
   );
 }
 
-function Content({ projectData }) {
+const Content = ({ projectData }) => (
+  <>
+    <div className="text-center md:px-16 py-8 md:py-4">
+      <p className="font-semibold text-md md:text-lg">
+        <span className="font-light">Nombre del Contratista:</span>{" "}
+        {projectData.contratist}
+      </p>
+      <p className="font-semibold text-md md:text-lg">
+        <span className="font-light">Período de ejecución:</span>{" "}
+        {projectData.month}
+      </p>
+    </div>
+    <Form projectData={projectData} />
+  </>
+);
+
+const Form = ({ projectData }) => {
   const [option, setOption] = useState([]);
 
-  const storeData = (event) => {
-    if (option.length < 3) {
-      setOption((val) => [...val, event.target.value]);
-    } else if (option.length >= 3 && event.target.name === "catalogo") {
-      let temp = option;
-      temp[0] = event.target.value;
-      setOption(temp);
-    } else if (option.length >= 3 && event.target.name === "area") {
-      let temp = option;
-      temp[1] = event.target.value;
-      setOption(temp);
-    } else if (option.length >= 3 && event.target.name === "coordenadas") {
-      let temp = option;
-      temp[2] = event.target.value;
-      setOption(temp);
-    } else {
-      return;
-    }
-  };
+  console.log(projectData);
 
   return (
-    <form className="grid grid-cols-1 md:grid-cols-2 p-8 md:px-16">
+    <form className="grid grid-cols-1 md:grid-cols-2 px-8  md:px-16">
+      <div className="md:row-start-1 md:col-start-1 py-8">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center">
+          <label htmlFor="catalogo" className="text-xl font-semibold py-4">
+            Responsable Ambiental
+          </label>
+          <input
+            className="bg-gray-50 border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
+            type="text"
+            placeholder="Ingrese el nombre"
+          />
+        </div>
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center">
+          <label htmlFor="catalogo" className="text-xl font-semibold py-4">
+            Residente de la Obra
+          </label>
+          <input
+            className="bg-gray-50 border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
+            type="text"
+            placeholder="Ingrese el nombre"
+          />
+        </div>
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center">
+          <label htmlFor="catalogo" className="text-xl font-semibold py-4">
+            Supervisor de Obra
+          </label>
+          <input
+            className="bg-gray-50 border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
+            type="text"
+            placeholder="Ingrese el nombre"
+          />
+        </div>
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center">
+          <label htmlFor="catalogo" className="text-xl font-semibold py-4">
+            Supervición Ambiental
+          </label>
+          <input
+            className="bg-gray-50 border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
+            type="text"
+            placeholder="Ingrese el nombre"
+          />
+        </div>
+      </div>
       <div className="md:row-start-2 md:col-start-1">
         <div className="md:col-start-1 flex flex-col">
           <label htmlFor="catalogo" className="text-xl font-semibold py-4">
@@ -131,12 +171,12 @@ function Content({ projectData }) {
           placeholder="Ingrese la información"
         />
       </div>
-      <div className="md:row-start-3 pt-14 pb-2 md:pb-0">
+      <div className="md:row-start-3 pt-14 pb-8 md:pb-0">
         <UploadButton data={option} projectData={projectData} />
       </div>
     </form>
   );
-}
+};
 
 const UploadButton = ({ data, projectData }) => {
   const uploadForm = () => {
@@ -156,7 +196,7 @@ const UploadButton = ({ data, projectData }) => {
   return (
     <button
       style={{ backgroundColor: "#8CBA6E" }}
-      className="text-white w-full md:w-72 rounded-lg h-14 md:h-12"
+      className="text-white w-full md:w-72 rounded-lg h-14"
       onClick={uploadForm}
     >
       <span className="flex justify-evenly font-semibold items-center text-xl md:text-lg px-2">

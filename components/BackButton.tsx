@@ -16,6 +16,7 @@ export default function BackButton(props: {
           contract_num: props.query.contract_num,
           project_title: props.query.project_title,
           exc_number: props.query.exc_number,
+          contratist: props.query.contratist,
         },
       }}
     >

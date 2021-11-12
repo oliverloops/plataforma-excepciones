@@ -49,7 +49,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Access>) => {
                       console.log("Access Granted!");
                       //Query to look for header values for the expecific project's owner and retrives to months page
                       connection.query(
-                        `SELECT contract_num, project_title, exc_number FROM projects WHERE owner="${req.body.username}"`,
+                        `SELECT contract_num, project_title, exc_number, contratist FROM projects WHERE owner="${req.body.username}"`,
                         (err, rows, fields) => {
                           let collects = JSON.parse(JSON.stringify(rows));
 
