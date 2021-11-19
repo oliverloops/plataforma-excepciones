@@ -60,9 +60,36 @@ const Content = ({ projectData }) => (
 );
 
 const Form = ({ projectData }) => {
-  const [option, setOption] = useState([]);
+  //Responsable Ambiental
+  const [responsable, setResponsable] = useState("");
+  //Residente de la obra
+  const [residente, setResidente] = useState("");
+  //Supervisor de la obra
+  const [supervisor, setSupervisor] = useState("");
+  //Supervisión ambiental
+  const [supAmbiental, setSupAmbiental] = useState("");
+  //Catalogo general de la obra
+  const [catalogo, setCatalogo] = useState("");
+  //Coordenadas UTM centroíde
+  const [centroide, setCentroide] = useState("");
+  //Trabajadores con seguro
+  const [trabajadores, setTrabajadores] = useState("");
+  //Área
+  const [area, setArea] = useState("");
+  //Número de trabajadores
+  const [numeroTrab, setNumeroTrab] = useState("");
+  //Fecha de entrega
+  const [entrega, setEntrega] = useState("");
+  //Contenedor de todos los campos
+  const [fields, setFields] = useState([]);
 
-  console.log(projectData);
+  //console.log(projectData);
+  function getInput(event, setState) {
+    setState(event.target.value);
+    setFields(() => [...fields, event.target.value]);
+  }
+
+  console.log(responsable);
 
   return (
     <form className="grid grid-cols-1 md:grid-cols-2 px-8  md:px-16">
@@ -75,6 +102,7 @@ const Form = ({ projectData }) => {
             className="bg-gray-50 border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
             type="text"
             placeholder="Ingrese el nombre"
+            onChange={(event) => getInput(event, setResponsable)}
           />
         </div>
         <div className="flex flex-col md:flex-row md:justify-between md:items-center">
@@ -85,6 +113,7 @@ const Form = ({ projectData }) => {
             className="bg-gray-50 border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
             type="text"
             placeholder="Ingrese el nombre"
+            onChange={(event) => setResidente(event.target.value)}
           />
         </div>
         <div className="flex flex-col md:flex-row md:justify-between md:items-center">
@@ -95,6 +124,7 @@ const Form = ({ projectData }) => {
             className="bg-gray-50 border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
             type="text"
             placeholder="Ingrese el nombre"
+            onChange={(event) => setSupervisor(event.target.value)}
           />
         </div>
         <div className="flex flex-col md:flex-row md:justify-between md:items-center">
@@ -105,6 +135,7 @@ const Form = ({ projectData }) => {
             className="bg-gray-50 border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
             type="text"
             placeholder="Ingrese el nombre"
+            onChange={(event) => setSupAmbiental(event.target.value)}
           />
         </div>
       </div>
@@ -117,6 +148,7 @@ const Form = ({ projectData }) => {
             className="bg-gray-50 border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
             type="text"
             placeholder="Ingrese la información"
+            onChange={(event) => setCatalogo(event.target.value)}
           />
           <label htmlFor="area" className="text-xl font-semibold py-8 md:py-4">
             Coordenadas UTM Centroíde
@@ -125,6 +157,7 @@ const Form = ({ projectData }) => {
             className="bg-gray-50  border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
             type="text"
             placeholder="Ingrese la información"
+            onChange={(event) => setCentroide(event.target.value)}
           />
           <label
             htmlFor="coordenadas"
@@ -136,6 +169,7 @@ const Form = ({ projectData }) => {
             className="bg-gray-50  border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
             type="text"
             placeholder="Ingrese la información"
+            onChange={(event) => setTrabajadores(event.target.value)}
           />
         </div>
       </div>
@@ -150,6 +184,7 @@ const Form = ({ projectData }) => {
           className="bg-gray-50  border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
           type="text"
           placeholder="Ingrese la información"
+          onChange={(event) => setArea(event.target.value)}
         />
         <label htmlFor="area" className="text-xl font-semibold py-8 md:py-4">
           Número de trabajadores
@@ -158,6 +193,7 @@ const Form = ({ projectData }) => {
           className="bg-gray-50 border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
           type="text"
           placeholder="Ingrese la información"
+          onChange={(event) => setNumeroTrab(event.target.value)}
         />
         <label
           htmlFor="coordenadas"
@@ -169,17 +205,18 @@ const Form = ({ projectData }) => {
           className="bg-gray-50  border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
           type="text"
           placeholder="Ingrese la información"
+          onChange={(event) => setEntrega(event.target.value)}
         />
       </div>
       <div className="md:row-start-3 pt-14 pb-8 md:pb-0">
-        <UploadButton data={option} projectData={projectData} />
+        <UploadButton data={fields} projectData={projectData} />
       </div>
     </form>
   );
 };
 
 const UploadButton = ({ data, projectData }) => {
-  const uploadForm = () => {
+  const uploadForm = (event) => {
     event.preventDefault();
     fetch(`/api/categories`, {
       method: "PUT",

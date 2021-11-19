@@ -80,7 +80,7 @@ export default function RubroCard(props: {
             </span>
           </span>
           <div className="h-px bg-gray-200"></div>
-          {props.rubro !== "Generales" && (
+          {
             <div className="flex justify-between text-xs font-light px-4 py-3">
               <div className="border-2 border-gray-300 rounded-full h-4 w-32">
                 <div
@@ -92,7 +92,7 @@ export default function RubroCard(props: {
               </div>
               Cargado - {props.percentage === 96 ? 100 : props.percentage}%
             </div>
-          )}
+          }
         </div>
       </a>
     </Link>
