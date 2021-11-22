@@ -14,7 +14,7 @@ connection.connect(function (err) {
     setInterval(() => {
       connection.query("SELECT 1");
       console.log("DB server reconnected");
-    }, 5000);
+    }, 2000);
   }
 });
 

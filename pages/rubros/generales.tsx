@@ -81,15 +81,23 @@ const Form = ({ projectData }) => {
   //Fecha de entrega
   const [entrega, setEntrega] = useState("");
   //Contenedor de todos los campos
-  const [fields, setFields] = useState([]);
+  const [fields, setFields] = useState({});
 
   //console.log(projectData);
-  function getInput(event, setState) {
-    setState(event.target.value);
-    setFields(() => [...fields, event.target.value]);
-  }
-
-  console.log(responsable);
+  const getInput = () => {
+    setFields({
+      responsable: responsable,
+      residente: residente,
+      supervisor: supervisor,
+      supAmbiental: supAmbiental,
+      catalogo: catalogo,
+      centroide: centroide,
+      trabajadores: trabajadores,
+      area: area,
+      numeroTrab: numeroTrab,
+      entrega: entrega,
+    });
+  };
 
   return (
     <form className="grid grid-cols-1 md:grid-cols-2 px-8  md:px-16">
@@ -102,7 +110,7 @@ const Form = ({ projectData }) => {
             className="bg-gray-50 border-gray-500 border-2 rounded-lg md:w-80 h-12 px-2"
             type="text"
             placeholder="Ingrese el nombre"
-            onChange={(event) => getInput(event, setResponsable)}
+            onChange={(event) => setResponsable(event.target.value)}
           />
         </div>
         <div className="flex flex-col md:flex-row md:justify-between md:items-center">
@@ -209,17 +217,22 @@ const Form = ({ projectData }) => {
         />
       </div>
       <div className="md:row-start-3 pt-14 pb-8 md:pb-0">
-        <UploadButton data={fields} projectData={projectData} />
+        <UploadButton
+          data={fields}
+          getInput={getInput}
+          projectData={projectData}
+        />
       </div>
     </form>
   );
 };
 
-const UploadButton = ({ data, projectData }) => {
+const UploadButton = ({ data, getInput, projectData }) => {
   const uploadForm = (event) => {
     event.preventDefault();
-    fetch(`/api/categories`, {
-      method: "PUT",
+    getInput();
+    fetch(`/api/generals`, {
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         values: data,
@@ -228,6 +241,8 @@ const UploadButton = ({ data, projectData }) => {
         rubro: projectData.rubro,
       }),
     });
+
+    console.log(data);
   };
 
   return (

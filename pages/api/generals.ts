@@ -18,12 +18,18 @@ connection.connect(function (err) {
   }
 });
 
-export default async function (req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   return new Promise((resolve) => {
+    const data = req.body.values;
+    console.log(data);
+
     switch (req.method) {
-      case "GET":
+      case "POST":
         connection.query(
-          "SELECT quantity FROM basecards",
+          `INSERT INTO generales VALUES ('${data.responsable}', '${data.residente}', '${data.supervisor}', '${data.supAmbiental}', '${data.catalogo}', '${data.centroide}', '${data.trabajadores}', '${data.area}', '${data.numeroTrab}', '${data.entrega}')`,
           (err, rows, fields) => {
             res.send(rows);
           }
