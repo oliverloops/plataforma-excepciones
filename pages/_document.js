@@ -10,7 +10,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>Plataforma Kila | Excepciones</title>
+          <title>Kila | Plataforma Excepciones</title>
         </Head>
         <body>
           <Main />

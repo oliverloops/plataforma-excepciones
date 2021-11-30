@@ -44,7 +44,7 @@ export default async function handler(
             //This queries inserts all category cards with the new project's basic info
             if (collects.length === 0) {
               connection.query(
-                `INSERT INTO categories (project_title, month, category) VALUES ('${req.body.project_title}', ${req.body.month}, '${req.body.generales}')`
+                `INSERT INTO categories (project_title, month, category) VALUES ('${req.body.project_title}', ${req.body.month}, '${req.body.generales}');`
               );
               connection.query(
                 `INSERT INTO categories (project_title, month, category) VALUES ('${req.body.project_title}', ${req.body.month}, '${req.body.biotico}');`
@@ -94,7 +94,6 @@ export default async function handler(
             `UPDATE categories SET compliance='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
           );
         } else {
-          let toStore = req.body.complianceData.toString();
           console.log(req.body.files);
 
           connection.query(
@@ -123,7 +122,7 @@ export default async function handler(
                   .then((fileResponse) => {
                     let fileUrls = [fileResponse.secure_url];
                     connection.query(
-                      `UPDATE categories SET progress=16, compliance='${toStore}', evidence='${fileUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+                      `UPDATE categories SET progress=16, evidence='${fileUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
                     );
                   });
               } else {
@@ -160,7 +159,7 @@ export default async function handler(
                         let status = fullValue[0].progress + 16;
 
                         connection.query(
-                          `UPDATE categories SET progress=${status}, compliance='${toStore}', evidence='${tempUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+                          `UPDATE categories SET progress=${status}, evidence='${tempUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
                         );
                       }
                     );

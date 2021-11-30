@@ -24,12 +24,12 @@ export default async function handler(
 ) {
   return new Promise((resolve) => {
     const data = req.body.values;
-    console.log(data);
+    console.log(req.body);
 
     switch (req.method) {
       case "POST":
         connection.query(
-          `INSERT INTO generales VALUES ('${data.responsable}', '${data.residente}', '${data.supervisor}', '${data.supAmbiental}', '${data.catalogo}', '${data.centroide}', '${data.trabajadores}', '${data.area}', '${data.numeroTrab}', '${data.entrega}')`,
+          `INSERT INTO generales VALUES ('${req.body.project}', '${req.body.month}', '${data.responsable}', '${data.residente}', '${data.supervisor}', '${data.supAmbiental}', '${data.catalogo}', '${data.centroide}', '${data.trabajadores}', '${data.area}', '${data.numeroTrab}', '${data.entrega}')`,
           (err, rows, fields) => {
             res.send(rows);
           }

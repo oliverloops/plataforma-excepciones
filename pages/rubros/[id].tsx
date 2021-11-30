@@ -122,7 +122,6 @@ function Content({ id, projectData }) {
 }
 
 function Table({ rubro, projectData }) {
-  const [compliance, setCompliance] = useState([]);
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
@@ -146,38 +145,6 @@ function Table({ rubro, projectData }) {
       });
   }, [rubro]);
 
-  const storeEvidence = (event) => {
-    if (compliance.length < 6) {
-      setCompliance((val) => [...val, event.target.value]);
-    } else if (compliance.length >= 6 && event.target.name === "1") {
-      let temp = compliance;
-      temp[0] = event.target.value;
-      setCompliance(temp);
-    } else if (compliance.length >= 6 && event.target.name === "2") {
-      let temp = compliance;
-      temp[1] = event.target.value;
-      setCompliance(temp);
-    } else if (compliance.length >= 6 && event.target.name === "3") {
-      let temp = compliance;
-      temp[2] = event.target.value;
-      setCompliance(temp);
-    } else if (compliance.length >= 6 && event.target.name === "4") {
-      let temp = compliance;
-      temp[3] = event.target.value;
-      setCompliance(temp);
-    } else if (compliance.length >= 6 && event.target.name === "5") {
-      let temp = compliance;
-      temp[4] = event.target.value;
-      setCompliance(temp);
-    } else if (compliance.length >= 6 && event.target.name === "6") {
-      let temp = compliance;
-      temp[5] = event.target.value;
-      setCompliance(temp);
-    } else {
-      return;
-    }
-  };
-
   //Method for DB query and store
   const uploadEvidenceToDb = (value) => {
     value.preventDefault();
@@ -187,7 +154,6 @@ function Table({ rubro, projectData }) {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        complianceData: compliance,
         project: projectData.project_title,
         month: projectData.month,
         rubro: rubro,
@@ -211,18 +177,23 @@ function Table({ rubro, projectData }) {
         {tableContent.map((item, id) => (
           <tr key={id} className="border-b-2 border-gray-400">
             <td className="px-3 py-4">
-              <p className="text-left">{item.mm}</p>
+              <p className="text-left pr-8 pl-2">{item.mm}</p>
             </td>
-            <td className="border-l-2 border-r-2 border-gray-400 px-4 md:px-12 py-4">
-              <p>{item.cumplimiento}</p>
+            <td className="border-l-2 border-r-2 border-gray-400 py-4">
+              <p className="px-4">{item.cumplimiento}</p>
             </td>
-            <td className="flex justify-between px-2 md:px-5 pt-5">
+            <td className="flex justify-between items-center px-2 md:px-5 pt-5">
               <UploadButton upload={uploadEvidenceToDb} />
-              <Link href={`${files[id]}`}>
-                <a target="_blank">
-                  <GrDocumentDownload size={30} />
-                </a>
-              </Link>
+              <div className="flex flex-col items-center ml-4">
+                <Link href={`${files[id]}`}>
+                  <a target="_blank">
+                    <GrDocumentDownload size={30} />
+                  </a>
+                </Link>
+                <p className="text-xs font-medium text-center pt-2">
+                  ver/descargar documento
+                </p>
+              </div>
             </td>
           </tr>
         ))}
