@@ -29,11 +29,17 @@ export default async function handler(
     switch (req.method) {
       case "POST":
         connection.query(
-          `INSERT INTO generales VALUES ('${req.body.project}', '${req.body.month}', '${data.responsable}', '${data.residente}', '${data.supervisor}', '${data.supAmbiental}', '${data.catalogo}', '${data.centroide}', '${data.trabajadores}', '${data.area}', '${data.numeroTrab}', '${data.entrega}')`,
+          `SELECT progreso FROM generales WHERE proyecto='${req.body.project}'`,
           (err, rows, fields) => {
-            res.send(rows);
+            if (res.send(rows[0]) === undefined) {
+              connection.query(
+                `INSERT INTO generales (proyecto, mes, responsable_amb, residente_obra, supervisor_obra, supervicion_ambiental, catalogo_general, coordenadas_centroide, trabajadores_seguro, area, num_trabajadores, fecha_entrega)
+                 VALUES ('${req.body.project}', '${req.body.month}', '${data.responsable}', '${data.residente}', '${data.supervisor}', '${data.supAmbiental}', '${data.catalogo}', '${data.centroide}', '${data.trabajadores}', '${data.area}', '${data.numeroTrab}', '${data.entrega}')`
+              );
+            }
           }
         );
+
         break;
       default:
         res.status(405).end();
