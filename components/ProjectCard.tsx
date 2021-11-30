@@ -142,29 +142,19 @@ function ExtendedForm({ open, openForm, username, password, projectTitle }) {
         </div>
         <div className="col-start-1 col-end-2">
           <label className="text-sm py-1">Tipo de obra</label>
-          <select
+          <input
+            type="text"
+            className="border-2 border-gray-300 rounded-md text-sm w-full px-1 py-0.5"
             onChange={(input) => setProjectType(input.target.value)}
-            className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 px-1 py-0.5"
-          >
-            <option value="Opción 1">Opción 1</option>
-            <option value="Opción 2">Opción 2</option>
-            <option value="Opción 3">Opción 3</option>
-            <option value="Opción 4">Opción 4</option>
-            <option value="Opción 5">Opción 5</option>
-          </select>
+          />
         </div>
         <div className="col-start-2">
           <label className="text-sm py-1">Supervisor interno</label>
-          <select
+          <input
+            type="text"
+            className="border-2 border-gray-300 rounded-md text-sm w-full px-1 py-0.5"
             onChange={(input) => setSupervisor(input.target.value)}
-            className="border-2 bg-gray-200 border-gray-300 rounded-md text-sm w-3/4 md:w-auto px-1 py-0.5"
-          >
-            <option value="Opción 1">Opción 1</option>
-            <option value="Opción 2">Opción 2</option>
-            <option value="Opción 3">Opción 3</option>
-            <option value="Opción 4">Opción 4</option>
-            <option value="Opción 5">Opción 5</option>
-          </select>
+          />
         </div>
         <div className="col-start-1 col-end-2">
           <label className="text-sm py-1">No. de excepción</label>

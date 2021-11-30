@@ -31,7 +31,8 @@ export default async function handler(
         connection.query(
           `SELECT progreso FROM generales WHERE proyecto='${req.body.project}' AND mes='${req.body.project}'`,
           (err, rows, fields) => {
-            if (res.send(rows[0]) === undefined || rows[0].progreso === 0) {
+            if (res.send(rows[0]) === undefined) {
+              console.log(rows);
               console.log("CONDITION A");
               connection.query(
                 `INSERT INTO generales (proyecto, mes, progreso, responsable_amb, residente_obra, supervisor_obra, supervicion_ambiental, catalogo_general, coordenadas_centroide, trabajadores_seguro, area, num_trabajadores, fecha_entrega)
