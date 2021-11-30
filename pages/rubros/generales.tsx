@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 //UI Layout
 import Header from "../../layout/Header";
@@ -98,6 +98,42 @@ const Form = ({ projectData }) => {
       entrega: entrega,
     });
   };
+
+  useEffect(() => {
+    setFields({
+      responsable: responsable,
+      residente: residente,
+      supervisor: supervisor,
+      supAmbiental: supAmbiental,
+      catalogo: catalogo,
+      centroide: centroide,
+      trabajadores: trabajadores,
+      area: area,
+      numeroTrab: numeroTrab,
+      entrega: entrega,
+    });
+  }, [
+    responsable,
+    setResponsable,
+    residente,
+    setResidente,
+    supervisor,
+    setSupervisor,
+    supAmbiental,
+    setSupAmbiental,
+    catalogo,
+    setCatalogo,
+    centroide,
+    setCentroide,
+    trabajadores,
+    setTrabajadores,
+    area,
+    setArea,
+    numeroTrab,
+    setNumeroTrab,
+    entrega,
+    setEntrega,
+  ]);
 
   return (
     <form className="grid grid-cols-1 md:grid-cols-2 px-8  md:px-16">

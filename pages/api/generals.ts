@@ -31,14 +31,16 @@ export default async function handler(
         connection.query(
           `SELECT progreso FROM generales WHERE proyecto='${req.body.project}' AND mes='${req.body.project}'`,
           (err, rows, fields) => {
-            if (res.send(rows[0]) === undefined) {
+            if (res.send(rows[0]) === undefined || rows[0].progreso === 0) {
+              console.log("CONDITION A");
               connection.query(
-                `INSERT INTO generales (proyecto, mes, responsable_amb, residente_obra, supervisor_obra, supervicion_ambiental, catalogo_general, coordenadas_centroide, trabajadores_seguro, area, num_trabajadores, fecha_entrega)
-                 VALUES ('${req.body.project}', '${req.body.month}', '${data.responsable}', '${data.residente}', '${data.supervisor}', '${data.supAmbiental}', '${data.catalogo}', '${data.centroide}', '${data.trabajadores}', '${data.area}', '${data.numeroTrab}', '${data.entrega}')`
+                `INSERT INTO generales (proyecto, mes, progreso, responsable_amb, residente_obra, supervisor_obra, supervicion_ambiental, catalogo_general, coordenadas_centroide, trabajadores_seguro, area, num_trabajadores, fecha_entrega)
+                 VALUES ('${req.body.project}', '${req.body.month}', 10, '${data.responsable}', '${data.residente}', '${data.supervisor}', '${data.supAmbiental}', '${data.catalogo}', '${data.centroide}', '${data.trabajadores}', '${data.area}', '${data.numeroTrab}', '${data.entrega}')`
               );
-            } else {
+            } else if (rows[0] !== undefined || rows[0].progreso > 0) {
               let progress = rows[0].progreso + 10;
 
+              console.log("CONDITION B");
               connection.query(
                 `UPDATE generales 
                  SET progreso=${progress}, responsable_amb=${data.responsable}, residente_obra=${data.residente}, supervisor_obra=${data.supervisor}, supervicion_ambiental=${data.supAmbiental}, catalogo_general=${data.catalogo}, coordenadas_centroide=${data.centroide}, trabajadores_seguro=${data.trabajadores}, area=${data.area}, num_trabajadores=${data.numeroTrab}, fecha_entrega=${data.entrega}
