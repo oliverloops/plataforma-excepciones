@@ -29,7 +29,7 @@ export default async function handler(
     switch (req.method) {
       case "POST":
         connection.query(
-          `SELECT progreso FROM generales WHERE proyecto='${req.body.project}'`,
+          `SELECT progreso FROM generales WHERE proyecto='${req.body.project}' AND mes='${req.body.project}'`,
           (err, rows, fields) => {
             if (res.send(rows[0]) === undefined) {
               connection.query(
@@ -37,9 +37,11 @@ export default async function handler(
                  VALUES ('${req.body.project}', '${req.body.month}', '${data.responsable}', '${data.residente}', '${data.supervisor}', '${data.supAmbiental}', '${data.catalogo}', '${data.centroide}', '${data.trabajadores}', '${data.area}', '${data.numeroTrab}', '${data.entrega}')`
               );
             } else {
+              let progress = rows[0].progreso + 10;
+
               connection.query(
                 `UPDATE generales 
-                 SET responsable_amb=${data.responsable}, residente_obra=${data.residente}, supervisor_obra=${data.supervisor}, supervicion_ambiental=${data.supAmbiental}, catalogo_general=${data.catalogo}, coordenadas_centroide=${data.centroide}, trabajadores_seguro=${data.trabajadores}, area=${data.area}, num_trabajadores=${data.numeroTrab}, fecha_entrega=${data.entrega}
+                 SET progreso=${progress}, responsable_amb=${data.responsable}, residente_obra=${data.residente}, supervisor_obra=${data.supervisor}, supervicion_ambiental=${data.supAmbiental}, catalogo_general=${data.catalogo}, coordenadas_centroide=${data.centroide}, trabajadores_seguro=${data.trabajadores}, area=${data.area}, num_trabajadores=${data.numeroTrab}, fecha_entrega=${data.entrega}
                  WHERE proyecto=${req.body.project} AND mes=${req.body.month}`
               );
             }
