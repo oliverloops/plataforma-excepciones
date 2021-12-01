@@ -146,9 +146,15 @@ function Table({ rubro, projectData }) {
   }, [rubro]);
 
   //Method for DB query and store
-  const uploadEvidenceToDb = (value) => {
-    value.preventDefault();
-    console.log(value.target.files[0].name);
+  const uploadEvidenceToDb = (event: any) => {
+    event.preventDefault();
+
+    const name = event.target.files[0].name;
+    const lastDot = name.lastIndexOf(".");
+    const fileName = name.substring(0, lastDot);
+    const ext = name.substring(lastDot + 1);
+
+    console.log(fileName);
 
     fetch(`/api/categories`, {
       method: "PUT",
@@ -157,7 +163,7 @@ function Table({ rubro, projectData }) {
         project: projectData.project_title,
         month: projectData.month,
         rubro: rubro,
-        files: `/Users/oliver/Downloads/${value.target.files[0].name}`,
+        files: `${event.target.files[0].name}`,
       }),
     });
   };

@@ -11,8 +11,6 @@ export default function MonthCard(props: {
   const routeData = JSON.parse(props.query);
   routeData.month = props.month;
 
-  console.log(routeData);
-
   return (
     <Link
       href={{
