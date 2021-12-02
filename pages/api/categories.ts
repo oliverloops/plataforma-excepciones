@@ -95,7 +95,7 @@ export default async function handler(
             `UPDATE categories SET compliance='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
           );
         } else {
-          const editedPath = path.join("C:/fakepath/", req.body.files);
+          const editedPath = path.join("./", req.body.files);
           console.log(editedPath);
 
           connection.query(
@@ -105,7 +105,7 @@ export default async function handler(
               if (Object.is(val[0].evidence, null)) {
                 //Cloudinary API - Wrapping into format handler and request
                 const data: any = new FormData();
-                data.append("file", req.body.files);
+                data.append("file", editedPath);
                 data.append("upload_preset", "Evidencias");
                 data.append(
                   "folder",
@@ -132,7 +132,7 @@ export default async function handler(
 
                 //Cloudinary API - Wrapping into format handler and request
                 const data: any = new FormData();
-                data.append("file", req.body.files);
+                data.append("file", editedPath);
                 data.append("upload_preset", "Evidencias");
                 data.append(
                   "folder",
