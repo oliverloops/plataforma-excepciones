@@ -95,8 +95,8 @@ export default async function handler(
             `UPDATE categories SET compliance='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
           );
         } else {
-          //const editedPath = path.resolve("/evidence", req.body.files);
-          console.log(req.body);
+          const editedPath = path.join("C:/fakepath/", req.body.files);
+          console.log(editedPath);
 
           connection.query(
             `SELECT evidence FROM categories WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`,
