@@ -15,7 +15,7 @@ function Select() {
   const [blocks, setBlocks] = useState(null);
 
   const router = useRouter();
-  console.log(router.query);
+  //console.log(router.query);
 
   const categories = {
     generales: "Generales",
