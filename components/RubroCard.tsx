@@ -10,46 +10,6 @@ export default function RubroCard(props: {
   percentage: number;
   query: any;
 }) {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    switch (props.percentage) {
-      case 16:
-        setProgress(20.6667);
-        break;
-      case 32:
-        setProgress(41.3334);
-        break;
-      case 48:
-        setProgress(62);
-        break;
-      case 64:
-        setProgress(82.6668);
-        break;
-      case 80:
-        setProgress(103.3335);
-        break;
-      case 96:
-        setProgress(124);
-        break;
-      // case 70:
-      //   setProgress(86.4);
-      //   break;
-      // case 80:
-      //   setProgress(98.8);
-      //   break;
-      // case 90:
-      //   setProgress(111.6);
-      //   break;
-      // case 100:
-      //   setProgress(124);
-      //   break;
-      default:
-        setProgress(0);
-        break;
-    }
-  }, [progress, setProgress]);
-
   return (
     <Link
       href={{
@@ -82,15 +42,22 @@ export default function RubroCard(props: {
           <div className="h-px bg-gray-200"></div>
           {
             <div className="flex justify-between text-xs font-light px-4 py-3">
-              <div className="border-2 border-gray-300 rounded-full h-4 w-32">
+              <div
+                style={{ width: 128 }}
+                className="border-2 border-gray-300 rounded-full h-4"
+              >
                 <div
-                  style={{ width: `${progress}px` }}
+                  style={{
+                    width: `${
+                      props.percentage > 0 ? props.percentage + 24 : 0
+                    }px`,
+                  }}
                   className={`bg-blue-400 ${
-                    props.percentage < 96 ? "rounded-l-full" : "rounded-full"
+                    props.percentage < 100 ? "rounded-l-full" : "rounded-full"
                   } h-3 z-10`}
                 ></div>
               </div>
-              Cargado - {props.percentage === 96 ? 100 : props.percentage}%
+              Cargado - {props.percentage}%
             </div>
           }
         </div>
