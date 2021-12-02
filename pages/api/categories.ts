@@ -92,13 +92,13 @@ export default async function handler(
             `UPDATE categories SET compliance='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
           );
         } else {
-          console.log(req.body.files);
-
           connection.query(
             `SELECT evidence FROM categories WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`,
             (err, rows, fields) => {
               let val = JSON.parse(JSON.stringify(rows));
               if (Object.is(val[0].evidence, null)) {
+                console.log("Evidence is empty");
+
                 connection.query(
                   `UPDATE categories SET progress=16, evidence='${req.body.files}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
                 );
@@ -110,10 +110,34 @@ export default async function handler(
                 console.log(req.body.files);
 
                 connection.query(
-                  `SELECT progress FROM categories WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`,
+                  `SELECT progress, category FROM categories WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`,
                   (err, rows, fields) => {
                     let fullValue = JSON.parse(JSON.stringify(rows));
-                    let status = fullValue[0].progress + 16;
+                    let status = fullValue[0].progress;
+
+                    if (fullValue[0].category === "Biótico") {
+                      status = status + 14.285714285714286;
+                    } else if (fullValue[0].category === "Suelo") {
+                      status = status + 20;
+                    } else if (fullValue[0].category === "Aire") {
+                      status = status + 16.666666666666667;
+                    } else if (fullValue[0].category === "Agua") {
+                      status = status + 33.333333333;
+                    } else if (fullValue[0].category === "Hidrología") {
+                      status = status + 50;
+                    } else if (fullValue[0].category === "Manejo de Residuos") {
+                      status = status + 25;
+                    } else if (
+                      fullValue[0].category === "Operación y Mantenimiento"
+                    ) {
+                      status = status + 16.666666666666667;
+                    } else if (
+                      fullValue[0].category === "Abandono y Restauración"
+                    ) {
+                      status = status + 20;
+                    } else if (fullValue[0].category === "Seguridad") {
+                      status = status + 100;
+                    }
 
                     connection.query(
                       `UPDATE categories SET progress=${status}, evidence='${tempUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
