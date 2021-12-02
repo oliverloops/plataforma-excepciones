@@ -29,7 +29,7 @@ export default async function handler(
     switch (req.method) {
       case "POST":
         connection.query(
-          `SELECT progreso FROM generales WHERE proyecto='${req.body.project}' AND mes='${req.body.project}'`,
+          `SELECT progreso FROM generales WHERE proyecto='${req.body.project}' AND mes='${req.body.month}'`,
           (err, rows, fields) => {
             if (res.send(rows[0]) === undefined) {
               console.log(rows);
@@ -38,7 +38,7 @@ export default async function handler(
                 `INSERT INTO generales (proyecto, mes, progreso, responsable_amb, residente_obra, supervisor_obra, supervicion_ambiental, catalogo_general, coordenadas_centroide, trabajadores_seguro, area, num_trabajadores, fecha_entrega)
                  VALUES ('${req.body.project}', '${req.body.month}', 10, '${data.responsable}', '${data.residente}', '${data.supervisor}', '${data.supAmbiental}', '${data.catalogo}', '${data.centroide}', '${data.trabajadores}', '${data.area}', '${data.numeroTrab}', '${data.entrega}')`
               );
-            } else if (rows[0] !== undefined || rows[0].progreso > 0) {
+            } else if (rows[0].progreso > 0) {
               let progress = rows[0].progreso + 10;
 
               console.log("CONDITION B");
