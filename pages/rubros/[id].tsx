@@ -154,7 +154,7 @@ function Table({ rubro, projectData }) {
   const uploadEvidenceToDb = (event: any) => {
     event.preventDefault();
 
-    const name = event.target.files[0].name;
+    const file = event.target.files;
     console.log(event.target.files[0]);
 
     fetch(`/api/categories`, {
@@ -164,7 +164,7 @@ function Table({ rubro, projectData }) {
         project: projectData.project_title,
         month: projectData.month,
         rubro: rubro,
-        files: event.target.files[0],
+        files: `${event.target.files[0].name}`,
       }),
     });
   };
