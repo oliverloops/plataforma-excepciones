@@ -145,6 +145,23 @@ function Table({ rubro, projectData }) {
       });
   }, [rubro]);
 
+  //Image upload to cloudinary
+  const imageUpload = (event: any) => {
+    //Cloudinary API - Wrapping into format handler and request
+    const data: any = new FormData();
+    data.append("file", event.target.files[0]);
+    data.append("upload_preset", "Evidencias");
+    data.append(
+      "folder",
+      `${projectData.project_title}/Mes ${projectData.month}/${rubro}`
+    );
+
+    fetch("https://api.cloudinary.com/v1_1/dggf3zgah/image/upload", {
+      method: "POST",
+      body: data,
+    });
+  };
+
   //Method for DB query and store
   const uploadEvidenceToDb = (event: any) => {
     event.preventDefault();
@@ -185,7 +202,7 @@ function Table({ rubro, projectData }) {
               <p className="px-4">{item.cumplimiento}</p>
             </td>
             <td className="flex justify-between items-center px-2 md:px-5 pt-5">
-              <UploadButton upload={uploadEvidenceToDb} />
+              <UploadButton upload={imageUpload} />
               <div className="flex flex-col items-center ml-4">
                 <Link href={`${files[id]}`}>
                   <a target="_blank">
