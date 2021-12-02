@@ -99,8 +99,30 @@ export default async function handler(
               if (Object.is(val[0].evidence, null)) {
                 console.log("Evidence is empty");
 
+                let initial_progress: number;
+
+                if (req.body.rubro === "Biótico") {
+                  initial_progress = 14.285714285714286;
+                } else if (req.body.rubro === "Suelo") {
+                  initial_progress = 20;
+                } else if (req.body.rubro === "Aire") {
+                  initial_progress = 16.666666666666667;
+                } else if (req.body.rubro === "Agua") {
+                  initial_progress = 33.333333333;
+                } else if (req.body.rubro === "Hidrología") {
+                  initial_progress = 50;
+                } else if (req.body.rubro === "Manejo de Residuos") {
+                  initial_progress = 25;
+                } else if (req.body.rubro === "Operación y Mantenimiento") {
+                  initial_progress = 16.666666666666667;
+                } else if (req.body.rubro === "Abandono y Restauración") {
+                  initial_progress = 20;
+                } else if (req.body.rubro === "Seguridad") {
+                  initial_progress = 100;
+                }
+
                 connection.query(
-                  `UPDATE categories SET progress=16, evidence='${req.body.files}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+                  `UPDATE categories SET progress=${initial_progress}, evidence='${req.body.files}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
                 );
               } else {
                 console.log("Evidence isn't null");
@@ -136,7 +158,7 @@ export default async function handler(
                     ) {
                       status = status + 20;
                     } else if (fullValue[0].category === "Seguridad") {
-                      status = status + 100;
+                      status = status + 0;
                     }
 
                     connection.query(
