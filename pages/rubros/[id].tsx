@@ -147,7 +147,7 @@ function Table({ rubro, projectData }) {
 
   //Image upload to cloudinary
   const imageUpload = (event: any) => {
-    //Cloudinary API - Wrapping into format handler and request
+    //Cloudinary API - Wrapping into format handler and sending file input
     const data: any = new FormData();
     data.append("file", event.target.files[0]);
     data.append("upload_preset", "Evidencias");
@@ -156,19 +156,21 @@ function Table({ rubro, projectData }) {
       `${projectData.project_title}/Mes ${projectData.month}/${rubro}`
     );
 
+    //Cloudinary response
     fetch("https://api.cloudinary.com/v1_1/dggf3zgah/image/upload", {
       method: "POST",
       body: data,
-    });
+    })
+      .then((res) => res.json())
+      .then((fileResponse) => {
+        console.log("File has been saved");
+        let fileUrls = [fileResponse.secure_url];
+        uploadEvidenceToDb(fileUrls);
+      });
   };
 
-  //Method for DB query and store
-  const uploadEvidenceToDb = (event: any) => {
-    event.preventDefault();
-
-    const file = event.target.files[0];
-    console.log(file);
-
+  //Method for DB query and store file cloud URL
+  const uploadEvidenceToDb = (fileURL: string[]) => {
     fetch(`/api/categories`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -176,7 +178,7 @@ function Table({ rubro, projectData }) {
         project: projectData.project_title,
         month: projectData.month,
         rubro: rubro,
-        files: `${file.name}`,
+        files: fileURL,
       }),
     });
   };

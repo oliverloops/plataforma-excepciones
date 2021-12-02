@@ -95,83 +95,79 @@ export default async function handler(
             `UPDATE categories SET compliance='${toStore}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
           );
         } else {
-          const editedPath = path.join(
-            "/Users/Oliver/Downloads/",
-            req.body.files
-          );
-          console.log(editedPath);
+          console.log(req.body.files);
 
-          connection.query(
-            `SELECT evidence FROM categories WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`,
-            (err, rows, fields) => {
-              let val = JSON.parse(JSON.stringify(rows));
-              if (Object.is(val[0].evidence, null)) {
-                //Cloudinary API - Wrapping into format handler and request
-                const data: any = new FormData();
-                data.append("file", fs.createReadStream(editedPath));
-                data.append("upload_preset", "Evidencias");
-                data.append(
-                  "folder",
-                  `${req.body.project}/Mes ${req.body.month}/${req.body.rubro}`
-                );
+          // connection.query(
+          //   `SELECT evidence FROM categories WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`,
+          //   (err, rows, fields) => {
+          //     let val = JSON.parse(JSON.stringify(rows));
+          //     if (Object.is(val[0].evidence, null)) {
+          //       //Cloudinary API - Wrapping into format handler and request
+          //       const data: any = new FormData();
+          //       data.append("file", fs.createReadStream(editedPath));
+          //       data.append("upload_preset", "Evidencias");
+          //       data.append(
+          //         "folder",
+          //         `${req.body.project}/Mes ${req.body.month}/${req.body.rubro}`
+          //       );
 
-                fetch(
-                  "https://api.cloudinary.com/v1_1/dggf3zgah/image/upload",
-                  {
-                    method: "POST",
-                    body: data,
-                  }
-                )
-                  //Cloudinary response
-                  .then((res) => res.json())
-                  .then((fileResponse) => {
-                    let fileUrls = [fileResponse.secure_url];
-                    connection.query(
-                      `UPDATE categories SET progress=16, evidence='${fileUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
-                    );
-                  });
-              } else {
-                console.log("Evidence isn't null");
+          //       fetch(
+          //         "https://api.cloudinary.com/v1_1/dggf3zgah/image/upload",
+          //         {
+          //           method: "POST",
+          //           body: data,
+          //         }
+          //       )
+          //         //Cloudinary response
+          //         .then((res) => res.json())
+          //         .then((fileResponse) => {
+          //           let fileUrls = [fileResponse.secure_url];
+          //           connection.query(
+          //             `UPDATE categories SET progress=16, evidence='${fileUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+          //           );
+          //         });
+          //     } else {
+          //       console.log("Evidence isn't null");
 
-                //Cloudinary API - Wrapping into format handler and request
-                const data: any = new FormData();
-                data.append("file", fs.createReadStream(editedPath));
-                data.append("upload_preset", "Evidencias");
-                data.append(
-                  "folder",
-                  `${req.body.project}/Mes ${req.body.month}/${req.body.rubro}`
-                );
+          //       //Cloudinary API - Wrapping into format handler and request
+          //       const data: any = new FormData();
+          //       data.append("file", fs.createReadStream(editedPath));
+          //       data.append("upload_preset", "Evidencias");
+          //       data.append(
+          //         "folder",
+          //         `${req.body.project}/Mes ${req.body.month}/${req.body.rubro}`
+          //       );
 
-                //This request updates evidence record with new urls array
-                fetch(
-                  "https://api.cloudinary.com/v1_1/dggf3zgah/image/upload",
-                  {
-                    method: "POST",
-                    body: data,
-                  }
-                )
-                  //Cloudinary response
-                  .then((res) => res.json())
-                  .then((fileResponse) => {
-                    let tempUrls = [val[0].evidence];
-                    tempUrls.push(fileResponse.secure_url);
-                    console.log(fileResponse.secure_url);
+          //       //This request updates evidence record with new urls array
+          //       fetch(
+          //         "https://api.cloudinary.com/v1_1/dggf3zgah/image/upload",
+          //         {
+          //           method: "POST",
+          //           body: data,
+          //         }
+          //       )
+          //         //Cloudinary response
+          //         .then((res) => res.json())
+          //         .then((fileResponse) => {
+          //           let tempUrls = [val[0].evidence];
+          //           tempUrls.push(fileResponse.secure_url);
+          //           console.log(fileResponse.secure_url);
 
-                    connection.query(
-                      `SELECT progress FROM categories WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`,
-                      (err, rows, fields) => {
-                        let fullValue = JSON.parse(JSON.stringify(rows));
-                        let status = fullValue[0].progress + 16;
+          //           connection.query(
+          //             `SELECT progress FROM categories WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`,
+          //             (err, rows, fields) => {
+          //               let fullValue = JSON.parse(JSON.stringify(rows));
+          //               let status = fullValue[0].progress + 16;
 
-                        connection.query(
-                          `UPDATE categories SET progress=${status}, evidence='${tempUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
-                        );
-                      }
-                    );
-                  });
-              }
-            }
-          );
+          //               connection.query(
+          //                 `UPDATE categories SET progress=${status}, evidence='${tempUrls}' WHERE project_title='${req.body.project}' AND category='${req.body.rubro}' AND month='${req.body.month}'`
+          //               );
+          //             }
+          //           );
+          //         });
+          //     }
+          //   }
+          // );
         }
 
         break;
