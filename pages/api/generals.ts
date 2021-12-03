@@ -27,6 +27,15 @@ export default async function handler(
     console.log(req.body);
 
     switch (req.method) {
+      case "GET":
+        connection.query(
+          `SELECT progreso FROM generales WHERE proyecto='${req.body.project}' AND mes='${req.body.month}'`,
+          (err, rows, fields) => {
+            res.send(rows);
+          }
+        );
+        break;
+
       case "POST":
         connection.query(
           `SELECT progreso FROM generales WHERE proyecto='${req.body.project}' AND mes='${req.body.month}'`,

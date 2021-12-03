@@ -1,8 +1,6 @@
-import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FaLeaf } from "react-icons/fa";
-import { useState } from "react";
 
 export default function RubroCard(props: {
   route: string;
