@@ -13,6 +13,8 @@ import KilaLoader from "../../components/KilaLoader";
 function Select() {
   const [leaf, setLeaf] = useState(false);
   const [blocks, setBlocks] = useState(null);
+  //Estado para el progreso del rubro general
+  const [generalProg, setGeneralProg] = useState(0);
 
   const router = useRouter();
   //console.log(router.query);
@@ -40,6 +42,22 @@ function Select() {
         setLeaf(false);
       }
     }
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/generals", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        project: router.query.project_title,
+        month: router.query.month,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setGeneralProg(data);
+      });
   }, []);
 
   useEffect(() => {
@@ -81,7 +99,7 @@ function Select() {
               <RubroCard
                 key={id}
                 rubro={elem.category}
-                percentage={elem.progress}
+                percentage={generalProg}
                 route={"/rubros/generales"}
                 query={router.query}
               />
