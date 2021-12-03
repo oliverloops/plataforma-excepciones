@@ -39,13 +39,13 @@ export default async function handler(
                  VALUES ('${req.body.project}', '${req.body.month}', 10, '${data.responsable}', '${data.residente}', '${data.supervisor}', '${data.supAmbiental}', '${data.catalogo}', '${data.centroide}', '${data.trabajadores}', '${data.area}', '${data.numeroTrab}', '${data.entrega}')`
               );
             } else if (rows[0].progreso > 0) {
-              let progress = rows[0].progreso + 10;
+              let progress: number = rows[0].progreso + 10;
 
               console.log("CONDITION B");
               connection.query(
                 `UPDATE generales 
-                 SET progreso=${progress}, responsable_amb=${data.responsable}, residente_obra=${data.residente}, supervisor_obra=${data.supervisor}, supervicion_ambiental=${data.supAmbiental}, catalogo_general=${data.catalogo}, coordenadas_centroide=${data.centroide}, trabajadores_seguro=${data.trabajadores}, area=${data.area}, num_trabajadores=${data.numeroTrab}, fecha_entrega=${data.entrega}
-                 WHERE proyecto=${req.body.project} AND mes=${req.body.month}`
+                 SET progreso=${progress}, responsable_amb='${data.responsable}', residente_obra='${data.residente}', supervisor_obra='${data.supervisor}', supervicion_ambiental='${data.supAmbiental}', catalogo_general='${data.catalogo}', coordenadas_centroide='${data.centroide}', trabajadores_seguro='${data.trabajadores}', area='${data.area}', num_trabajadores='${data.numeroTrab}', fecha_entrega='${data.entrega}'
+                 WHERE proyecto='${req.body.project}' AND mes='${req.body.month}'`
               );
             }
           }
