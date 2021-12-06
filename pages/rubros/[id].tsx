@@ -157,10 +157,13 @@ function Table({ rubro, projectData }) {
     );
 
     //Cloudinary response
-    fetch("https://api.cloudinary.com/v1_1/dggf3zgah/image/upload", {
-      method: "POST",
-      body: data,
-    })
+    fetch(
+      "https://api.cloudinary.com/v1_1/kila-environmental-services/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    )
       .then((res) => res.json())
       .then((fileResponse) => {
         console.log("File has been saved");
