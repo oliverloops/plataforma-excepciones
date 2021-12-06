@@ -156,7 +156,7 @@ function Table({ rubro, projectData }) {
       `${projectData.project_title}/Mes ${projectData.month}/${rubro}`
     );
 
-    //Cloudinary response
+    //Cloudinary API - Request
     fetch(
       "https://api.cloudinary.com/v1_1/kila-environmental-services/image/upload",
       {
